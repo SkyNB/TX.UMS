@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.ErpUserCompanyMapper">
+  <resultMap id="BaseResultMap" type="com.lnet.model.ums.ErpUserCompany">
+    <id column="userCompanyId" jdbcType="VARCHAR" property="usercompanyid" />
+    <result column="userId" jdbcType="VARCHAR" property="userId" />
+    <result column="contractType" jdbcType="INTEGER" property="contracttype" />
+    <result column="companyId" jdbcType="VARCHAR" property="companyid" />
+    <result column="stockId" jdbcType="VARCHAR" property="stockid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userCompanyId, userId, contractType, companyId, stockId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from erp_user_company
+    where userCompanyId = #{usercompanyid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from erp_user_company
+    where userCompanyId = #{usercompanyid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lnet.model.ums.ErpUserCompany">
+    <selectKey keyProperty="usercompanyid" order="BEFORE" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into erp_user_company (userCompanyId, userId, contractType, 
+      companyId, stockId)
+    values (#{usercompanyid,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{contracttype,jdbcType=INTEGER},
+      #{companyid,jdbcType=VARCHAR}, #{stockid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lnet.model.ums.ErpUserCompany">
+    <selectKey keyProperty="usercompanyid" order="BEFORE" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into erp_user_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      userCompanyId,
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="contracttype != null">
+        contractType,
+      </if>
+      <if test="companyid != null">
+        companyId,
+      </if>
+      <if test="stockid != null">
+        stockId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{usercompanyid,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="contracttype != null">
+        #{contracttype,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="stockid != null">
+        #{stockid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnet.model.ums.ErpUserCompany">
+    update erp_user_company
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="contracttype != null">
+        contractType = #{contracttype,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null">
+        companyId = #{companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="stockid != null">
+        stockId = #{stockid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userCompanyId = #{usercompanyid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lnet.model.ums.ErpUserCompany">
+    update erp_user_company
+    set userId = #{userId,jdbcType=VARCHAR},
+      contractType = #{contracttype,jdbcType=INTEGER},
+      companyId = #{companyid,jdbcType=VARCHAR},
+      stockId = #{stockid,jdbcType=VARCHAR}
+    where userCompanyId = #{usercompanyid,jdbcType=VARCHAR}
+  </update>
+</mapper>

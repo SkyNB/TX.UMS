@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="kendoui/style/kendo.common-material.min.css" rel="stylesheet" />
+		<link href="kendoui/style/kendo.material.min.css" rel="stylesheet" />
+		<script src="http://cdn.bootcss.com/vue/2.1.6/vue.min.js"></script>
+		<script src="kendoui/jquery.min.js"></script>
+		<script src="kendoui/js/kendo.all.min.js"></script>
+		<script src="kendoui/js/messages/kendo.messages.zh-CN.min.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+
+	<body style="overflow: scroll;">
+
+		<div id="app" class="container ">
+			<div id="main-content">
+				<div class="content-padding">
+					<div id="grid" class="dynamicHeight" data-bind="kendoExGrid: { data: dataSource, columns: columns, widget:grid,change:$root.onChange,groupable:true}"></div>
+				</div>
+			</div>
+			<!--选中行数据:{{tableData[selectIndex]}}-->
+		</div>
+		<script>
+			var app = new Vue({
+				el: "#app",
+				data: {
+					tableData: [{
+						"员工编号": "1482221430514",
+						"员工姓名": "卞韶臻",
+						"入职时间": "2008-2-2",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430515",
+						"员工姓名": "蔡爱健",
+						"入职时间": "2014-5-27",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430516",
+						"员工姓名": "匡勤光",
+						"入职时间": "2005-2-3",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430517",
+						"员工姓名": "齐娟咏",
+						"入职时间": "2009-12-13",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430518",
+						"员工姓名": "冀潜聪",
+						"入职时间": "2013-7-1",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430519",
+						"员工姓名": "房特",
+						"入职时间": "2005-9-24",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430521",
+						"员工姓名": "阴涵",
+						"入职时间": "2005-8-27",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430522",
+						"员工姓名": "谈俊俊",
+						"入职时间": "2014-5-18",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430523",
+						"员工姓名": "邢欢玎",
+						"入职时间": "2009-4-11",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430525",
+						"员工姓名": "洪保宾",
+						"入职时间": "2006-7-12",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430526",
+						"员工姓名": "夔品腾",
+						"入职时间": "2015-3-11",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430527",
+						"员工姓名": "曾霖",
+						"入职时间": "2016-1-28",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430529",
+						"员工姓名": "刘锋",
+						"入职时间": "2005-8-20",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430530",
+						"员工姓名": "丁蓬",
+						"入职时间": "2013-12-4",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430531",
+						"员工姓名": "俞旋荔",
+						"入职时间": "2004-4-16",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430532",
+						"员工姓名": "通习安",
+						"入职时间": "2004-10-20",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430533",
+						"员工姓名": "习萍萍",
+						"入职时间": "2016-3-1",
+						"所属部门": "信息中心"
+					}, {
+						"员工编号": "1482221430535",
+						"员工姓名": "应澜澜",
+						"入职时间": "2012-9-14",
+						"所属部门": "信息中心"
+					}],
+					selectIndex: 0,
+					pageSize: 20
+				},
+				methods: {},
+				watch: { //观察者模式
+					tableData: {
+						handler: function(val, oldVal) {
+							$("#grid").data('kendoGrid').dataSource.read(); //重新读取
+							$("#grid").data('kendoGrid').refresh(); //刷新
+						},
+						deep: true
+					},
+					pageSize: function(val, oldVal) {
+						$("#grid").data('kendoGrid').dataSource.pageSize(val); //分页
+					}
+				}
+			});
+
+			$(document).ready(function() {
+				$("#grid").kendoGrid({
+					//					editable: true,
+					dataSource: {
+						data: app.tableData, //实际数据
+						pageSize: app.pageSize //分页大小
+					},
+					height: 550, //高度
+					groupable: true, //分组
+					//					scrollable: {
+					//                          virtual: true//横向滑块
+					//                      },
+					columnMenu: true, //列头菜单
+					filterable: true, //筛选
+					sortable: true, //排序
+					resizable: true, //可拖拽改变列宽
+					pageable: {
+						//						 numeric: false,//是否显示页码
+						//                          previousNext: false,//是否显示下一页
+						refresh: true, //是否刷新按钮
+						pageSizes: true, //是否分页按钮
+						buttonCount: 5, //是否显示最大的分页页码数量
+						//						 messages: {
+						//                              display: "Showing {2} data items"
+						//                          }//自定义消息
+					},
+					//					toolbar: "aaaaa",//工具栏
+					selectable: "multiple", //多选----row cell;multiple, row ;multiple cell
+					columns: [{ //列头数据
+						field: "员工编号", //绑定的ID
+						title: "员工编号", //绑定的文字
+						width: 240 //宽度
+					}, {
+						columnMenu: false, //是否允许列头菜单 
+						filterable: false, //是否允许筛选
+						field: "员工姓名",
+						title: "员工姓名"
+					}, {
+						field: "入职时间",
+						title: "入职时间",
+						format: "{0:dd/MM/yyyy}", //日期格式化
+						width: 150
+					}, {
+						field: "所属部门",
+						title: "所属部门",
+						width: 150
+					}, {
+						template: '<a>cccccc</a>' //自定义模板
+					}],
+					change: onChange,//选中改变事件
+//					dataBound: onDataBound,//
+//					dataBinding: onDataBinding,//
+					sort: onSorting,
+	                filter: onFiltering,
+	                group: onGrouping,
+	                page: onPaging,
+				});
+			});
+
+			function onChange(arg) {
+				var selected = $.map(this.select(), function(item) {
+					return $(item).text();
+				});
+
+				console.log("Selected: " + selected.length + " item(s), [" + selected.join(", ") + "]");
+			}
+
+			function onDataBound(arg) {
+				console.log("Grid data bound");
+			}
+
+			function onDataBinding(arg) {
+				console.log("Grid data binding");
+			}
+
+			function onSorting(arg) {
+				console.log("Sorting on field: " + arg.sort.field + ", direction:" + (arg.sort.dir || "none"));
+			}
+
+			function onFiltering(arg) {
+				console.log("Filter on " + kendo.stringify(arg.filter));
+			}
+
+			function onPaging(arg) {
+				console.log("Paging to page index:" + arg.page);
+			}
+
+			function onGrouping(arg) {
+				console.log("Group on " + kendo.stringify(arg.groups));
+			}
+		</script>
+	</body>
+
+</html>

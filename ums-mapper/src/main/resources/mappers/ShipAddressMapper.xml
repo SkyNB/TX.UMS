@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.ShipAddressMapper" >
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+
+    <resultMap id="BaseResultMap" type="com.lnet.model.ums.customer.customerEntity.ShipAddress" >
+        <id column="SHIP_ADDRESS_ID" property="shipAddressId" jdbcType="VARCHAR" />
+        <result column="CODE" property="code" jdbcType="VARCHAR" />
+        <result column="NAME" property="name" jdbcType="VARCHAR" />
+        <result column="CARRIER_CODE" property="carrierCode" jdbcType="VARCHAR" />
+        <result column="CONTACT_MAN" property="contactMan" jdbcType="VARCHAR" />
+        <result column="TELEPHONE_NO" property="telephoneNo" jdbcType="VARCHAR" />
+        <result column="MOBILE_PHONE_NO" property="mobilePhoneNo" jdbcType="VARCHAR" />
+        <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+        <result column="CITY" property="city" jdbcType="VARCHAR" />
+        <result column="AREA" property="area" jdbcType="VARCHAR" />
+        <result column="STREET" property="street" jdbcType="VARCHAR" />
+        <result column="DISTRICT_CODE" property="districtCode" jdbcType="VARCHAR" />
+        <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+        <result column="IS_ACTIVE" property="isActive" jdbcType="DECIMAL" />
+        <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        SHIP_ADDRESS_ID, CODE, NAME, CARRIER_CODE, CONTACT_MAN, TELEPHONE_NO, MOBILE_PHONE_NO,
+        PROVINCE, CITY, AREA, STREET, DISTRICT_CODE, ADDRESS, IS_ACTIVE, REMARK
+    </sql>
+
+    <select id="exists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END FROM SHIP_ADDRESS
+        <where>
+            <if test="shipAddressId != null">
+                SHIP_ADDRESS_ID != #{shipAddressId}
+            </if>
+            <if test="code != null">
+                AND CODE = #{code}
+            </if>
+        </where>
+    </select>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM SHIP_ADDRESS
+    </select>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="string">
+        SELECT <include refid="Base_Column_List" /> FROM SHIP_ADDRESS WHERE SHIP_ADDRESS_ID = #{shipAddressId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getByCode" resultMap="BaseResultMap" parameterType="string">
+        SELECT <include refid="Base_Column_List" /> FROM SHIP_ADDRESS WHERE CODE = #{code,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getByCarrierCode" resultMap="BaseResultMap" parameterType="string">
+        SELECT <include refid="Base_Column_List" /> FROM SHIP_ADDRESS WHERE CARRIER_CODE = #{carrierCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getByCarrierCodeAndAvailable" resultMap="BaseResultMap" parameterType="string">
+        SELECT <include refid="Base_Column_List" /> FROM SHIP_ADDRESS WHERE CARRIER_CODE = #{carrierCode,jdbcType=VARCHAR} AND IS_ACTIVE = 1
+    </select>
+
+    <update id="inactivate" parameterType="string">
+        UPDATE SHIP_ADDRESS SET IS_ACTIVE = 0 WHERE CODE = #{code,jdbcType=VARCHAR}
+    </update>
+
+    <update id="activate" parameterType="string">
+        UPDATE SHIP_ADDRESS SET IS_ACTIVE = 1 WHERE CODE = #{code,jdbcType=VARCHAR}
+    </update>
+
+    <insert id="insert" parameterType="com.lnet.model.ums.customer.customerEntity.ShipAddress" >
+        INSERT INTO SHIP_ADDRESS (<include refid="Base_Column_List"/>)
+        VALUES (#{shipAddressId,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+        #{carrierCode,jdbcType=VARCHAR}, #{contactMan,jdbcType=VARCHAR}, #{telephoneNo,jdbcType=VARCHAR},
+        #{mobilePhoneNo,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+        #{area,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR},
+        #{address,jdbcType=VARCHAR}, #{isActive,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.lnet.model.ums.customer.customerEntity.ShipAddress" >
+        UPDATE SHIP_ADDRESS SET
+        NAME = #{name,jdbcType=VARCHAR},
+        CARRIER_CODE = #{carrierCode,jdbcType=VARCHAR},
+        CONTACT_MAN = #{contactMan,jdbcType=VARCHAR},
+        TELEPHONE_NO = #{telephoneNo,jdbcType=VARCHAR},
+        MOBILE_PHONE_NO = #{mobilePhoneNo,jdbcType=VARCHAR},
+        PROVINCE = #{province,jdbcType=VARCHAR},
+        CITY = #{city,jdbcType=VARCHAR},
+        AREA = #{area,jdbcType=VARCHAR},
+        STREET = #{street,jdbcType=VARCHAR},
+        DISTRICT_CODE = #{districtCode,jdbcType=VARCHAR},
+        ADDRESS = #{address,jdbcType=VARCHAR},
+        REMARK = #{remark,jdbcType=VARCHAR}
+        WHERE SHIP_ADDRESS_ID = #{shipAddressId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM SHIP_ADDRESS
+        <where>
+            <if test="code != null">
+                CODE LIKE CONCAT('%', CONCAT(#{code}, '%'))
+            </if>
+            <if test="name != null">
+                AND NAME LIKE CONCAT('%', CONCAT(#{name}, '%'))
+            </if>
+            <if test="carrierCode != null">
+                AND CARRIER_CODE = #{carrierCode}
+            </if>
+            <if test="contactMan != null">
+                AND CONTACT_MAN LIKE CONCAT('%', CONCAT(#{contactMan}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

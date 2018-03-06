@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.DeliveryAddressMapper" >
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+
+    <resultMap id="BaseResultMap" type="DeliveryAddress" >
+        <id column="DELIVERY_ADDRESS_ID" property="deliveryAddressId" jdbcType="VARCHAR" />
+        <result column="OWNER_CODE" property="ownerCode" jdbcType="VARCHAR" />
+        <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+        <result column="CONTACT_MAN" property="contactMan" jdbcType="VARCHAR" />
+        <result column="TELEPHONE_NO" property="telephoneNo" jdbcType="VARCHAR" />
+        <result column="MOBILE_PHONE_NO" property="mobilePhoneNo" jdbcType="VARCHAR" />
+        <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+        <result column="CITY" property="city" jdbcType="VARCHAR" />
+        <result column="AREA" property="area" jdbcType="VARCHAR" />
+        <result column="STREET" property="street" jdbcType="VARCHAR" />
+        <result column="DISTRICT_CODE" property="districtCode" jdbcType="VARCHAR" />
+        <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+        <result column="IS_ACTIVE" property="isActive" jdbcType="DECIMAL" />
+        <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        DELIVERY_ADDRESS_ID, OWNER_CODE, COMPANY_NAME, CONTACT_MAN, TELEPHONE_NO, MOBILE_PHONE_NO,
+        PROVINCE, CITY, AREA, STREET, DISTRICT_CODE, ADDRESS, IS_ACTIVE, REMARK
+    </sql>
+
+    <insert id="insert" parameterType="DeliveryAddress" >
+        INSERT INTO DELIVERY_ADDRESS (DELIVERY_ADDRESS_ID, OWNER_CODE, COMPANY_NAME,
+        CONTACT_MAN, TELEPHONE_NO, MOBILE_PHONE_NO,
+        PROVINCE, CITY, AREA,
+        STREET, DISTRICT_CODE, ADDRESS,
+        IS_ACTIVE, REMARK)
+        VALUES (#{deliveryAddressId,jdbcType=VARCHAR}, #{ownerCode,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR},
+        #{contactMan,jdbcType=VARCHAR}, #{telephoneNo,jdbcType=VARCHAR}, #{mobilePhoneNo,jdbcType=VARCHAR},
+        #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR},
+        #{street,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+        #{isActive,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="DeliveryAddress" >
+        UPDATE DELIVERY_ADDRESS SET
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+        CONTACT_MAN = #{contactMan,jdbcType=VARCHAR},
+        TELEPHONE_NO = #{telephoneNo,jdbcType=VARCHAR},
+        MOBILE_PHONE_NO = #{mobilePhoneNo,jdbcType=VARCHAR},
+        PROVINCE = #{province,jdbcType=VARCHAR},
+        CITY = #{city,jdbcType=VARCHAR},
+        AREA = #{area,jdbcType=VARCHAR},
+        STREET = #{street,jdbcType=VARCHAR},
+        DISTRICT_CODE = #{districtCode,jdbcType=VARCHAR},
+        ADDRESS = #{address,jdbcType=VARCHAR},
+        IS_ACTIVE = #{isActive,jdbcType=DECIMAL},
+        REMARK = #{remark,jdbcType=VARCHAR}
+        WHERE DELIVERY_ADDRESS_ID = #{deliveryAddressId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM DELIVERY_ADDRESS
+    </select>
+
+    <select id="getAvailable" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM DELIVERY_ADDRESS WHERE IS_ACTIVE=1
+    </select>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="string" >
+        SELECT <include refid="Base_Column_List"/> FROM DELIVERY_ADDRESS WHERE DELIVERY_ADDRESS_ID=#{deliveryAddressId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getByOwnerCode" resultMap="BaseResultMap" parameterType="string">
+        SELECT <include refid="Base_Column_List"/> FROM DELIVERY_ADDRESS WHERE OWNER_CODE=#{ownerCode,jdbcType=VARCHAR} AND IS_ACTIVE = 1
+    </select>
+
+    <update id="activate" parameterType="string">
+        UPDATE DELIVERY_ADDRESS SET IS_ACTIVE=1 WHERE DELIVERY_ADDRESS_ID=#{deliveryAddressId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="inactivate" parameterType="string">
+        UPDATE DELIVERY_ADDRESS SET IS_ACTIVE=0 WHERE DELIVERY_ADDRESS_ID=#{deliveryAddressId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="pageList" resultMap="BaseResultMap" parameterType="map">
+        SELECT <include refid="Base_Column_List"/> FROM DELIVERY_ADDRESS
+        <where>
+            <if test="companyName != null">
+                COMPANY_NAME LIKE CONCAT(CONCAT('%', #{companyName}), '%')
+            </if>
+            <if test="contactMan != null">
+                AND CONTACT_MAN LIKE CONCAT(CONCAT('%', #{contactMan}), '%')
+            </if>
+            <if test="province != null">
+                AND PROVINCE LIKE CONCAT(CONCAT('%', #{province}), '%')
+            </if>
+            <if test="city != null">
+                AND CITY LIKE CONCAT(CONCAT('%', #{city}), '%')
+            </if>
+            <if test="ownerCode != null">
+                AND OWNER_CODE=#{ownerCode}
+            </if>
+        </where>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+    </select>
+</mapper>

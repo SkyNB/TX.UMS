@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="./plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="./plugins/kendoui/style/kendo.common-material.min.css" rel="stylesheet" />
+		<link href="./plugins/kendoui/style/kendo.material.min.css" rel="stylesheet" />
+		<link href="./plugins/bootstrap/css/icons/icomoon/styles.css" rel="stylesheet" />
+		<script src="./public/js/add_static_node.js"></script>
+		<script src="http://cdn.bootcss.com/vue/2.1.8/vue.min.js"></script>
+		<script src="./plugins/kendoui/jquery.min.js"></script>
+		<!--<script src="./plugins/kendoui/js/kendo.all.min.js"></script>
+		<script src="./public/js/object-copy.js"></script>-->
+		<link href="./public/css/loading_xbox.css" rel="stylesheet" />
+		<link href="./public/css/main_layout.css" rel="stylesheet" />
+		<link href="./demo.1.css" rel="stylesheet" />
+	</head>
+
+	<body style="background-color: #fff;">
+		<div id="app">
+			<!--搜索栏  你只要负责这个节点就算完成了搜索栏功能 -->
+			<nav class="navbar nav-bar search-bar" v-bind:class="{'search-bar-show':searchBar.show}">
+				<div class="container-fluid">
+					<div class="form-horizontal row">
+						<!--<div class="col-md-2">
+							<div class="form-group ">
+								<label class="control-label col-sm-4">输入框示例</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control ">
+								</div>
+							</div>
+						</div>-->
+						<sb-input label="输入框" placeholder="提示文字" col="5" v-model="searchBar.data.text"></sb-input>
+						<sb-input id="fabric" label="下拉输入框" placeholder="提示文字" col="5" v-model="searchBar.data.dpd"></sb-input>
+						<!--<sb-select id="color"  label="下拉列表" placeholder="提示文字" v-bind:values="testList"  v-model="searchBar.data.dpd2" ></sb-select>-->
+						<sb-input id="datepicker" label="日期" placeholder="提示文字" col="5" v-model="searchBar.data.date"></sb-input>
+
+						<!--<div class="col-md-2">
+							<div class="form-group ">
+								<label class="control-label col-sm-4">下拉输入框</label>
+								<div class="col-sm-8">
+									<input id="fabric" placeholder="Select fabric..." style="width: 100%;" /> 
+								</div>
+							</div>
+						</div>-->
+						<!--<div class="col-md-2">
+							<div class="form-group ">
+								<label class="control-label col-sm-4">日期</label>
+								<div class="col-sm-8">
+									<input id="datepicker" value="" style="width: 100%" readonly="readonly" />
+								</div>
+							</div>
+						</div>-->
+						<!--<div class="col-md-2">
+							<div class="form-group ">
+								<label class="control-label col-sm-4">日期+时间</label>
+								<div class="col-sm-8">
+									<input id="datetimepicker" value="" style="width: 100%" />
+								</div>
+							</div>
+						</div>-->
+						<div class="col-md-2">
+							<div class="form-group ">
+								<label class="control-label col-sm-5">下拉列表</label>
+								<div class="col-sm-7">
+									<select id="dropd" v-model="searchBar.data.dpd2">
+										<option value="">请选择</option>
+										<option v-for="i in searchBar.tag.testList" v-bind:value="i.value">{{i.text}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="form-group ">
+								<label class="control-label col-sm-3"></label>
+								<div class="col-sm-9">
+									<div class="btn-group">
+										<button type="button" class="btn btn-default"><i class="icon-reset"></i>重置</button>
+										<button type="button" class="btn btn-default"><i class="icon-search4"></i>搜索</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+			<nav class="navbar nav-bar btn-bar" role="navigation" style="border: none;">
+				<div class="container-fluid">
+					<div class="navbar-collapse collapse" style="padding-left: 1px;">
+						<div class="nav navbar-nav">
+							<div class="btn-group">
+								<button type="button" class="btn btn-default" v-on:click="toast.text='提示更新成功效果';showToast();">提示更新成功效果</button>
+								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal_theme_primary"><i class="icon-plus2"></i>添加公司</button>
+								<button type="button" class="btn btn-default"><i class="icon-compose"></i>编辑公司</button>
+								<button type="button" class="btn btn-default"><i class="icon-cross2"></i>删除公司</button>
+								<button type="button" class="btn btn-default"><i class="icon-diff-ignored"></i>停用公司</button>
+								<button type="button" class="btn btn-default"><i class="icon-reload-alt"></i>启用公司</button>
+								<button type="button" class="btn btn-default"><i class="icon-add-to-list"></i>批量操作</button>
+								<div class="btn-group">
+									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+							      不常用功能可以放这里
+							      <span class="caret"></span>
+							    </button>
+									<ul class="dropdown-menu" role="menu">
+										<li>
+											<a href="#">Dropdown link</a>
+										</li>
+										<li>
+											<a href="#">Dropdown link</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="btn-group">
+								<button type="button" class="btn btn-default" v-on:click="toggleSearchBar()"><i class="icon-search4"></i>{{searchBar.show?"关闭":"打开"}}高级搜索</button>
+							</div>
+						</div>
+						<div class="navbar-right">
+							<select id="size" placeholder="Select size..." style="width: 100%;">
+								<option value="801ae5bd-41ab-4453-88c0-50c11187b555" selected="selected" style="padding-left: 3px;"> 深圳分公司 </option>
+								<option value="502e915c-901b-4f35-a0b4-c759276d958c" style="padding-left: 3px;"> 广州分公司 </option>
+								<option value="fe238b2d-be43-440e-b51d-f0ca9a36289d" style="padding-left: 3px;"> 北京分公司 </option>
+								<option value="f0349a1c-6087-4512-bb45-2c217a87aacc" style="padding-left: 3px;"> 福州办事处 </option>
+								<option value="a7008f31-88ee-444c-8532-28f809df6646" style="padding-left: 3px;"> 南宁办事处 </option>
+								<option value="89d5ef4b-2e35-4842-9140-451696e67f76" style="padding-left: 3px;"> 厦门办事处 </option>
+								<option value="fb80c857-25b4-440f-b247-2fda0a4d0307" style="padding-left: 3px;"> 长沙办事处 </option>
+								<option value="c1159960-0b6a-42a0-b587-bc434f1c692e" style="padding-left: 3px;"> 太原办事处 </option>
+								<option value="239d96d0-d645-4368-af14-b14434e515c6" style="padding-left: 3px;"> 郑州办事处 </option>
+								<option value="6ddbee1f-b19c-4825-a630-ced27f0878a2" style="padding-left: 3px;"> 济南分公司 </option>
+								<option value="00c7afb7-530f-48cc-a622-f85608c34f86" style="padding-left: 3px;"> 呼和浩特办事处 </option>
+								<option value="7ace52ac-23f9-4f02-9445-b7ee5beb3de8" style="padding-left: 3px;"> 沈阳办事处 </option>
+								<option value="fa5cc662-9c8a-49a6-bf20-579e71d018aa" style="padding-left: 3px;"> 哈尔滨办事处 </option>
+								<option value="6a20332d-8130-484b-9b1f-4ef9093ce7dc" style="padding-left: 3px;"> 长春办事处 </option>
+								<option value="2b2e2090-ef7e-4411-80e5-570481ade636" style="padding-left: 3px;"> 苏州分公司 </option>
+								<option value="c925bca0-4477-4056-a4ec-8b0452c466a0" style="padding-left: 3px;"> 杭州分公司 </option>
+								<option value="cf18067e-d7cd-45ab-be81-a0fc38613abd" style="padding-left: 3px;"> 上海分公司 </option>
+								<option value="3a5996b8-98f5-4a9d-a457-f4b25f5a8f58" style="padding-left: 3px;"> 武汉办事处 </option>
+								<option value="130b255d-4521-4aa1-8a81-e81ed3e9c572" style="padding-left: 3px;"> 南昌办事处 </option>
+								<option value="d0b95777-a4b4-45e5-9576-4ae045381919" style="padding-left: 3px;"> 合肥办事处 </option>
+								<option value="507892ba-61f2-4849-910d-837291b3510b" style="padding-left: 3px;"> 青岛办事处 </option>
+								<option value="30015729-5273-4031-9aaf-f3e3d99f5cc2" style="padding-left: 3px;"> 成都分公司 </option>
+								<option value="6c0171a0-9f05-4055-9c3d-d40a804dec1e" style="padding-left: 3px;"> 贵阳办事处 </option>
+								<option value="b7a699d1-27eb-40db-8cdc-08937db9a97f" style="padding-left: 3px;"> 重庆办事处 </option>
+								<option value="0d56dc1d-f41e-4fa6-8de7-079b849285a1" style="padding-left: 3px;"> 昆明办事处 </option>
+								<option value="67e714e6-0661-49ad-9c9c-a8eb42211645" style="padding-left: 3px;"> 乌鲁木齐办事处 </option>
+								<option value="04ddb752-13e8-4064-a822-7b9edcd8d3c1" style="padding-left: 3px;"> 西安办事处 </option>
+								<option value="324d375d-c8da-42a8-ab64-4f7ec2647305" style="padding-left: 3px;"> 兰州办事处 </option>
+								<option value="2428072c-87e9-4867-b283-b7676386132d" style="padding-left: 3px;"> 广州电商 </option>
+								<option value="e5001486-eb19-4d8c-a569-6780b608e9a9" style="padding-left: 3px;"> 上海电商 </option>
+								<option value="58d17311-3d2c-4264-be41-d08905f7f3f8" style="padding-left: 3px;"> 成都电商 </option>
+								<option value="423ef381-eaf9-40b8-b709-9b75c0d2d3a3" style="padding-left: 3px;"> 北京电商 </option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</nav>
+			<div id="main-content">
+				<div class="content-padding">
+					<div id="grid" style="border: none;" class="dynamicHeight" data-bind="kendoExGrid: { data: dataSource, columns: columns, widget:grid,change:$root.onChange,groupable:true}"></div>
+				</div>
+			</div>
+			<!--选中行数据:{{tableData[selectIndex]}}-->
+			<!--  提醒 -->
+			<div class="toast" style="z-index: 20141256;" v-bind:class="{'show':toast.show}">{{toast.text}}</div>
+			<!--加载动画-->
+			<div id="main_loading" style="background-color: #f5f5f5;position: fixed;top: 0;left: 0;right: 0;bottom: 0;">
+				<div class="loading_xbox center-display">
+					<div>加载中</div>
+					<div>&nbsp;</div>
+					<div class="loading_xbox_xs">
+						<div class="pace_activity"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--弹出遮罩层 -->
+		<div id="modal_theme_primary" class="modal  fade"  aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header bg-primary">
+						<button type="button" class="close" data-dismiss="modal">×</button>
+						<h6 class="modal-title">标题</h6>
+					</div>
+
+					<div class="modal-body">
+						<h6 class="text-semibold">内容1</h6>
+						<p>比如:Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+
+						<hr>
+
+						<h6 class="text-semibold">内容1</h6>
+						<p>比如:Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+						<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-link" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="./plugins/bootstrap/js/bootstrap.min.js" async="async"></script>
+		 
+		<script src="./plugins/kendoui/jquery.min.js"></script>
+		<script src="./plugins/kendoui/js/kendo.all.min.js"></script> 
+		
+		<script src="./plugins/kendoui/js/messages/kendo.messages.zh-CN.min.js"></script>
+		<script src="./plugins/kendoui/js/cultures/kendo.culture.zh-CN.min.js"></script>
+		<script src="./public/js/object-copy.js"></script>
+		<script src="./demo.1.js"></script>
+		<script>
+			addNodes({
+				src: [
+					"./public/js/object-copy.js",
+					"demo.1.js"
+				],
+				load:function(){
+					app.getTableData("tableData.json");
+				}
+			});
+
+		</script>
+	</body>
+
+</html>

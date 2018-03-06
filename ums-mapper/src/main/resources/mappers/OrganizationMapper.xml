@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.OrganizationMapper">
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+    <resultMap id="BaseResultMap" type="Organization">
+        <id column="ORGANIZATION_ID" property="organizationId" jdbcType="VARCHAR"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="TYPE" property="type" jdbcType="VARCHAR"/>
+        <result column="IS_ACTIVE" property="isActive" jdbcType="DECIMAL"/>
+        <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="SYSTEM_CODE" property="systemCode" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ORGANIZATION_ID, CODE, NAME, TYPE, IS_ACTIVE, PARENT_ID, REMARK, SYSTEM_CODE
+  </sql>
+    <select id="get" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ORGANIZATION
+        where ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR}
+    </select>
+    <select id="getByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ORGANIZATION
+        where CODE = #{organizationCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAvailable" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ORGANIZATION
+        where IS_ACTIVE = 1
+    </select>
+    <select id="getHierarchical" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ORGANIZATION
+        START WITH CODE = #{code,jdbcType=VARCHAR}
+        CONNECT BY PRIOR organization_id=PARENT_ID
+    </select>
+    <select id="getAvailableHierarchical" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ORGANIZATION
+        where IS_ACTIVE = 1
+        START WITH CODE = #{code,jdbcType=VARCHAR}
+        CONNECT BY PRIOR organization_id=PARENT_ID
+    </select>
+
+    <select id="exists" resultType="boolean" parameterType="map">
+        SELECT count(*)
+        from ORGANIZATION
+
+        <where>
+            <if test="code != null">
+                CODE = #{code,jdbcType=VARCHAR}
+            </if>
+            <if test="organizationId != null">
+                AND ORGANIZATION_ID != #{organizationId,jdbcType=VARCHAR}
+            </if>
+        </where>
+
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from ORGANIZATION
+        where  is_active=1
+        AND ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR}
+    </delete>
+
+    <!--修改前的-->
+<!--    <delete id="deleteById" parameterType="java.lang.String">
+    delete from ORGANIZATION
+    where ORGANIZATION_ID in (
+    SELECT organization_id
+    FROM organization
+    where is_active=1
+    START WITH ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR}
+    CONNECT BY PRIOR organization_id=PARENT_ID
+    )
+  </delete>-->
+
+    <delete id="deleteByParentId" parameterType="java.lang.String">
+         delete from ORGANIZATION
+        where ORGANIZATION_ID in (
+        SELECT organization_id
+        FROM organization
+        where is_active=1
+        START WITH PARENT_ID = #{parentId,jdbcType=VARCHAR}
+        CONNECT BY PRIOR organization_id=PARENT_ID
+        )
+    </delete>
+
+    <update id="activate" parameterType="java.lang.String">
+        update ORGANIZATION
+        set IS_ACTIVE = 1
+        where CODE = #{code,jdbcType=VARCHAR}
+    </update>
+
+    <update id="inactivate" parameterType="java.lang.String">
+        update ORGANIZATION
+        set IS_ACTIVE = 0
+        where CODE = #{code,jdbcType=VARCHAR}
+    </update>
+
+    <insert id="insert" parameterType="Organization">
+         insert into ORGANIZATION (ORGANIZATION_ID, CODE, NAME,
+      TYPE, IS_ACTIVE, PARENT_ID,
+      REMARK, SYSTEM_CODE)
+    values (#{organizationId,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+      #{type,jdbcType=VARCHAR}, #{isActive,jdbcType=DECIMAL}, #{parentId,jdbcType=VARCHAR},
+      #{remark,jdbcType=VARCHAR}, #{systemCode,jdbcType=VARCHAR})
+  </insert>
+    <update id="update" parameterType="Organization">
+        update ORGANIZATION
+            set CODE = #{code,jdbcType=VARCHAR},
+              NAME = #{name,jdbcType=VARCHAR},
+              TYPE = #{type,jdbcType=VARCHAR},
+              IS_ACTIVE = #{isActive,jdbcType=DECIMAL},
+              PARENT_ID = #{parentId,jdbcType=VARCHAR},
+              REMARK = #{remark,jdbcType=VARCHAR},
+              SYSTEM_CODE = #{systemCode,jdbcType=VARCHAR}
+            where ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR}
+  </update>
+
+    <delete id="batchDelete" parameterType="java.lang.String">
+        delete from ORGANIZATION where ORGANIZATION_ID in
+        <foreach item="idItem" collection="list" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ORGANIZATION
+        <where>
+            <if test="code != null ">
+                AND CODE LIKE CONCAT(CONCAT('%',#{code}),'%')
+            </if>
+            <if test="name != null ">
+                AND NAME like CONCAT(CONCAT('%', #{name}), '%')
+            </if>
+            <if test="type != null ">
+                AND TYPE =#{type,jdbcType=VARCHAR}
+            </if>
+        </where>
+        <if test="orderBy != null ">
+            order by ${orderBy}
+        </if>
+    </select>
+    <select id="findAll" resultType="Organization">
+        SELECT  * from ORGANIZATION
+    </select>
+</mapper>
+

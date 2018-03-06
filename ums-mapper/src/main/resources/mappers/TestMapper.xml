@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.TestMapper">
+
+    <sql id="Base_Column_List">
+        VEHICLE_TYPE_ID, NAME, LENGTH, WIDTH, HEIGHT, LOAD_VOLUME, LOAD_WEIGHT
+    </sql>
+
+    <select id="exists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END
+        FROM VEHICLE_TYPE
+        <where>
+            <if test="vehicleTypeId != null">
+                VEHICLE_TYPE_ID != #{vehicleTypeId,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null">
+                AND NAME = #{name,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="TestModel">
+        INSERT INTO VEHICLE_TYPE (<include refid="Base_Column_List"/>)
+        VALUES
+        (
+        #{vehicleTypeId,jdbcType=VARCHAR},
+        #{name,jdbcType=VARCHAR},
+        #{length,jdbcType=DECIMAL},
+        #{width,jdbcType=DECIMAL},
+        #{height,jdbcType=DECIMAL},
+        #{loadVolume,jdbcType=DECIMAL},
+        #{loadWeight,jdbcType=DECIMAL}
+        )
+    </insert>
+</mapper>

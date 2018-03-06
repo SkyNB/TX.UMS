@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.ErpUserPostMapper">
+  <resultMap id="BaseResultMap" type="com.lnet.model.ums.ErpUserPost">
+    <id column="userDeptId" jdbcType="VARCHAR" property="userdeptid" />
+    <result column="userId" jdbcType="VARCHAR" property="userId" />
+    <result column="deptId" jdbcType="VARCHAR" property="deptid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userDeptId, userId, deptId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from erp_user_post
+    where userDeptId = #{userdeptid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from erp_user_post
+    where userDeptId = #{userdeptid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lnet.model.ums.ErpUserPost">
+    <selectKey keyProperty="userdeptid" order="BEFORE" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into erp_user_post (userDeptId, userId, deptId
+      )
+    values (#{userdeptid,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{deptid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lnet.model.ums.ErpUserPost">
+    <selectKey keyProperty="userdeptid" order="BEFORE" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into erp_user_post
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      userDeptId,
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="deptid != null">
+        deptId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{userdeptid,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null">
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnet.model.ums.ErpUserPost">
+    update erp_user_post
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null">
+        deptId = #{deptid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userDeptId = #{userdeptid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lnet.model.ums.ErpUserPost">
+    update erp_user_post
+    set userId = #{userId,jdbcType=VARCHAR},
+      deptId = #{deptid,jdbcType=VARCHAR}
+    where userDeptId = #{userdeptid,jdbcType=VARCHAR}
+  </update>
+</mapper>

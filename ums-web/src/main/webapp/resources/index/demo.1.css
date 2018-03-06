@@ -1,0 +1,171 @@
+/*---菜单按钮组--*/
+
+.navbar {
+	margin-bottom: 0;
+	padding: 20px 0;
+}
+
+.btn-group {
+	border: 1px #f0f0f0 solid;
+	background-color: #fefefe;
+}
+
+.btn-group:hover {
+	box-shadow: 0 2px 6px rgba(0, 0, 0, .2), 0 2px 3px rgba(0, 0, 0, .05);
+	-webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-o-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-moz-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-o-transition: all .2s linear;
+}
+
+.btn-group>.btn-group {
+	box-shadow: none;
+	border: none;
+}
+
+.btn-group>.btn-group.open>.btn {
+	outline: none;
+	border: none;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-o-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-moz-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	border-color: rgb(221, 221, 221);
+}
+
+.btn-group:hover>.btn,
+.btn-group>.btn:focus {
+	border-color: rgb(221, 221, 221);
+}
+
+.btn-group>.btn,
+.btn-group>.btn-group {
+	outline: none;
+	border-top: none;
+	border-bottom: none;
+	background-color: #fff;
+}
+
+.btn-group>*:first-child {
+	border-left: none;
+}
+
+.btn-group>.btn:last-child {
+	margin-right: 1px;
+	border-color: rgb(221, 221, 221);
+}
+
+.btn-group>*:last-child,
+.btn-group>*:last-child>.btn,
+.btn-group>.btn+.btn-group {
+	border-right: none;
+	margin-left: 0px;
+}
+
+.btn-group>.btn-group.open>.btn {
+	background-color: #fff;
+}
+
+.btn-group>.btn:active {
+	outline: none;
+	border: none;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-o-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-moz-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	background-color: #fff;
+}
+
+.btn-group>.btn>i {
+	font-size: 10px;
+	margin-right: 4px;
+}
+
+.k-dropdown-wrap {
+	border-radius: 0;
+}
+
+.k-dropdown .k-state-default {
+	background-color: #fefefe;
+	border-color: #f0f0f0;
+}
+
+
+/*颜色*/
+
+.k-grouping-header,
+.k-header {
+	background-color: #64b5f6;
+}
+
+
+/*---输入框---*/
+
+.form-control {
+	box-shadow: none;
+	background-color: #fff;
+	border-radius: 1px;
+}
+
+.form-control:hover,
+.form-control:focus {
+	background-color: #fff;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-o-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-moz-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+}
+
+
+/*搜索栏*/
+
+.search-bar {
+	padding-top: 0;
+	padding-bottom: 0px;
+	border-bottom: 1px #efefef solid;
+	min-height: 0px;
+	height: 0;
+	opacity: 0;
+	overflow: hidden;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+}
+
+.search-bar.search-bar-show {
+	padding-top: 20px;
+	opacity: 1;
+	height: auto;
+}
+
+/*弹出消息框*/
+.toast {
+	position: fixed;
+	right: -32px;
+	top: 10px;
+	background-color: #555;
+	text-align: center;
+	color: #fff;
+	border-radius: 2px;
+	opacity: 0;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	width: 0;
+	padding: 8px 15px 9px 15px;
+	overflow: hidden;
+	word-break: keep-all;
+	/* 不换行 */
+	white-space: nowrap;
+	/* 不换行 */
+}
+
+.toast.show {
+	width: auto;
+	opacity: 1;
+	min-width: 10px;
+	right: 10px;
+}

@@ -1,0 +1,4009 @@
+/**出生地址**/
+var area = [{
+	"areaId": "101",
+	"areaName": "阿富汗",
+	"parentId": "0"
+}, {
+	"areaId": "102",
+	"areaName": "巴林",
+	"parentId": "0"
+}, {
+	"areaId": "103",
+	"areaName": "孟加拉国",
+	"parentId": "0"
+}, {
+	"areaId": "104",
+	"areaName": "不丹",
+	"parentId": "0"
+}, {
+	"areaId": "105",
+	"areaName": "文莱",
+	"parentId": "0"
+}, {
+	"areaId": "106",
+	"areaName": "缅甸",
+	"parentId": "0"
+}, {
+	"areaId": "107",
+	"areaName": "柬埔寨",
+	"parentId": "0"
+}, {
+	"areaId": "108",
+	"areaName": "塞浦路斯",
+	"parentId": "0"
+}, {
+	"areaId": "109",
+	"areaName": "朝鲜",
+	"parentId": "0"
+}, {
+	"areaId": "110",
+	"areaName": "香港",
+	"parentId": "0"
+}, {
+	"areaId": "110000",
+	"areaName": "北京",
+	"parentId": "142"
+}, {
+	"areaId": "110100",
+	"areaName": "北京市",
+	"parentId": "110000"
+}, {
+	"areaId": "110101",
+	"areaName": "东城区",
+	"parentId": "110100"
+}, {
+	"areaId": "110101001",
+	"areaName": "东华门街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101002",
+	"areaName": "景山街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101003",
+	"areaName": "交道口街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101004",
+	"areaName": "安定门街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101005",
+	"areaName": "北新桥街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101006",
+	"areaName": "东四街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101007",
+	"areaName": "朝阳门街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101008",
+	"areaName": "建国门街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101009",
+	"areaName": "东直门街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101010",
+	"areaName": "和平里街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101011",
+	"areaName": "前门街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101012",
+	"areaName": "崇文门外街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101013",
+	"areaName": "东花市街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101014",
+	"areaName": "龙潭街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101015",
+	"areaName": "体育馆路街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101016",
+	"areaName": "天坛街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110101017",
+	"areaName": "永定门外街道",
+	"parentId": "110101"
+}, {
+	"areaId": "110102",
+	"areaName": "西城区",
+	"parentId": "110100"
+}, {
+	"areaId": "110102001",
+	"areaName": "西长安街街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102003",
+	"areaName": "新街口街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102007",
+	"areaName": "月坛街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102009",
+	"areaName": "展览路街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102010",
+	"areaName": "德胜街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102011",
+	"areaName": "金融街街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102012",
+	"areaName": "什刹海街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102013",
+	"areaName": "大栅栏街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102014",
+	"areaName": "天桥街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102015",
+	"areaName": "椿树街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102016",
+	"areaName": "陶然亭街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102017",
+	"areaName": "广安门内街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102018",
+	"areaName": "牛街街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102019",
+	"areaName": "白纸坊街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110102020",
+	"areaName": "广安门外街道",
+	"parentId": "110102"
+}, {
+	"areaId": "110105",
+	"areaName": "朝阳区",
+	"parentId": "110100"
+}, {
+	"areaId": "110105001",
+	"areaName": "建外街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105002",
+	"areaName": "朝外街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105003",
+	"areaName": "呼家楼街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105004",
+	"areaName": "三里屯街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105005",
+	"areaName": "左家庄街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105006",
+	"areaName": "香河园街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105007",
+	"areaName": "和平街街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105008",
+	"areaName": "安贞街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105009",
+	"areaName": "亚运村街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105010",
+	"areaName": "小关街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105011",
+	"areaName": "酒仙桥街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105012",
+	"areaName": "麦子店街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105013",
+	"areaName": "团结湖街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105014",
+	"areaName": "六里屯街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105015",
+	"areaName": "八里庄街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105016",
+	"areaName": "双井街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105017",
+	"areaName": "劲松街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105018",
+	"areaName": "潘家园街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105019",
+	"areaName": "垡头街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105021",
+	"areaName": "南磨房",
+	"parentId": "110105"
+}, {
+	"areaId": "110105022",
+	"areaName": "高碑店",
+	"parentId": "110105"
+}, {
+	"areaId": "110105023",
+	"areaName": "将台",
+	"parentId": "110105"
+}, {
+	"areaId": "110105024",
+	"areaName": "太阳宫",
+	"parentId": "110105"
+}, {
+	"areaId": "110105025",
+	"areaName": "大屯街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105026",
+	"areaName": "望京街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105027",
+	"areaName": "小红门",
+	"parentId": "110105"
+}, {
+	"areaId": "110105028",
+	"areaName": "十八里店",
+	"parentId": "110105"
+}, {
+	"areaId": "110105029",
+	"areaName": "平房",
+	"parentId": "110105"
+}, {
+	"areaId": "110105030",
+	"areaName": "东风",
+	"parentId": "110105"
+}, {
+	"areaId": "110105031",
+	"areaName": "奥运村街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105032",
+	"areaName": "来广营",
+	"parentId": "110105"
+}, {
+	"areaId": "110105033",
+	"areaName": "常营",
+	"parentId": "110105"
+}, {
+	"areaId": "110105034",
+	"areaName": "三间房",
+	"parentId": "110105"
+}, {
+	"areaId": "110105035",
+	"areaName": "管庄",
+	"parentId": "110105"
+}, {
+	"areaId": "110105036",
+	"areaName": "金盏",
+	"parentId": "110105"
+}, {
+	"areaId": "110105037",
+	"areaName": "孙河",
+	"parentId": "110105"
+}, {
+	"areaId": "110105038",
+	"areaName": "崔各庄",
+	"parentId": "110105"
+}, {
+	"areaId": "110105039",
+	"areaName": "东坝",
+	"parentId": "110105"
+}, {
+	"areaId": "110105040",
+	"areaName": "黑庄户",
+	"parentId": "110105"
+}, {
+	"areaId": "110105041",
+	"areaName": "豆各庄",
+	"parentId": "110105"
+}, {
+	"areaId": "110105042",
+	"areaName": "王四营",
+	"parentId": "110105"
+}, {
+	"areaId": "110105043",
+	"areaName": "首都机场街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110105501",
+	"areaName": "望京开发街道",
+	"parentId": "110105"
+}, {
+	"areaId": "110106",
+	"areaName": "丰台区",
+	"parentId": "110100"
+}, {
+	"areaId": "110106001",
+	"areaName": "右安门街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106002",
+	"areaName": "太平桥街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106003",
+	"areaName": "西罗园街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106004",
+	"areaName": "大红门街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106005",
+	"areaName": "南苑街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106006",
+	"areaName": "东高地街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106007",
+	"areaName": "东铁匠营街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106008",
+	"areaName": "卢沟桥街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106009",
+	"areaName": "丰台街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106010",
+	"areaName": "新村街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106011",
+	"areaName": "长辛店街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106012",
+	"areaName": "云岗街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106013",
+	"areaName": "方庄",
+	"parentId": "110106"
+}, {
+	"areaId": "110106014",
+	"areaName": "宛平城",
+	"parentId": "110106"
+}, {
+	"areaId": "110106015",
+	"areaName": "马家堡街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106016",
+	"areaName": "和义街道",
+	"parentId": "110106"
+}, {
+	"areaId": "110106017",
+	"areaName": "卢沟桥",
+	"parentId": "110106"
+}, {
+	"areaId": "110106018",
+	"areaName": "花乡",
+	"parentId": "110106"
+}, {
+	"areaId": "110106019",
+	"areaName": "南苑",
+	"parentId": "110106"
+}, {
+	"areaId": "110106100",
+	"areaName": "长辛店镇",
+	"parentId": "110106"
+}, {
+	"areaId": "110106101",
+	"areaName": "王佐镇",
+	"parentId": "110106"
+}, {
+	"areaId": "110107",
+	"areaName": "石景山区",
+	"parentId": "110100"
+}, {
+	"areaId": "110107001",
+	"areaName": "八宝山街道",
+	"parentId": "110107"
+}, {
+	"areaId": "110107002",
+	"areaName": "老山街道",
+	"parentId": "110107"
+}, {
+	"areaId": "110107003",
+	"areaName": "八角街道",
+	"parentId": "110107"
+}, {
+	"areaId": "110107004",
+	"areaName": "古城街道",
+	"parentId": "110107"
+}, {
+	"areaId": "110107005",
+	"areaName": "苹果园街道",
+	"parentId": "110107"
+}, {
+	"areaId": "110107006",
+	"areaName": "金顶街街道",
+	"parentId": "110107"
+}, {
+	"areaId": "110107009",
+	"areaName": "广宁街道",
+	"parentId": "110107"
+}, {
+	"areaId": "110107010",
+	"areaName": "五里坨街道",
+	"parentId": "110107"
+}, {
+	"areaId": "110107011",
+	"areaName": "鲁谷街道",
+	"parentId": "110107"
+}, {
+	"areaId": "110108",
+	"areaName": "海淀区",
+	"parentId": "110100"
+}, {
+	"areaId": "110108001",
+	"areaName": "万寿路街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108002",
+	"areaName": "永定路街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108003",
+	"areaName": "羊坊店街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108004",
+	"areaName": "甘家口街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108005",
+	"areaName": "八里庄街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108006",
+	"areaName": "紫竹院街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108007",
+	"areaName": "北下关街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108008",
+	"areaName": "北太平庄街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108010",
+	"areaName": "学院路街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108011",
+	"areaName": "中关村街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108012",
+	"areaName": "海淀街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108013",
+	"areaName": "青龙桥街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108014",
+	"areaName": "清华园街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108015",
+	"areaName": "燕园街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108016",
+	"areaName": "香山街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108017",
+	"areaName": "清河街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108018",
+	"areaName": "花园路街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108019",
+	"areaName": "西三旗街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108020",
+	"areaName": "马连洼街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108021",
+	"areaName": "田村路街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108022",
+	"areaName": "上地街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108023",
+	"areaName": "万柳",
+	"parentId": "110108"
+}, {
+	"areaId": "110108024",
+	"areaName": "东升",
+	"parentId": "110108"
+}, {
+	"areaId": "110108025",
+	"areaName": "曙光街道",
+	"parentId": "110108"
+}, {
+	"areaId": "110108026",
+	"areaName": "温泉",
+	"parentId": "110108"
+}, {
+	"areaId": "110108027",
+	"areaName": "四季青",
+	"parentId": "110108"
+}, {
+	"areaId": "110108028",
+	"areaName": "西北旺",
+	"parentId": "110108"
+}, {
+	"areaId": "110108029",
+	"areaName": "苏家坨",
+	"parentId": "110108"
+}, {
+	"areaId": "110108030",
+	"areaName": "上庄",
+	"parentId": "110108"
+}, {
+	"areaId": "110109",
+	"areaName": "门头沟区",
+	"parentId": "110100"
+}, {
+	"areaId": "110109001",
+	"areaName": "大峪街道",
+	"parentId": "110109"
+}, {
+	"areaId": "110109002",
+	"areaName": "城子街道",
+	"parentId": "110109"
+}, {
+	"areaId": "110109003",
+	"areaName": "东辛房街道",
+	"parentId": "110109"
+}, {
+	"areaId": "110109004",
+	"areaName": "大台街道",
+	"parentId": "110109"
+}, {
+	"areaId": "110109005",
+	"areaName": "王平",
+	"parentId": "110109"
+}, {
+	"areaId": "110109006",
+	"areaName": "永定",
+	"parentId": "110109"
+}, {
+	"areaId": "110109007",
+	"areaName": "龙泉",
+	"parentId": "110109"
+}, {
+	"areaId": "110109101",
+	"areaName": "潭柘寺镇",
+	"parentId": "110109"
+}, {
+	"areaId": "110109104",
+	"areaName": "军庄镇",
+	"parentId": "110109"
+}, {
+	"areaId": "110109105",
+	"areaName": "雁翅镇",
+	"parentId": "110109"
+}, {
+	"areaId": "110109106",
+	"areaName": "斋堂镇",
+	"parentId": "110109"
+}, {
+	"areaId": "110109107",
+	"areaName": "清水镇",
+	"parentId": "110109"
+}, {
+	"areaId": "110109108",
+	"areaName": "妙峰山镇",
+	"parentId": "110109"
+}, {
+	"areaId": "110111",
+	"areaName": "房山区",
+	"parentId": "110100"
+}, {
+	"areaId": "110111001",
+	"areaName": "城关街道",
+	"parentId": "110111"
+}, {
+	"areaId": "110111002",
+	"areaName": "新镇街道",
+	"parentId": "110111"
+}, {
+	"areaId": "110111004",
+	"areaName": "向阳街道",
+	"parentId": "110111"
+}, {
+	"areaId": "110111005",
+	"areaName": "东风街道",
+	"parentId": "110111"
+}, {
+	"areaId": "110111006",
+	"areaName": "迎风街道",
+	"parentId": "110111"
+}, {
+	"areaId": "110111007",
+	"areaName": "星城街道",
+	"parentId": "110111"
+}, {
+	"areaId": "110111008",
+	"areaName": "良乡",
+	"parentId": "110111"
+}, {
+	"areaId": "110111009",
+	"areaName": "周口店",
+	"parentId": "110111"
+}, {
+	"areaId": "110111010",
+	"areaName": "琉璃河",
+	"parentId": "110111"
+}, {
+	"areaId": "110111011",
+	"areaName": "拱辰街道",
+	"parentId": "110111"
+}, {
+	"areaId": "110111012",
+	"areaName": "西潞街道",
+	"parentId": "110111"
+}, {
+	"areaId": "110111101",
+	"areaName": "阎村镇",
+	"parentId": "110111"
+}, {
+	"areaId": "110111103",
+	"areaName": "窦店镇",
+	"parentId": "110111"
+}, {
+	"areaId": "110111104",
+	"areaName": "石楼镇",
+	"parentId": "110111"
+}, {
+	"areaId": "110111105",
+	"areaName": "长阳镇",
+	"parentId": "110111"
+}, {
+	"areaId": "110111107",
+	"areaName": "河北镇",
+	"parentId": "110111"
+}, {
+	"areaId": "110111108",
+	"areaName": "长沟镇",
+	"parentId": "110111"
+}, {
+	"areaId": "110111109",
+	"areaName": "大石窝镇",
+	"parentId": "110111"
+}, {
+	"areaId": "110111110",
+	"areaName": "张坊镇",
+	"parentId": "110111"
+}, {
+	"areaId": "110111111",
+	"areaName": "十渡镇",
+	"parentId": "110111"
+}, {
+	"areaId": "110111112",
+	"areaName": "青龙湖镇",
+	"parentId": "110111"
+}, {
+	"areaId": "110111115",
+	"areaName": "韩村河镇",
+	"parentId": "110111"
+}, {
+	"areaId": "110111208",
+	"areaName": "霞云岭乡",
+	"parentId": "110111"
+}, {
+	"areaId": "110111209",
+	"areaName": "南窖乡",
+	"parentId": "110111"
+}, {
+	"areaId": "110111210",
+	"areaName": "佛子庄乡",
+	"parentId": "110111"
+}, {
+	"areaId": "110111211",
+	"areaName": "大安山乡",
+	"parentId": "110111"
+}, {
+	"areaId": "110111212",
+	"areaName": "史家营乡",
+	"parentId": "110111"
+}, {
+	"areaId": "110111213",
+	"areaName": "蒲洼乡",
+	"parentId": "110111"
+}, {
+	"areaId": "110112",
+	"areaName": "通州区",
+	"parentId": "110100"
+}, {
+	"areaId": "110112001",
+	"areaName": "中仓街道",
+	"parentId": "110112"
+}, {
+	"areaId": "110112002",
+	"areaName": "新华街道",
+	"parentId": "110112"
+}, {
+	"areaId": "110112003",
+	"areaName": "北苑街道",
+	"parentId": "110112"
+}, {
+	"areaId": "110112004",
+	"areaName": "玉桥街道",
+	"parentId": "110112"
+}, {
+	"areaId": "110112005",
+	"areaName": "永顺",
+	"parentId": "110112"
+}, {
+	"areaId": "110112006",
+	"areaName": "梨园",
+	"parentId": "110112"
+}, {
+	"areaId": "110112104",
+	"areaName": "宋庄镇",
+	"parentId": "110112"
+}, {
+	"areaId": "110112105",
+	"areaName": "张家湾镇",
+	"parentId": "110112"
+}, {
+	"areaId": "110112106",
+	"areaName": "漷县镇",
+	"parentId": "110112"
+}, {
+	"areaId": "110112109",
+	"areaName": "马驹桥镇",
+	"parentId": "110112"
+}, {
+	"areaId": "110112110",
+	"areaName": "西集镇",
+	"parentId": "110112"
+}, {
+	"areaId": "110112114",
+	"areaName": "台湖镇",
+	"parentId": "110112"
+}, {
+	"areaId": "110112117",
+	"areaName": "永乐店镇",
+	"parentId": "110112"
+}, {
+	"areaId": "110112119",
+	"areaName": "潞城镇",
+	"parentId": "110112"
+}, {
+	"areaId": "110112209",
+	"areaName": "于家务回族乡",
+	"parentId": "110112"
+}, {
+	"areaId": "110113",
+	"areaName": "顺义区",
+	"parentId": "110100"
+}, {
+	"areaId": "110113001",
+	"areaName": "胜利街道",
+	"parentId": "110113"
+}, {
+	"areaId": "110113002",
+	"areaName": "光明街道",
+	"parentId": "110113"
+}, {
+	"areaId": "110113003",
+	"areaName": "仁和",
+	"parentId": "110113"
+}, {
+	"areaId": "110113004",
+	"areaName": "后沙峪",
+	"parentId": "110113"
+}, {
+	"areaId": "110113005",
+	"areaName": "天竺",
+	"parentId": "110113"
+}, {
+	"areaId": "110113006",
+	"areaName": "杨镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110113007",
+	"areaName": "牛栏山",
+	"parentId": "110113"
+}, {
+	"areaId": "110113008",
+	"areaName": "南法信",
+	"parentId": "110113"
+}, {
+	"areaId": "110113009",
+	"areaName": "马坡",
+	"parentId": "110113"
+}, {
+	"areaId": "110113010",
+	"areaName": "石园街道",
+	"parentId": "110113"
+}, {
+	"areaId": "110113011",
+	"areaName": "空港街道",
+	"parentId": "110113"
+}, {
+	"areaId": "110113012",
+	"areaName": "双丰街道",
+	"parentId": "110113"
+}, {
+	"areaId": "110113013",
+	"areaName": "旺泉街道",
+	"parentId": "110113"
+}, {
+	"areaId": "110113101",
+	"areaName": "高丽营镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110113104",
+	"areaName": "李桥镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110113105",
+	"areaName": "李遂镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110113106",
+	"areaName": "南彩镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110113108",
+	"areaName": "北务镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110113109",
+	"areaName": "大孙各庄镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110113110",
+	"areaName": "张镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110113111",
+	"areaName": "龙湾屯镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110113112",
+	"areaName": "木林镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110113113",
+	"areaName": "北小营镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110113115",
+	"areaName": "北石槽镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110113116",
+	"areaName": "赵全营镇",
+	"parentId": "110113"
+}, {
+	"areaId": "110114",
+	"areaName": "昌平区",
+	"parentId": "110100"
+}, {
+	"areaId": "110114001",
+	"areaName": "城北街道",
+	"parentId": "110114"
+}, {
+	"areaId": "110114002",
+	"areaName": "南口",
+	"parentId": "110114"
+}, {
+	"areaId": "110114003",
+	"areaName": "马池口",
+	"parentId": "110114"
+}, {
+	"areaId": "110114004",
+	"areaName": "沙河",
+	"parentId": "110114"
+}, {
+	"areaId": "110114005",
+	"areaName": "城南街道",
+	"parentId": "110114"
+}, {
+	"areaId": "110114006",
+	"areaName": "回龙观",
+	"parentId": "110114"
+}, {
+	"areaId": "110114007",
+	"areaName": "东小口",
+	"parentId": "110114"
+}, {
+	"areaId": "110114008",
+	"areaName": "天通苑北街道",
+	"parentId": "110114"
+}, {
+	"areaId": "110114009",
+	"areaName": "天通苑南街道",
+	"parentId": "110114"
+}, {
+	"areaId": "110114010",
+	"areaName": "霍营街道",
+	"parentId": "110114"
+}, {
+	"areaId": "110114104",
+	"areaName": "阳坊镇",
+	"parentId": "110114"
+}, {
+	"areaId": "110114110",
+	"areaName": "小汤山镇",
+	"parentId": "110114"
+}, {
+	"areaId": "110114111",
+	"areaName": "南邵镇",
+	"parentId": "110114"
+}, {
+	"areaId": "110114112",
+	"areaName": "崔村镇",
+	"parentId": "110114"
+}, {
+	"areaId": "110114113",
+	"areaName": "百善镇",
+	"parentId": "110114"
+}, {
+	"areaId": "110114115",
+	"areaName": "北七家镇",
+	"parentId": "110114"
+}, {
+	"areaId": "110114116",
+	"areaName": "兴寿镇",
+	"parentId": "110114"
+}, {
+	"areaId": "110114118",
+	"areaName": "流村镇",
+	"parentId": "110114"
+}, {
+	"areaId": "110114119",
+	"areaName": "十三陵镇",
+	"parentId": "110114"
+}, {
+	"areaId": "110114120",
+	"areaName": "延寿镇",
+	"parentId": "110114"
+}, {
+	"areaId": "110115",
+	"areaName": "大兴区",
+	"parentId": "110100"
+}, {
+	"areaId": "110115001",
+	"areaName": "兴丰街道",
+	"parentId": "110115"
+}, {
+	"areaId": "110115002",
+	"areaName": "林校路街道",
+	"parentId": "110115"
+}, {
+	"areaId": "110115003",
+	"areaName": "清源街道",
+	"parentId": "110115"
+}, {
+	"areaId": "110115004",
+	"areaName": "亦庄",
+	"parentId": "110115"
+}, {
+	"areaId": "110115005",
+	"areaName": "黄村",
+	"parentId": "110115"
+}, {
+	"areaId": "110115006",
+	"areaName": "旧宫",
+	"parentId": "110115"
+}, {
+	"areaId": "110115007",
+	"areaName": "西红门",
+	"parentId": "110115"
+}, {
+	"areaId": "110115008",
+	"areaName": "瀛海",
+	"parentId": "110115"
+}, {
+	"areaId": "110115009",
+	"areaName": "观音寺街道",
+	"parentId": "110115"
+}, {
+	"areaId": "110115010",
+	"areaName": "天宫院街道",
+	"parentId": "110115"
+}, {
+	"areaId": "110115103",
+	"areaName": "青云店镇",
+	"parentId": "110115"
+}, {
+	"areaId": "110115104",
+	"areaName": "采育镇",
+	"parentId": "110115"
+}, {
+	"areaId": "110115105",
+	"areaName": "安定镇",
+	"parentId": "110115"
+}, {
+	"areaId": "110115106",
+	"areaName": "礼贤镇",
+	"parentId": "110115"
+}, {
+	"areaId": "110115107",
+	"areaName": "榆垡镇",
+	"parentId": "110115"
+}, {
+	"areaId": "110115108",
+	"areaName": "庞各庄镇",
+	"parentId": "110115"
+}, {
+	"areaId": "110115109",
+	"areaName": "北臧村镇",
+	"parentId": "110115"
+}, {
+	"areaId": "110115110",
+	"areaName": "魏善庄镇",
+	"parentId": "110115"
+}, {
+	"areaId": "110115111",
+	"areaName": "长子营镇",
+	"parentId": "110115"
+}, {
+	"areaId": "110115403",
+	"areaName": "北京经济技术开发区",
+	"parentId": "110115"
+}, {
+	"areaId": "110115404",
+	"areaName": "中关村国家自主创新示范区大兴生物医药产业基地",
+	"parentId": "110115"
+}, {
+	"areaId": "110115405",
+	"areaName": "国家新媒体产业基地",
+	"parentId": "110115"
+}, {
+	"areaId": "110116",
+	"areaName": "怀柔区",
+	"parentId": "110100"
+}, {
+	"areaId": "110116001",
+	"areaName": "泉河街道",
+	"parentId": "110116"
+}, {
+	"areaId": "110116002",
+	"areaName": "龙山街道",
+	"parentId": "110116"
+}, {
+	"areaId": "110116003",
+	"areaName": "怀柔",
+	"parentId": "110116"
+}, {
+	"areaId": "110116004",
+	"areaName": "雁栖",
+	"parentId": "110116"
+}, {
+	"areaId": "110116005",
+	"areaName": "庙城",
+	"parentId": "110116"
+}, {
+	"areaId": "110116102",
+	"areaName": "北房镇",
+	"parentId": "110116"
+}, {
+	"areaId": "110116103",
+	"areaName": "杨宋镇",
+	"parentId": "110116"
+}, {
+	"areaId": "110116105",
+	"areaName": "桥梓镇",
+	"parentId": "110116"
+}, {
+	"areaId": "110116106",
+	"areaName": "怀北镇",
+	"parentId": "110116"
+}, {
+	"areaId": "110116107",
+	"areaName": "汤河口镇",
+	"parentId": "110116"
+}, {
+	"areaId": "110116108",
+	"areaName": "渤海镇",
+	"parentId": "110116"
+}, {
+	"areaId": "110116109",
+	"areaName": "九渡河镇",
+	"parentId": "110116"
+}, {
+	"areaId": "110116110",
+	"areaName": "琉璃庙镇",
+	"parentId": "110116"
+}, {
+	"areaId": "110116111",
+	"areaName": "宝山镇",
+	"parentId": "110116"
+}, {
+	"areaId": "110116211",
+	"areaName": "长哨营满族乡",
+	"parentId": "110116"
+}, {
+	"areaId": "110116213",
+	"areaName": "喇叭沟门满族乡",
+	"parentId": "110116"
+}, {
+	"areaId": "110116400",
+	"areaName": "北京雁栖经济开发区",
+	"parentId": "110116"
+}, {
+	"areaId": "110117",
+	"areaName": "平谷区",
+	"parentId": "110100"
+}, {
+	"areaId": "110117001",
+	"areaName": "滨河街道",
+	"parentId": "110117"
+}, {
+	"areaId": "110117002",
+	"areaName": "兴谷街道",
+	"parentId": "110117"
+}, {
+	"areaId": "110117003",
+	"areaName": "渔阳",
+	"parentId": "110117"
+}, {
+	"areaId": "110117004",
+	"areaName": "峪口",
+	"parentId": "110117"
+}, {
+	"areaId": "110117005",
+	"areaName": "马坊",
+	"parentId": "110117"
+}, {
+	"areaId": "110117006",
+	"areaName": "金海湖",
+	"parentId": "110117"
+}, {
+	"areaId": "110117101",
+	"areaName": "东高村镇",
+	"parentId": "110117"
+}, {
+	"areaId": "110117102",
+	"areaName": "山东庄镇",
+	"parentId": "110117"
+}, {
+	"areaId": "110117104",
+	"areaName": "南独乐河镇",
+	"parentId": "110117"
+}, {
+	"areaId": "110117105",
+	"areaName": "大华山镇",
+	"parentId": "110117"
+}, {
+	"areaId": "110117106",
+	"areaName": "夏各庄镇",
+	"parentId": "110117"
+}, {
+	"areaId": "110117108",
+	"areaName": "马昌营镇",
+	"parentId": "110117"
+}, {
+	"areaId": "110117110",
+	"areaName": "王辛庄镇",
+	"parentId": "110117"
+}, {
+	"areaId": "110117111",
+	"areaName": "大兴庄镇",
+	"parentId": "110117"
+}, {
+	"areaId": "110117112",
+	"areaName": "刘家店镇",
+	"parentId": "110117"
+}, {
+	"areaId": "110117114",
+	"areaName": "镇罗营镇",
+	"parentId": "110117"
+}, {
+	"areaId": "110117213",
+	"areaName": "黄松峪乡",
+	"parentId": "110117"
+}, {
+	"areaId": "110117214",
+	"areaName": "熊儿寨乡",
+	"parentId": "110117"
+}, {
+	"areaId": "110228",
+	"areaName": "密云县",
+	"parentId": "110100"
+}, {
+	"areaId": "110228001",
+	"areaName": "鼓楼街道",
+	"parentId": "110228"
+}, {
+	"areaId": "110228002",
+	"areaName": "果园街道",
+	"parentId": "110228"
+}, {
+	"areaId": "110228003",
+	"areaName": "檀营",
+	"parentId": "110228"
+}, {
+	"areaId": "110228100",
+	"areaName": "密云镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228101",
+	"areaName": "溪翁庄镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228102",
+	"areaName": "西田各庄镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228103",
+	"areaName": "十里堡镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228104",
+	"areaName": "河南寨镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228105",
+	"areaName": "巨各庄镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228106",
+	"areaName": "穆家峪镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228107",
+	"areaName": "太师屯镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228108",
+	"areaName": "高岭镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228109",
+	"areaName": "不老屯镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228110",
+	"areaName": "冯家峪镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228111",
+	"areaName": "古北口镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228112",
+	"areaName": "大城子镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228113",
+	"areaName": "东邵渠镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228114",
+	"areaName": "北庄镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228115",
+	"areaName": "新城子镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228116",
+	"areaName": "石城镇",
+	"parentId": "110228"
+}, {
+	"areaId": "110228400",
+	"areaName": "北京密云经济开发区",
+	"parentId": "110228"
+}, {
+	"areaId": "110229",
+	"areaName": "延庆县",
+	"parentId": "110100"
+}, {
+	"areaId": "110229001",
+	"areaName": "百泉街道",
+	"parentId": "110229"
+}, {
+	"areaId": "110229002",
+	"areaName": "香水园街道",
+	"parentId": "110229"
+}, {
+	"areaId": "110229003",
+	"areaName": "儒林街道",
+	"parentId": "110229"
+}, {
+	"areaId": "110229100",
+	"areaName": "延庆镇",
+	"parentId": "110229"
+}, {
+	"areaId": "110229101",
+	"areaName": "康庄镇",
+	"parentId": "110229"
+}, {
+	"areaId": "110229102",
+	"areaName": "八达岭镇",
+	"parentId": "110229"
+}, {
+	"areaId": "110229103",
+	"areaName": "永宁镇",
+	"parentId": "110229"
+}, {
+	"areaId": "110229104",
+	"areaName": "旧县镇",
+	"parentId": "110229"
+}, {
+	"areaId": "110229105",
+	"areaName": "张山营镇",
+	"parentId": "110229"
+}, {
+	"areaId": "110229106",
+	"areaName": "四海镇",
+	"parentId": "110229"
+}, {
+	"areaId": "110229107",
+	"areaName": "千家店镇",
+	"parentId": "110229"
+}, {
+	"areaId": "110229108",
+	"areaName": "沈家营镇",
+	"parentId": "110229"
+}, {
+	"areaId": "110229109",
+	"areaName": "大榆树镇",
+	"parentId": "110229"
+}, {
+	"areaId": "110229110",
+	"areaName": "井庄镇",
+	"parentId": "110229"
+}, {
+	"areaId": "110229207",
+	"areaName": "大庄科乡",
+	"parentId": "110229"
+}, {
+	"areaId": "110229209",
+	"areaName": "刘斌堡乡",
+	"parentId": "110229"
+}, {
+	"areaId": "110229210",
+	"areaName": "香营乡",
+	"parentId": "110229"
+}, {
+	"areaId": "110229214",
+	"areaName": "珍珠泉乡",
+	"parentId": "110229"
+}, {
+	"areaId": "111",
+	"areaName": "印度",
+	"parentId": "0"
+}, {
+	"areaId": "112",
+	"areaName": "印度尼西亚",
+	"parentId": "0"
+}, {
+	"areaId": "113",
+	"areaName": "伊朗",
+	"parentId": "0"
+}, {
+	"areaId": "114",
+	"areaName": "伊拉克",
+	"parentId": "0"
+}, {
+	"areaId": "115",
+	"areaName": "以色列",
+	"parentId": "0"
+}, {
+	"areaId": "116",
+	"areaName": "日本",
+	"parentId": "0"
+}, {
+	"areaId": "117",
+	"areaName": "约旦",
+	"parentId": "0"
+}, {
+	"areaId": "118",
+	"areaName": "科威特",
+	"parentId": "0"
+}, {
+	"areaId": "119",
+	"areaName": "老挝",
+	"parentId": "0"
+}, {
+	"areaId": "120",
+	"areaName": "黎巴嫩",
+	"parentId": "0"
+}, {
+	"areaId": "120000",
+	"areaName": "天津",
+	"parentId": "142"
+}, {
+	"areaId": "120100",
+	"areaName": "天津市",
+	"parentId": "120000"
+}, {
+	"areaId": "120101",
+	"areaName": "和平区",
+	"parentId": "120100"
+}, {
+	"areaId": "120101001",
+	"areaName": "劝业场街道",
+	"parentId": "120101"
+}, {
+	"areaId": "120101002",
+	"areaName": "小白楼街道",
+	"parentId": "120101"
+}, {
+	"areaId": "120101003",
+	"areaName": "体育馆街道",
+	"parentId": "120101"
+}, {
+	"areaId": "120101004",
+	"areaName": "新兴街道",
+	"parentId": "120101"
+}, {
+	"areaId": "120101005",
+	"areaName": "南营门街道",
+	"parentId": "120101"
+}, {
+	"areaId": "120101006",
+	"areaName": "南市街道",
+	"parentId": "120101"
+}, {
+	"areaId": "120102",
+	"areaName": "河东区",
+	"parentId": "120100"
+}, {
+	"areaId": "120102001",
+	"areaName": "大王庄街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120102002",
+	"areaName": "大直沽街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120102003",
+	"areaName": "中山门街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120102004",
+	"areaName": "富民路街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120102005",
+	"areaName": "二号桥街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120102006",
+	"areaName": "春华街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120102007",
+	"areaName": "唐家口街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120102008",
+	"areaName": "向阳楼街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120102009",
+	"areaName": "常州道街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120102010",
+	"areaName": "上杭路街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120102011",
+	"areaName": "东新街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120102012",
+	"areaName": "鲁山道街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120102013",
+	"areaName": "天津铁厂街道",
+	"parentId": "120102"
+}, {
+	"areaId": "120103",
+	"areaName": "河西区",
+	"parentId": "120100"
+}, {
+	"areaId": "120103001",
+	"areaName": "大营门街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120103002",
+	"areaName": "下瓦房街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120103003",
+	"areaName": "桃园街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120103004",
+	"areaName": "挂甲寺街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120103005",
+	"areaName": "马场街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120103006",
+	"areaName": "越秀路街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120103007",
+	"areaName": "友谊路街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120103008",
+	"areaName": "天塔街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120103009",
+	"areaName": "尖山街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120103010",
+	"areaName": "陈塘庄街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120103011",
+	"areaName": "柳林街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120103012",
+	"areaName": "东海街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120103013",
+	"areaName": "梅江街道",
+	"parentId": "120103"
+}, {
+	"areaId": "120104",
+	"areaName": "南开区",
+	"parentId": "120100"
+}, {
+	"areaId": "120104001",
+	"areaName": "长虹街道",
+	"parentId": "120104"
+}, {
+	"areaId": "120104002",
+	"areaName": "鼓楼街道",
+	"parentId": "120104"
+}, {
+	"areaId": "120104003",
+	"areaName": "兴南街道",
+	"parentId": "120104"
+}, {
+	"areaId": "120104004",
+	"areaName": "广开街道",
+	"parentId": "120104"
+}, {
+	"areaId": "120104005",
+	"areaName": "万兴街道",
+	"parentId": "120104"
+}, {
+	"areaId": "120104006",
+	"areaName": "学府街道",
+	"parentId": "120104"
+}, {
+	"areaId": "120104007",
+	"areaName": "向阳路街道",
+	"parentId": "120104"
+}, {
+	"areaId": "120104008",
+	"areaName": "嘉陵道街道",
+	"parentId": "120104"
+}, {
+	"areaId": "120104009",
+	"areaName": "王顶堤街道",
+	"parentId": "120104"
+}, {
+	"areaId": "120104010",
+	"areaName": "水上公园街道",
+	"parentId": "120104"
+}, {
+	"areaId": "120104011",
+	"areaName": "体育中心街道",
+	"parentId": "120104"
+}, {
+	"areaId": "120104012",
+	"areaName": "华苑街道",
+	"parentId": "120104"
+}, {
+	"areaId": "120105",
+	"areaName": "河北区",
+	"parentId": "120100"
+}, {
+	"areaId": "120105001",
+	"areaName": "光复道街道",
+	"parentId": "120105"
+}, {
+	"areaId": "120105002",
+	"areaName": "望海楼街道",
+	"parentId": "120105"
+}, {
+	"areaId": "120105003",
+	"areaName": "鸿顺里街道",
+	"parentId": "120105"
+}, {
+	"areaId": "120105004",
+	"areaName": "新开河街道",
+	"parentId": "120105"
+}, {
+	"areaId": "120105005",
+	"areaName": "铁东路街道",
+	"parentId": "120105"
+}, {
+	"areaId": "120105006",
+	"areaName": "建昌道街道",
+	"parentId": "120105"
+}, {
+	"areaId": "120105007",
+	"areaName": "宁园街道",
+	"parentId": "120105"
+}, {
+	"areaId": "120105008",
+	"areaName": "王串场街道",
+	"parentId": "120105"
+}, {
+	"areaId": "120105009",
+	"areaName": "江都路街道",
+	"parentId": "120105"
+}, {
+	"areaId": "120105010",
+	"areaName": "月牙河街道",
+	"parentId": "120105"
+}, {
+	"areaId": "120106",
+	"areaName": "红桥区",
+	"parentId": "120100"
+}, {
+	"areaId": "120106001",
+	"areaName": "西于庄街道",
+	"parentId": "120106"
+}, {
+	"areaId": "120106002",
+	"areaName": "双环村街道",
+	"parentId": "120106"
+}, {
+	"areaId": "120106003",
+	"areaName": "咸阳北路街道",
+	"parentId": "120106"
+}, {
+	"areaId": "120106004",
+	"areaName": "丁字沽街道",
+	"parentId": "120106"
+}, {
+	"areaId": "120106005",
+	"areaName": "西沽街道",
+	"parentId": "120106"
+}, {
+	"areaId": "120106006",
+	"areaName": "三条石街道",
+	"parentId": "120106"
+}, {
+	"areaId": "120106008",
+	"areaName": "邵公庄街道",
+	"parentId": "120106"
+}, {
+	"areaId": "120106009",
+	"areaName": "芥园街道",
+	"parentId": "120106"
+}, {
+	"areaId": "120106010",
+	"areaName": "铃铛阁街道",
+	"parentId": "120106"
+}, {
+	"areaId": "120106011",
+	"areaName": "大胡同街道",
+	"parentId": "120106"
+}, {
+	"areaId": "120110",
+	"areaName": "东丽区",
+	"parentId": "120100"
+}, {
+	"areaId": "120110001",
+	"areaName": "张贵庄街道",
+	"parentId": "120110"
+}, {
+	"areaId": "120110002",
+	"areaName": "丰年村街道",
+	"parentId": "120110"
+}, {
+	"areaId": "120110003",
+	"areaName": "万新街道",
+	"parentId": "120110"
+}, {
+	"areaId": "120110004",
+	"areaName": "无瑕街道",
+	"parentId": "120110"
+}, {
+	"areaId": "120110005",
+	"areaName": "新立街道",
+	"parentId": "120110"
+}, {
+	"areaId": "120110006",
+	"areaName": "华明街道",
+	"parentId": "120110"
+}, {
+	"areaId": "120110007",
+	"areaName": "金钟街道",
+	"parentId": "120110"
+}, {
+	"areaId": "120110008",
+	"areaName": "军粮城街道",
+	"parentId": "120110"
+}, {
+	"areaId": "120110009",
+	"areaName": "金桥街道",
+	"parentId": "120110"
+}, {
+	"areaId": "120110400",
+	"areaName": "开发区西区",
+	"parentId": "120110"
+}, {
+	"areaId": "120110401",
+	"areaName": "保税区空港国际物流区",
+	"parentId": "120110"
+}, {
+	"areaId": "120110402",
+	"areaName": "保税区空港国际物流经济区",
+	"parentId": "120110"
+}, {
+	"areaId": "120110403",
+	"areaName": "东丽区开发区",
+	"parentId": "120110"
+}, {
+	"areaId": "120110404",
+	"areaName": "东丽湖",
+	"parentId": "120110"
+}, {
+	"areaId": "120110405",
+	"areaName": "综合保税区",
+	"parentId": "120110"
+}, {
+	"areaId": "120110406",
+	"areaName": "航空新城",
+	"parentId": "120110"
+}, {
+	"areaId": "120110407",
+	"areaName": "服务滨海新区建设管理委员会",
+	"parentId": "120110"
+}, {
+	"areaId": "120111",
+	"areaName": "西青区",
+	"parentId": "120100"
+}, {
+	"areaId": "120111001",
+	"areaName": "西营门街道",
+	"parentId": "120111"
+}, {
+	"areaId": "120111002",
+	"areaName": "李七庄街道",
+	"parentId": "120111"
+}, {
+	"areaId": "120111100",
+	"areaName": "中北镇",
+	"parentId": "120111"
+}, {
+	"areaId": "120111101",
+	"areaName": "杨柳青镇",
+	"parentId": "120111"
+}, {
+	"areaId": "120111102",
+	"areaName": "辛口镇",
+	"parentId": "120111"
+}, {
+	"areaId": "120111103",
+	"areaName": "张家窝镇",
+	"parentId": "120111"
+}, {
+	"areaId": "120111104",
+	"areaName": "精武镇",
+	"parentId": "120111"
+}, {
+	"areaId": "120111105",
+	"areaName": "大寺镇",
+	"parentId": "120111"
+}, {
+	"areaId": "120111106",
+	"areaName": "王稳庄镇",
+	"parentId": "120111"
+}, {
+	"areaId": "120111400",
+	"areaName": "开发区西青微电子小区",
+	"parentId": "120111"
+}, {
+	"areaId": "120111401",
+	"areaName": "新技术产业园区",
+	"parentId": "120111"
+}, {
+	"areaId": "120111402",
+	"areaName": "西青高校区",
+	"parentId": "120111"
+}, {
+	"areaId": "120111450",
+	"areaName": "西青区开发区",
+	"parentId": "120111"
+}, {
+	"areaId": "120112",
+	"areaName": "津南区",
+	"parentId": "120100"
+}, {
+	"areaId": "120112100",
+	"areaName": "咸水沽镇",
+	"parentId": "120112"
+}, {
+	"areaId": "120112101",
+	"areaName": "葛沽镇",
+	"parentId": "120112"
+}, {
+	"areaId": "120112102",
+	"areaName": "小站镇",
+	"parentId": "120112"
+}, {
+	"areaId": "120112103",
+	"areaName": "双港镇",
+	"parentId": "120112"
+}, {
+	"areaId": "120112104",
+	"areaName": "辛庄镇",
+	"parentId": "120112"
+}, {
+	"areaId": "120112106",
+	"areaName": "双桥河镇",
+	"parentId": "120112"
+}, {
+	"areaId": "120112107",
+	"areaName": "八里台镇",
+	"parentId": "120112"
+}, {
+	"areaId": "120112108",
+	"areaName": "北闸口镇",
+	"parentId": "120112"
+}, {
+	"areaId": "120112401",
+	"areaName": "铁路十八局",
+	"parentId": "120112"
+}, {
+	"areaId": "120112403",
+	"areaName": "长青办事处",
+	"parentId": "120112"
+}, {
+	"areaId": "120112404",
+	"areaName": "津南开发区东区",
+	"parentId": "120112"
+}, {
+	"areaId": "120112405",
+	"areaName": "津南开发区西区",
+	"parentId": "120112"
+}, {
+	"areaId": "120112407",
+	"areaName": "海河教育园区",
+	"parentId": "120112"
+}, {
+	"areaId": "120112500",
+	"areaName": "双林农场",
+	"parentId": "120112"
+}, {
+	"areaId": "120112501",
+	"areaName": "津南国家农业园区",
+	"parentId": "120112"
+}, {
+	"areaId": "120113",
+	"areaName": "北辰区",
+	"parentId": "120100"
+}, {
+	"areaId": "120113001",
+	"areaName": "果园新村街道",
+	"parentId": "120113"
+}, {
+	"areaId": "120113002",
+	"areaName": "集贤里街道",
+	"parentId": "120113"
+}, {
+	"areaId": "120113003",
+	"areaName": "普东街道",
+	"parentId": "120113"
+}, {
+	"areaId": "120113004",
+	"areaName": "瑞景街道",
+	"parentId": "120113"
+}, {
+	"areaId": "120113005",
+	"areaName": "佳荣里街道",
+	"parentId": "120113"
+}, {
+	"areaId": "120113100",
+	"areaName": "天穆镇",
+	"parentId": "120113"
+}, {
+	"areaId": "120113101",
+	"areaName": "北仓镇",
+	"parentId": "120113"
+}, {
+	"areaId": "120113102",
+	"areaName": "双街镇",
+	"parentId": "120113"
+}, {
+	"areaId": "120113103",
+	"areaName": "双口镇",
+	"parentId": "120113"
+}, {
+	"areaId": "120113104",
+	"areaName": "青光镇",
+	"parentId": "120113"
+}, {
+	"areaId": "120113106",
+	"areaName": "宜兴埠镇",
+	"parentId": "120113"
+}, {
+	"areaId": "120113107",
+	"areaName": "小淀镇",
+	"parentId": "120113"
+}, {
+	"areaId": "120113108",
+	"areaName": "大张庄镇",
+	"parentId": "120113"
+}, {
+	"areaId": "120113111",
+	"areaName": "西堤头镇",
+	"parentId": "120113"
+}, {
+	"areaId": "120113400",
+	"areaName": "科技园区北区",
+	"parentId": "120113"
+}, {
+	"areaId": "120113401",
+	"areaName": "科技园区南区",
+	"parentId": "120113"
+}, {
+	"areaId": "120113402",
+	"areaName": "天津医药医疗器械工业园",
+	"parentId": "120113"
+}, {
+	"areaId": "120113403",
+	"areaName": "天津陆路港物流装备产业园",
+	"parentId": "120113"
+}, {
+	"areaId": "120113404",
+	"areaName": "天津风电产业园",
+	"parentId": "120113"
+}, {
+	"areaId": "120113500",
+	"areaName": "红旗农场",
+	"parentId": "120113"
+}, {
+	"areaId": "120113501",
+	"areaName": "曙光农场",
+	"parentId": "120113"
+}, {
+	"areaId": "120114",
+	"areaName": "武清区",
+	"parentId": "120100"
+}, {
+	"areaId": "120114001",
+	"areaName": "杨村街道",
+	"parentId": "120114"
+}, {
+	"areaId": "120114002",
+	"areaName": "下朱庄街道",
+	"parentId": "120114"
+}, {
+	"areaId": "120114003",
+	"areaName": "东蒲洼街道",
+	"parentId": "120114"
+}, {
+	"areaId": "120114004",
+	"areaName": "黄庄街道",
+	"parentId": "120114"
+}, {
+	"areaId": "120114005",
+	"areaName": "徐官屯街道",
+	"parentId": "120114"
+}, {
+	"areaId": "120114006",
+	"areaName": "运河西街道",
+	"parentId": "120114"
+}, {
+	"areaId": "120114101",
+	"areaName": "梅厂镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114102",
+	"areaName": "大碱厂镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114103",
+	"areaName": "崔黄口镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114104",
+	"areaName": "大良镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114105",
+	"areaName": "下伍旗镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114106",
+	"areaName": "南蔡村镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114107",
+	"areaName": "大孟庄镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114108",
+	"areaName": "泗村店镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114109",
+	"areaName": "河西务镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114110",
+	"areaName": "城关镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114111",
+	"areaName": "东马圈镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114112",
+	"areaName": "黄花店镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114113",
+	"areaName": "石各庄镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114114",
+	"areaName": "王庆坨镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114115",
+	"areaName": "汊沽港镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114116",
+	"areaName": "河北屯镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114117",
+	"areaName": "上马台镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114118",
+	"areaName": "大王古庄镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114119",
+	"areaName": "陈咀镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114120",
+	"areaName": "豆张庄镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114121",
+	"areaName": "曹子里镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114122",
+	"areaName": "大黄堡镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114123",
+	"areaName": "高村镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114124",
+	"areaName": "白古屯镇",
+	"parentId": "120114"
+}, {
+	"areaId": "120114400",
+	"areaName": "开发区武清逸仙园小区",
+	"parentId": "120114"
+}, {
+	"areaId": "120114401",
+	"areaName": "武清区开发区",
+	"parentId": "120114"
+}, {
+	"areaId": "120114402",
+	"areaName": "武清商务区",
+	"parentId": "120114"
+}, {
+	"areaId": "120114403",
+	"areaName": "武清京滨园",
+	"parentId": "120114"
+}, {
+	"areaId": "120114404",
+	"areaName": "武清地毯园",
+	"parentId": "120114"
+}, {
+	"areaId": "120114405",
+	"areaName": "武清汽车园",
+	"parentId": "120114"
+}, {
+	"areaId": "120114406",
+	"areaName": "武清科技谷",
+	"parentId": "120114"
+}, {
+	"areaId": "120114500",
+	"areaName": "武清农场",
+	"parentId": "120114"
+}, {
+	"areaId": "120115",
+	"areaName": "宝坻区",
+	"parentId": "120100"
+}, {
+	"areaId": "120115001",
+	"areaName": "海滨街道",
+	"parentId": "120115"
+}, {
+	"areaId": "120115002",
+	"areaName": "宝平街道",
+	"parentId": "120115"
+}, {
+	"areaId": "120115003",
+	"areaName": "钰华街道",
+	"parentId": "120115"
+}, {
+	"areaId": "120115101",
+	"areaName": "大口屯镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115102",
+	"areaName": "大白庄镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115103",
+	"areaName": "王卜庄镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115104",
+	"areaName": "方家庄镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115105",
+	"areaName": "林亭口镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115106",
+	"areaName": "八门城镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115107",
+	"areaName": "大钟庄镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115108",
+	"areaName": "新安镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115110",
+	"areaName": "马家店镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115111",
+	"areaName": "霍各庄镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115113",
+	"areaName": "新开口镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115115",
+	"areaName": "大唐庄镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115117",
+	"areaName": "高家庄镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115118",
+	"areaName": "口东镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115119",
+	"areaName": "牛道口镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115120",
+	"areaName": "史各庄镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115121",
+	"areaName": "郝各庄镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115122",
+	"areaName": "周良庄镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115123",
+	"areaName": "牛家牌镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115124",
+	"areaName": "尔王庄镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115125",
+	"areaName": "黄庄镇",
+	"parentId": "120115"
+}, {
+	"areaId": "120115453",
+	"areaName": "天宝工业园区",
+	"parentId": "120115"
+}, {
+	"areaId": "120115454",
+	"areaName": "九园工业园区",
+	"parentId": "120115"
+}, {
+	"areaId": "120115455",
+	"areaName": "京津新城",
+	"parentId": "120115"
+}, {
+	"areaId": "120115500",
+	"areaName": "里自沽农场",
+	"parentId": "120115"
+}, {
+	"areaId": "120115501",
+	"areaName": "黄庄农场",
+	"parentId": "120115"
+}, {
+	"areaId": "120115502",
+	"areaName": "大钟农场",
+	"parentId": "120115"
+}, {
+	"areaId": "120116",
+	"areaName": "滨海新区",
+	"parentId": "120100"
+}, {
+	"areaId": "120116001",
+	"areaName": "新村街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116002",
+	"areaName": "于家堡街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116003",
+	"areaName": "新港街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116004",
+	"areaName": "向阳街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116005",
+	"areaName": "杭州道街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116006",
+	"areaName": "新河街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116007",
+	"areaName": "大沽街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116008",
+	"areaName": "新北街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116009",
+	"areaName": "北塘街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116010",
+	"areaName": "渤海石油街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116011",
+	"areaName": "胡家园街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116031",
+	"areaName": "汉沽街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116032",
+	"areaName": "寨上街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116033",
+	"areaName": "河西街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116051",
+	"areaName": "迎宾街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116052",
+	"areaName": "胜利街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116053",
+	"areaName": "古林街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116054",
+	"areaName": "海滨街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116055",
+	"areaName": "港西街道",
+	"parentId": "120116"
+}, {
+	"areaId": "120116100",
+	"areaName": "新城镇",
+	"parentId": "120116"
+}, {
+	"areaId": "120116134",
+	"areaName": "大田镇",
+	"parentId": "120116"
+}, {
+	"areaId": "120116135",
+	"areaName": "杨家泊镇",
+	"parentId": "120116"
+}, {
+	"areaId": "120116136",
+	"areaName": "茶淀镇",
+	"parentId": "120116"
+}, {
+	"areaId": "120116156",
+	"areaName": "太平镇",
+	"parentId": "120116"
+}, {
+	"areaId": "120116157",
+	"areaName": "小王庄镇",
+	"parentId": "120116"
+}, {
+	"areaId": "120116158",
+	"areaName": "中塘镇",
+	"parentId": "120116"
+}, {
+	"areaId": "120116400",
+	"areaName": "开发区",
+	"parentId": "120116"
+}, {
+	"areaId": "120116401",
+	"areaName": "保税区",
+	"parentId": "120116"
+}, {
+	"areaId": "120116402",
+	"areaName": "天津滨海新区高新技术产业开发区",
+	"parentId": "120116"
+}, {
+	"areaId": "120116403",
+	"areaName": "东疆保税港区",
+	"parentId": "120116"
+}, {
+	"areaId": "120116404",
+	"areaName": "中心商务区",
+	"parentId": "120116"
+}, {
+	"areaId": "120116405",
+	"areaName": "临港工业区",
+	"parentId": "120116"
+}, {
+	"areaId": "120116406",
+	"areaName": "中新天津生态城",
+	"parentId": "120116"
+}, {
+	"areaId": "120116407",
+	"areaName": "滨海旅游区",
+	"parentId": "120116"
+}, {
+	"areaId": "120116408",
+	"areaName": "南港工业区",
+	"parentId": "120116"
+}, {
+	"areaId": "120116409",
+	"areaName": "临港产业园区一",
+	"parentId": "120116"
+}, {
+	"areaId": "120116410",
+	"areaName": "临港产业园区二",
+	"parentId": "120116"
+}, {
+	"areaId": "120116411",
+	"areaName": "北塘经济区",
+	"parentId": "120116"
+}, {
+	"areaId": "120116412",
+	"areaName": "轻纺经济区",
+	"parentId": "120116"
+}, {
+	"areaId": "120116413",
+	"areaName": "中心渔港经济区",
+	"parentId": "120116"
+}, {
+	"areaId": "120116414",
+	"areaName": "海洋高新技术产业园区",
+	"parentId": "120116"
+}, {
+	"areaId": "120221",
+	"areaName": "宁河县",
+	"parentId": "120100"
+}, {
+	"areaId": "120221100",
+	"areaName": "芦台镇",
+	"parentId": "120221"
+}, {
+	"areaId": "120221102",
+	"areaName": "宁河镇",
+	"parentId": "120221"
+}, {
+	"areaId": "120221103",
+	"areaName": "苗庄镇",
+	"parentId": "120221"
+}, {
+	"areaId": "120221104",
+	"areaName": "丰台镇",
+	"parentId": "120221"
+}, {
+	"areaId": "120221105",
+	"areaName": "岳龙镇",
+	"parentId": "120221"
+}, {
+	"areaId": "120221106",
+	"areaName": "板桥镇",
+	"parentId": "120221"
+}, {
+	"areaId": "120221107",
+	"areaName": "潘庄镇",
+	"parentId": "120221"
+}, {
+	"areaId": "120221109",
+	"areaName": "造甲城镇",
+	"parentId": "120221"
+}, {
+	"areaId": "120221110",
+	"areaName": "七里海镇",
+	"parentId": "120221"
+}, {
+	"areaId": "120221111",
+	"areaName": "大北涧沽镇",
+	"parentId": "120221"
+}, {
+	"areaId": "120221112",
+	"areaName": "东棘坨镇",
+	"parentId": "120221"
+}, {
+	"areaId": "120221204",
+	"areaName": "北淮淀乡",
+	"parentId": "120221"
+}, {
+	"areaId": "120221205",
+	"areaName": "俵口乡",
+	"parentId": "120221"
+}, {
+	"areaId": "120221206",
+	"areaName": "廉庄子乡",
+	"parentId": "120221"
+}, {
+	"areaId": "120221400",
+	"areaName": "宁河县贸易开发区",
+	"parentId": "120221"
+}, {
+	"areaId": "120221401",
+	"areaName": "宁河县经济开发区",
+	"parentId": "120221"
+}, {
+	"areaId": "120221451",
+	"areaName": "宁河县现代产业园区",
+	"parentId": "120221"
+}, {
+	"areaId": "120221452",
+	"areaName": "天津潘庄工业区",
+	"parentId": "120221"
+}, {
+	"areaId": "120221500",
+	"areaName": "潘庄农场",
+	"parentId": "120221"
+}, {
+	"areaId": "120223",
+	"areaName": "静海县",
+	"parentId": "120100"
+}, {
+	"areaId": "120223100",
+	"areaName": "静海镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223101",
+	"areaName": "唐官屯镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223102",
+	"areaName": "独流镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223103",
+	"areaName": "王口镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223104",
+	"areaName": "台头镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223105",
+	"areaName": "子牙镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223106",
+	"areaName": "陈官屯镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223107",
+	"areaName": "中旺镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223108",
+	"areaName": "大邱庄镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223109",
+	"areaName": "蔡公庄镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223110",
+	"areaName": "梁头镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223111",
+	"areaName": "团泊镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223112",
+	"areaName": "双塘镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223113",
+	"areaName": "大丰堆镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223114",
+	"areaName": "沿庄镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223115",
+	"areaName": "西翟庄镇",
+	"parentId": "120223"
+}, {
+	"areaId": "120223200",
+	"areaName": "良王庄乡",
+	"parentId": "120223"
+}, {
+	"areaId": "120223201",
+	"areaName": "杨成庄乡",
+	"parentId": "120223"
+}, {
+	"areaId": "120223400",
+	"areaName": "天津静海经济开发区",
+	"parentId": "120223"
+}, {
+	"areaId": "120223402",
+	"areaName": "天津子牙工业园区",
+	"parentId": "120223"
+}, {
+	"areaId": "120223403",
+	"areaName": "团泊新城",
+	"parentId": "120223"
+}, {
+	"areaId": "120225",
+	"areaName": "蓟县",
+	"parentId": "120100"
+}, {
+	"areaId": "120225001",
+	"areaName": "文昌街道",
+	"parentId": "120225"
+}, {
+	"areaId": "120225100",
+	"areaName": "渔阳镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225101",
+	"areaName": "洇溜镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225102",
+	"areaName": "官庄镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225103",
+	"areaName": "马伸桥镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225104",
+	"areaName": "下营镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225105",
+	"areaName": "邦均镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225106",
+	"areaName": "别山镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225108",
+	"areaName": "尤古庄镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225109",
+	"areaName": "上仓镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225111",
+	"areaName": "下仓镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225112",
+	"areaName": "罗庄子镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225113",
+	"areaName": "白涧镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225114",
+	"areaName": "五百户镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225115",
+	"areaName": "侯家营镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225116",
+	"areaName": "桑梓镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225117",
+	"areaName": "东施古镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225118",
+	"areaName": "下窝头镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225119",
+	"areaName": "杨津庄镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225120",
+	"areaName": "出头岭镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225121",
+	"areaName": "西龙虎峪镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225122",
+	"areaName": "穿芳峪镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225123",
+	"areaName": "东二营镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225124",
+	"areaName": "许家台镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225125",
+	"areaName": "礼明庄镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225126",
+	"areaName": "东赵各庄镇",
+	"parentId": "120225"
+}, {
+	"areaId": "120225203",
+	"areaName": "孙各庄乡",
+	"parentId": "120225"
+}, {
+	"areaId": "121",
+	"areaName": "澳门",
+	"parentId": "0"
+}, {
+	"areaId": "122",
+	"areaName": "马来西亚",
+	"parentId": "0"
+}, {
+	"areaId": "123",
+	"areaName": "马尔代夫",
+	"parentId": "0"
+}, {
+	"areaId": "124",
+	"areaName": "蒙古",
+	"parentId": "0"
+}, {
+	"areaId": "125",
+	"areaName": "尼泊尔联邦民主共和国",
+	"parentId": "0"
+}, {
+	"areaId": "126",
+	"areaName": "阿曼",
+	"parentId": "0"
+}, {
+	"areaId": "127",
+	"areaName": "巴基斯坦",
+	"parentId": "0"
+}, {
+	"areaId": "128",
+	"areaName": "巴勒斯坦",
+	"parentId": "0"
+}, {
+	"areaId": "129",
+	"areaName": "菲律宾",
+	"parentId": "0"
+}, {
+	"areaId": "130",
+	"areaName": "卡塔尔",
+	"parentId": "0"
+}, {
+	"areaId": "130000",
+	"areaName": "河北省",
+	"parentId": "142"
+}, {
+	"areaId": "130100",
+	"areaName": "石家庄市",
+	"parentId": "130000"
+}, {
+	"areaId": "130102",
+	"areaName": "长安区",
+	"parentId": "130100"
+}, {
+	"areaId": "130102001",
+	"areaName": "建北街道",
+	"parentId": "130102"
+}, {
+	"areaId": "130102002",
+	"areaName": "青园街道",
+	"parentId": "130102"
+}, {
+	"areaId": "130102003",
+	"areaName": "广安街道",
+	"parentId": "130102"
+}, {
+	"areaId": "130102004",
+	"areaName": "育才街道",
+	"parentId": "130102"
+}, {
+	"areaId": "130102005",
+	"areaName": "跃进街道",
+	"parentId": "130102"
+}, {
+	"areaId": "130102007",
+	"areaName": "河东街道",
+	"parentId": "130102"
+}, {
+	"areaId": "130102010",
+	"areaName": "长丰街道",
+	"parentId": "130102"
+}, {
+	"areaId": "130102011",
+	"areaName": "谈固街道",
+	"parentId": "130102"
+}, {
+	"areaId": "130102100",
+	"areaName": "西兆通镇",
+	"parentId": "130102"
+}, {
+	"areaId": "130102101",
+	"areaName": "南村镇",
+	"parentId": "130102"
+}, {
+	"areaId": "130102102",
+	"areaName": "高营镇",
+	"parentId": "130102"
+}, {
+	"areaId": "130103",
+	"areaName": "桥东区",
+	"parentId": "130100"
+}, {
+	"areaId": "130103001",
+	"areaName": "中山东路街道",
+	"parentId": "130103"
+}, {
+	"areaId": "130103002",
+	"areaName": "彭后街道",
+	"parentId": "130103"
+}, {
+	"areaId": "130103003",
+	"areaName": "东风街道",
+	"parentId": "130103"
+}, {
+	"areaId": "130103004",
+	"areaName": "东华街道",
+	"parentId": "130103"
+}, {
+	"areaId": "130103005",
+	"areaName": "休门街道",
+	"parentId": "130103"
+}, {
+	"areaId": "130103006",
+	"areaName": "阜康街道",
+	"parentId": "130103"
+}, {
+	"areaId": "130103007",
+	"areaName": "建安街道",
+	"parentId": "130103"
+}, {
+	"areaId": "130103008",
+	"areaName": "胜利北街道",
+	"parentId": "130103"
+}, {
+	"areaId": "130103009",
+	"areaName": "汇通街道",
+	"parentId": "130103"
+}, {
+	"areaId": "130103101",
+	"areaName": "桃园镇",
+	"parentId": "130103"
+}, {
+	"areaId": "130104",
+	"areaName": "桥西区",
+	"parentId": "130100"
+}, {
+	"areaId": "130104001",
+	"areaName": "东里街道",
+	"parentId": "130104"
+}, {
+	"areaId": "130104002",
+	"areaName": "中山街道",
+	"parentId": "130104"
+}, {
+	"areaId": "130104004",
+	"areaName": "南长街道",
+	"parentId": "130104"
+}, {
+	"areaId": "130104005",
+	"areaName": "维明街道",
+	"parentId": "130104"
+}, {
+	"areaId": "130104007",
+	"areaName": "友谊街道",
+	"parentId": "130104"
+}, {
+	"areaId": "130104008",
+	"areaName": "红旗街道",
+	"parentId": "130104"
+}, {
+	"areaId": "130104009",
+	"areaName": "新石街道",
+	"parentId": "130104"
+}, {
+	"areaId": "130104010",
+	"areaName": "苑东街道",
+	"parentId": "130104"
+}, {
+	"areaId": "130104011",
+	"areaName": "西里街道",
+	"parentId": "130104"
+}, {
+	"areaId": "130104012",
+	"areaName": "振头街道",
+	"parentId": "130104"
+}, {
+	"areaId": "130104013",
+	"areaName": "留营街道",
+	"parentId": "130104"
+}, {
+	"areaId": "130104014",
+	"areaName": "长兴街道",
+	"parentId": "130104"
+}, {
+	"areaId": "130105",
+	"areaName": "新华区",
+	"parentId": "130100"
+}, {
+	"areaId": "130105001",
+	"areaName": "革新街街道",
+	"parentId": "130105"
+}, {
+	"areaId": "130105003",
+	"areaName": "新华路街道",
+	"parentId": "130105"
+}, {
+	"areaId": "130105004",
+	"areaName": "宁安街道",
+	"parentId": "130105"
+}, {
+	"areaId": "130105005",
+	"areaName": "东焦街道",
+	"parentId": "130105"
+}, {
+	"areaId": "130105006",
+	"areaName": "西苑街道",
+	"parentId": "130105"
+}, {
+	"areaId": "130105007",
+	"areaName": "合作路街道",
+	"parentId": "130105"
+}, {
+	"areaId": "130105008",
+	"areaName": "联盟街道",
+	"parentId": "130105"
+}, {
+	"areaId": "130105009",
+	"areaName": "石岗街道",
+	"parentId": "130105"
+}, {
+	"areaId": "130105010",
+	"areaName": "五七街道",
+	"parentId": "130105"
+}, {
+	"areaId": "130105011",
+	"areaName": "天苑街道",
+	"parentId": "130105"
+}, {
+	"areaId": "130105012",
+	"areaName": "北苑街道",
+	"parentId": "130105"
+}, {
+	"areaId": "130105100",
+	"areaName": "大郭镇",
+	"parentId": "130105"
+}, {
+	"areaId": "130105101",
+	"areaName": "赵陵铺镇",
+	"parentId": "130105"
+}, {
+	"areaId": "130105201",
+	"areaName": "西三庄乡",
+	"parentId": "130105"
+}, {
+	"areaId": "130105202",
+	"areaName": "杜北乡",
+	"parentId": "130105"
+}, {
+	"areaId": "130107",
+	"areaName": "井陉矿区",
+	"parentId": "130100"
+}, {
+	"areaId": "130107001",
+	"areaName": "矿市街道",
+	"parentId": "130107"
+}, {
+	"areaId": "130107002",
+	"areaName": "四微街道",
+	"parentId": "130107"
+}, {
+	"areaId": "130107100",
+	"areaName": "贾庄镇",
+	"parentId": "130107"
+}, {
+	"areaId": "130107101",
+	"areaName": "凤山镇",
+	"parentId": "130107"
+}, {
+	"areaId": "130107200",
+	"areaName": "横涧乡",
+	"parentId": "130107"
+}, {
+	"areaId": "130108",
+	"areaName": "裕华区",
+	"parentId": "130100"
+}, {
+	"areaId": "130108001",
+	"areaName": "裕兴街道",
+	"parentId": "130108"
+}, {
+	"areaId": "130108002",
+	"areaName": "裕强街道",
+	"parentId": "130108"
+}, {
+	"areaId": "130108003",
+	"areaName": "东苑街道",
+	"parentId": "130108"
+}, {
+	"areaId": "130108004",
+	"areaName": "建通街道",
+	"parentId": "130108"
+}, {
+	"areaId": "130108005",
+	"areaName": "槐底街道",
+	"parentId": "130108"
+}, {
+	"areaId": "130108006",
+	"areaName": "裕华路街道",
+	"parentId": "130108"
+}, {
+	"areaId": "130108007",
+	"areaName": "裕东街道",
+	"parentId": "130108"
+}, {
+	"areaId": "130108008",
+	"areaName": "裕翔街道",
+	"parentId": "130108"
+}, {
+	"areaId": "130108009",
+	"areaName": "建华南街道",
+	"parentId": "130108"
+}, {
+	"areaId": "130108010",
+	"areaName": "长江街道",
+	"parentId": "130108"
+}, {
+	"areaId": "130108011",
+	"areaName": "太行街道",
+	"parentId": "130108"
+}, {
+	"areaId": "130108100",
+	"areaName": "宋营镇",
+	"parentId": "130108"
+}, {
+	"areaId": "130108101",
+	"areaName": "方村镇",
+	"parentId": "130108"
+}, {
+	"areaId": "130121",
+	"areaName": "井陉县",
+	"parentId": "130100"
+}, {
+	"areaId": "130121100",
+	"areaName": "微水镇",
+	"parentId": "130121"
+}, {
+	"areaId": "130121101",
+	"areaName": "上安镇",
+	"parentId": "130121"
+}, {
+	"areaId": "130121102",
+	"areaName": "天长镇",
+	"parentId": "130121"
+}, {
+	"areaId": "130121103",
+	"areaName": "秀林镇",
+	"parentId": "130121"
+}, {
+	"areaId": "130121104",
+	"areaName": "南峪镇",
+	"parentId": "130121"
+}, {
+	"areaId": "130121105",
+	"areaName": "威州镇",
+	"parentId": "130121"
+}, {
+	"areaId": "130121106",
+	"areaName": "小作镇",
+	"parentId": "130121"
+}, {
+	"areaId": "130121107",
+	"areaName": "南障城镇",
+	"parentId": "130121"
+}, {
+	"areaId": "130121108",
+	"areaName": "苍岩山镇",
+	"parentId": "130121"
+}, {
+	"areaId": "130121109",
+	"areaName": "测鱼镇",
+	"parentId": "130121"
+}, {
+	"areaId": "130121200",
+	"areaName": "吴家窑乡",
+	"parentId": "130121"
+}, {
+	"areaId": "130121201",
+	"areaName": "北正乡",
+	"parentId": "130121"
+}, {
+	"areaId": "130121202",
+	"areaName": "于家乡",
+	"parentId": "130121"
+}, {
+	"areaId": "130121203",
+	"areaName": "孙庄乡",
+	"parentId": "130121"
+}, {
+	"areaId": "130121204",
+	"areaName": "南陉乡",
+	"parentId": "130121"
+}, {
+	"areaId": "130121205",
+	"areaName": "辛庄乡",
+	"parentId": "130121"
+}, {
+	"areaId": "130121206",
+	"areaName": "南王庄乡",
+	"parentId": "130121"
+}, {
+	"areaId": "130123",
+	"areaName": "正定县",
+	"parentId": "130100"
+}, {
+	"areaId": "130123001",
+	"areaName": "诸福屯街道",
+	"parentId": "130123"
+}, {
+	"areaId": "130123002",
+	"areaName": "三里屯街道",
+	"parentId": "130123"
+}, {
+	"areaId": "130123100",
+	"areaName": "正定镇",
+	"parentId": "130123"
+}, {
+	"areaId": "130123102",
+	"areaName": "新城铺镇",
+	"parentId": "130123"
+}, {
+	"areaId": "130123103",
+	"areaName": "新安镇",
+	"parentId": "130123"
+}, {
+	"areaId": "130123200",
+	"areaName": "南牛乡",
+	"parentId": "130123"
+}, {
+	"areaId": "130123201",
+	"areaName": "南楼乡",
+	"parentId": "130123"
+}, {
+	"areaId": "130123202",
+	"areaName": "西平乐乡",
+	"parentId": "130123"
+}, {
+	"areaId": "130123203",
+	"areaName": "北早现乡",
+	"parentId": "130123"
+}, {
+	"areaId": "130123204",
+	"areaName": "曲阳桥乡",
+	"parentId": "130123"
+}, {
+	"areaId": "130124",
+	"areaName": "栾城县",
+	"parentId": "130100"
+}, {
+	"areaId": "130124100",
+	"areaName": "栾城镇",
+	"parentId": "130124"
+}, {
+	"areaId": "130124101",
+	"areaName": "郄马镇",
+	"parentId": "130124"
+}, {
+	"areaId": "130124103",
+	"areaName": "冶河镇",
+	"parentId": "130124"
+}, {
+	"areaId": "130124104",
+	"areaName": "窦妪镇",
+	"parentId": "130124"
+}, {
+	"areaId": "130124105",
+	"areaName": "楼底镇",
+	"parentId": "130124"
+}, {
+	"areaId": "130124200",
+	"areaName": "南高乡",
+	"parentId": "130124"
+}, {
+	"areaId": "130124201",
+	"areaName": "柳林屯乡",
+	"parentId": "130124"
+}, {
+	"areaId": "130124202",
+	"areaName": "西营乡",
+	"parentId": "130124"
+}, {
+	"areaId": "130125",
+	"areaName": "行唐县",
+	"parentId": "130100"
+}, {
+	"areaId": "130125100",
+	"areaName": "龙州镇",
+	"parentId": "130125"
+}, {
+	"areaId": "130125101",
+	"areaName": "南桥镇",
+	"parentId": "130125"
+}, {
+	"areaId": "130125102",
+	"areaName": "上碑镇",
+	"parentId": "130125"
+}, {
+	"areaId": "130125103",
+	"areaName": "口头镇",
+	"parentId": "130125"
+}, {
+	"areaId": "130125200",
+	"areaName": "独羊岗乡",
+	"parentId": "130125"
+}, {
+	"areaId": "130125201",
+	"areaName": "安香乡",
+	"parentId": "130125"
+}, {
+	"areaId": "130125202",
+	"areaName": "只里乡",
+	"parentId": "130125"
+}, {
+	"areaId": "130125203",
+	"areaName": "市同乡",
+	"parentId": "130125"
+}, {
+	"areaId": "130125204",
+	"areaName": "翟营乡",
+	"parentId": "130125"
+}, {
+	"areaId": "130125205",
+	"areaName": "城寨乡",
+	"parentId": "130125"
+}, {
+	"areaId": "130125206",
+	"areaName": "上方乡",
+	"parentId": "130125"
+}, {
+	"areaId": "130125207",
+	"areaName": "玉亭乡",
+	"parentId": "130125"
+}, {
+	"areaId": "130125208",
+	"areaName": "北河乡",
+	"parentId": "130125"
+}, {
+	"areaId": "130125209",
+	"areaName": "上闫庄乡",
+	"parentId": "130125"
+}, {
+	"areaId": "130125210",
+	"areaName": "九口子乡",
+	"parentId": "130125"
+}, {
+	"areaId": "130126",
+	"areaName": "灵寿县",
+	"parentId": "130100"
+}, {
+	"areaId": "130126100",
+	"areaName": "灵寿镇",
+	"parentId": "130126"
+}, {
+	"areaId": "130126101",
+	"areaName": "青同镇",
+	"parentId": "130126"
+}, {
+	"areaId": "130126102",
+	"areaName": "塔上镇",
+	"parentId": "130126"
+}, {
+	"areaId": "130126103",
+	"areaName": "陈庄镇",
+	"parentId": "130126"
+}, {
+	"areaId": "130126104",
+	"areaName": "慈峪镇",
+	"parentId": "130126"
+}, {
+	"areaId": "130126105",
+	"areaName": "岔头镇",
+	"parentId": "130126"
+}, {
+	"areaId": "130126200",
+	"areaName": "三圣院乡",
+	"parentId": "130126"
+}, {
+	"areaId": "130126201",
+	"areaName": "北洼乡",
+	"parentId": "130126"
+}, {
+	"areaId": "130126202",
+	"areaName": "牛城乡",
+	"parentId": "130126"
+}, {
+	"areaId": "130126203",
+	"areaName": "狗台乡",
+	"parentId": "130126"
+}, {
+	"areaId": "130126204",
+	"areaName": "南寨乡",
+	"parentId": "130126"
+}, {
+	"areaId": "130126205",
+	"areaName": "南燕川乡",
+	"parentId": "130126"
+}, {
+	"areaId": "130126206",
+	"areaName": "北谭庄乡",
+	"parentId": "130126"
+}, {
+	"areaId": "130126207",
+	"areaName": "寨头乡",
+	"parentId": "130126"
+}, {
+	"areaId": "130126208",
+	"areaName": "南营乡",
+	"parentId": "130126"
+}, {
+	"areaId": "130127",
+	"areaName": "高邑县",
+	"parentId": "130100"
+}, {
+	"areaId": "130127100",
+	"areaName": "高邑镇",
+	"parentId": "130127"
+}, {
+	"areaId": "130127101",
+	"areaName": "大营镇",
+	"parentId": "130127"
+}, {
+	"areaId": "130127102",
+	"areaName": "富村镇",
+	"parentId": "130127"
+}, {
+	"areaId": "130127201",
+	"areaName": "中韩乡",
+	"parentId": "130127"
+}, {
+	"areaId": "130127202",
+	"areaName": "万城乡",
+	"parentId": "130127"
+}, {
+	"areaId": "130128",
+	"areaName": "深泽县",
+	"parentId": "130100"
+}, {
+	"areaId": "130128100",
+	"areaName": "深泽镇",
+	"parentId": "130128"
+}, {
+	"areaId": "130128101",
+	"areaName": "铁杆镇",
+	"parentId": "130128"
+}, {
+	"areaId": "130128102",
+	"areaName": "赵八镇",
+	"parentId": "130128"
+}, {
+	"areaId": "130128200",
+	"areaName": "白庄乡",
+	"parentId": "130128"
+}, {
+	"areaId": "130128201",
+	"areaName": "留村乡",
+	"parentId": "130128"
+}, {
+	"areaId": "130128203",
+	"areaName": "桥头乡",
+	"parentId": "130128"
+}, {
+	"areaId": "130129",
+	"areaName": "赞皇县",
+	"parentId": "130100"
+}, {
+	"areaId": "130129100",
+	"areaName": "赞皇镇",
+	"parentId": "130129"
+}, {
+	"areaId": "130129101",
+	"areaName": "院头镇",
+	"parentId": "130129"
+}, {
+	"areaId": "130129200",
+	"areaName": "西龙门乡",
+	"parentId": "130129"
+}, {
+	"areaId": "130129201",
+	"areaName": "南邢郭乡",
+	"parentId": "130129"
+}, {
+	"areaId": "130129202",
+	"areaName": "南清河乡",
+	"parentId": "130129"
+}, {
+	"areaId": "130129203",
+	"areaName": "西阳泽乡",
+	"parentId": "130129"
+}, {
+	"areaId": "130129204",
+	"areaName": "土门乡",
+	"parentId": "130129"
+}, {
+	"areaId": "130129205",
+	"areaName": "黄北坪乡",
+	"parentId": "130129"
+}, {
+	"areaId": "130129206",
+	"areaName": "嶂石岩乡",
+	"parentId": "130129"
+}, {
+	"areaId": "130129207",
+	"areaName": "许亭乡",
+	"parentId": "130129"
+}, {
+	"areaId": "130129208",
+	"areaName": "张楞乡",
+	"parentId": "130129"
+}, {
+	"areaId": "130130",
+	"areaName": "无极县",
+	"parentId": "130100"
+}, {
+	"areaId": "130130100",
+	"areaName": "无极镇",
+	"parentId": "130130"
+}, {
+	"areaId": "130130101",
+	"areaName": "七汲镇",
+	"parentId": "130130"
+}, {
+	"areaId": "130130102",
+	"areaName": "张段固镇",
+	"parentId": "130130"
+}, {
+	"areaId": "130130103",
+	"areaName": "北苏镇",
+	"parentId": "130130"
+}, {
+	"areaId": "130130104",
+	"areaName": "郭庄镇",
+	"parentId": "130130"
+}, {
+	"areaId": "130130105",
+	"areaName": "大陈镇",
+	"parentId": "130130"
+}, {
+	"areaId": "130130200",
+	"areaName": "高头回族乡",
+	"parentId": "130130"
+}, {
+	"areaId": "130130201",
+	"areaName": "郝庄乡",
+	"parentId": "130130"
+}, {
+	"areaId": "130130202",
+	"areaName": "东侯坊乡",
+	"parentId": "130130"
+}, {
+	"areaId": "130130203",
+	"areaName": "里城道乡",
+	"parentId": "130130"
+}, {
+	"areaId": "130130204",
+	"areaName": "南流乡",
+	"parentId": "130130"
+}, {
+	"areaId": "130131",
+	"areaName": "平山县",
+	"parentId": "130100"
+}, {
+	"areaId": "130131100",
+	"areaName": "平山镇",
+	"parentId": "130131"
+}, {
+	"areaId": "130131101",
+	"areaName": "东回舍镇",
+	"parentId": "130131"
+}, {
+	"areaId": "130131102",
+	"areaName": "温塘镇",
+	"parentId": "130131"
+}, {
+	"areaId": "130131103",
+	"areaName": "南甸镇",
+	"parentId": "130131"
+}, {
+	"areaId": "130131104",
+	"areaName": "岗南镇",
+	"parentId": "130131"
+}, {
+	"areaId": "130131105",
+	"areaName": "古月镇",
+	"parentId": "130131"
+}, {
+	"areaId": "130131106",
+	"areaName": "下槐镇",
+	"parentId": "130131"
+}, {
+	"areaId": "130131107",
+	"areaName": "孟家庄镇",
+	"parentId": "130131"
+}, {
+	"areaId": "130131108",
+	"areaName": "小觉镇",
+	"parentId": "130131"
+}, {
+	"areaId": "130131109",
+	"areaName": "蛟潭庄镇",
+	"parentId": "130131"
+}, {
+	"areaId": "130131110",
+	"areaName": "西柏坡镇",
+	"parentId": "130131"
+}, {
+	"areaId": "130131111",
+	"areaName": "下口镇",
+	"parentId": "130131"
+}, {
+	"areaId": "130131200",
+	"areaName": "西大吾乡",
+	"parentId": "130131"
+}, {
+	"areaId": "130131201",
+	"areaName": "上三汲乡",
+	"parentId": "130131"
+}, {
+	"areaId": "130131202",
+	"areaName": "两河乡",
+	"parentId": "130131"
+}, {
+	"areaId": "130131203",
+	"areaName": "东王坡乡",
+	"parentId": "130131"
+}, {
+	"areaId": "130131204",
+	"areaName": "苏家庄乡",
+	"parentId": "130131"
+}, {
+	"areaId": "130131205",
+	"areaName": "宅北乡",
+	"parentId": "130131"
+}, {
+	"areaId": "130131207",
+	"areaName": "北冶乡",
+	"parentId": "130131"
+}, {
+	"areaId": "130131209",
+	"areaName": "上观音堂乡",
+	"parentId": "130131"
+}, {
+	"areaId": "130131210",
+	"areaName": "杨家桥乡",
+	"parentId": "130131"
+}, {
+	"areaId": "130131211",
+	"areaName": "营里乡",
+	"parentId": "130131"
+}, {
+	"areaId": "130131212",
+	"areaName": "合河口乡",
+	"parentId": "130131"
+}, {
+	"areaId": "130132",
+	"areaName": "元氏县",
+	"parentId": "130100"
+}, {
+	"areaId": "130132001",
+	"areaName": "城区街道",
+	"parentId": "130132"
+}, {
+	"areaId": "130132100",
+	"areaName": "槐阳镇",
+	"parentId": "130132"
+}, {
+	"areaId": "130132101",
+	"areaName": "殷村镇",
+	"parentId": "130132"
+}, {
+	"areaId": "130132102",
+	"areaName": "南佐镇",
+	"parentId": "130132"
+}, {
+	"areaId": "130132103",
+	"areaName": "宋曹镇",
+	"parentId": "130132"
+}, {
+	"areaId": "130132104",
+	"areaName": "南因镇",
+	"parentId": "130132"
+}, {
+	"areaId": "130132105",
+	"areaName": "姬村镇",
+	"parentId": "130132"
+}, {
+	"areaId": "130132200",
+	"areaName": "马村乡",
+	"parentId": "130132"
+}, {
+	"areaId": "130132201",
+	"areaName": "东张乡",
+	"parentId": "130132"
+}, {
+	"areaId": "130132202",
+	"areaName": "赵同乡",
+	"parentId": "130132"
+}, {
+	"areaId": "130132203",
+	"areaName": "北褚乡",
+	"parentId": "130132"
+}, {
+	"areaId": "130132204",
+	"areaName": "苏村乡",
+	"parentId": "130132"
+}, {
+	"areaId": "130132205",
+	"areaName": "苏阳乡",
+	"parentId": "130132"
+}, {
+	"areaId": "130132206",
+	"areaName": "北正乡",
+	"parentId": "130132"
+}, {
+	"areaId": "130132207",
+	"areaName": "前仙乡",
+	"parentId": "130132"
+}, {
+	"areaId": "130132208",
+	"areaName": "黑水河乡",
+	"parentId": "130132"
+}, {
+	"areaId": "130133",
+	"areaName": "赵县",
+	"parentId": "130100"
+}, {
+	"areaId": "130133100",
+	"areaName": "赵州镇",
+	"parentId": "130133"
+}, {
+	"areaId": "130133101",
+	"areaName": "范庄镇",
+	"parentId": "130133"
+}, {
+	"areaId": "130133102",
+	"areaName": "北王里镇",
+	"parentId": "130133"
+}, {
+	"areaId": "130133103",
+	"areaName": "新寨店镇",
+	"parentId": "130133"
+}, {
+	"areaId": "130133104",
+	"areaName": "韩村镇",
+	"parentId": "130133"
+}, {
+	"areaId": "130133105",
+	"areaName": "南柏舍镇",
+	"parentId": "130133"
+}, {
+	"areaId": "130133106",
+	"areaName": "沙河店镇",
+	"parentId": "130133"
+}, {
+	"areaId": "130133200",
+	"areaName": "前大章乡",
+	"parentId": "130133"
+}, {
+	"areaId": "130133201",
+	"areaName": "谢庄乡",
+	"parentId": "130133"
+}, {
+	"areaId": "130133202",
+	"areaName": "高村乡",
+	"parentId": "130133"
+}, {
+	"areaId": "130133203",
+	"areaName": "王西章乡",
+	"parentId": "130133"
+}, {
+	"areaId": "130181",
+	"areaName": "辛集市",
+	"parentId": "130100"
+}, {
+	"areaId": "130181100",
+	"areaName": "辛集镇",
+	"parentId": "130181"
+}, {
+	"areaId": "130181101",
+	"areaName": "旧城镇",
+	"parentId": "130181"
+}, {
+	"areaId": "130181102",
+	"areaName": "张古庄镇",
+	"parentId": "130181"
+}, {
+	"areaId": "130181103",
+	"areaName": "位伯镇",
+	"parentId": "130181"
+}, {
+	"areaId": "130181104",
+	"areaName": "新垒头镇",
+	"parentId": "130181"
+}, {
+	"areaId": "130181105",
+	"areaName": "新城镇",
+	"parentId": "130181"
+}, {
+	"areaId": "130181106",
+	"areaName": "南智邱镇",
+	"parentId": "130181"
+}, {
+	"areaId": "130181107",
+	"areaName": "王口镇",
+	"parentId": "130181"
+}, {
+	"areaId": "130181200",
+	"areaName": "天宫营乡",
+	"parentId": "130181"
+}, {
+	"areaId": "130181201",
+	"areaName": "前营乡",
+	"parentId": "130181"
+}, {
+	"areaId": "130181202",
+	"areaName": "马庄乡",
+	"parentId": "130181"
+}, {
+	"areaId": "130181203",
+	"areaName": "和睦井乡",
+	"parentId": "130181"
+}, {
+	"areaId": "130181204",
+	"areaName": "田家庄乡",
+	"parentId": "130181"
+}, {
+	"areaId": "130181205",
+	"areaName": "中里厢乡",
+	"parentId": "130181"
+}, {
+	"areaId": "130181206",
+	"areaName": "小辛庄乡",
+	"parentId": "130181"
+}, {
+	"areaId": "130181500",
+	"areaName": "辛集经济开发区",
+	"parentId": "130181"
+}, {
+	"areaId": "130182",
+	"areaName": "藁城市",
+	"parentId": "130100"
+}, {
+	"areaId": "130182100",
+	"areaName": "廉州镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182101",
+	"areaName": "兴安镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182102",
+	"areaName": "贾市庄镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182103",
+	"areaName": "南营镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182104",
+	"areaName": "梅花镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182105",
+	"areaName": "岗上镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182106",
+	"areaName": "丘头镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182107",
+	"areaName": "南董镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182108",
+	"areaName": "张家庄镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182109",
+	"areaName": "南孟镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182110",
+	"areaName": "增村镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182111",
+	"areaName": "常安镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182112",
+	"areaName": "西关镇",
+	"parentId": "130182"
+}, {
+	"areaId": "130182200",
+	"areaName": "九门回族乡",
+	"parentId": "130182"
+}, {
+	"areaId": "130182500",
+	"areaName": "石家庄经济技术开发区",
+	"parentId": "130182"
+}, {
+	"areaId": "130183",
+	"areaName": "晋州市",
+	"parentId": "130100"
+}, {
+	"areaId": "130183100",
+	"areaName": "晋州镇",
+	"parentId": "130183"
+}, {
+	"areaId": "130183101",
+	"areaName": "总十庄镇",
+	"parentId": "130183"
+}, {
+	"areaId": "130183102",
+	"areaName": "营里镇",
+	"parentId": "130183"
+}, {
+	"areaId": "130183103",
+	"areaName": "桃园镇",
+	"parentId": "130183"
+}, {
+	"areaId": "130183104",
+	"areaName": "东卓宿镇",
+	"parentId": "130183"
+}, {
+	"areaId": "130183105",
+	"areaName": "马于镇",
+	"parentId": "130183"
+}, {
+	"areaId": "130183106",
+	"areaName": "小樵镇",
+	"parentId": "130183"
+}, {
+	"areaId": "130183107",
+	"areaName": "槐树镇",
+	"parentId": "130183"
+}, {
+	"areaId": "130183108",
+	"areaName": "东里庄镇",
+	"parentId": "130183"
+}, {
+	"areaId": "130183201",
+	"areaName": "周家庄乡",
+	"parentId": "130183"
+}, {
+	"areaId": "130184",
+	"areaName": "新乐市",
+	"parentId": "130100"
+}, {
+	"areaId": "130184001",
+	"areaName": "长寿街道",
+	"parentId": "130184"
+}, {
+	"areaId": "130184101",
+	"areaName": "化皮镇",
+	"parentId": "130184"
+}, {
+	"areaId": "130184102",
+	"areaName": "承安镇",
+	"parentId": "130184"
+}, {
+	"areaId": "130184103",
+	"areaName": "正莫镇",
+	"parentId": "130184"
+}, {
+	"areaId": "130184104",
+	"areaName": "南大岳镇",
+	"parentId": "130184"
+}, {
+	"areaId": "130184105",
+	"areaName": "杜固镇",
+	"parentId": "130184"
+}, {
+	"areaId": "130184106",
+	"areaName": "邯邰镇",
+	"parentId": "130184"
+}, {
+	"areaId": "130184107",
+	"areaName": "东王镇",
+	"parentId": "130184"
+}, {
+	"areaId": "130184108",
+	"areaName": "马头铺镇",
+	"parentId": "130184"
+}, {
+	"areaId": "130184200",
+	"areaName": "协神乡",
+	"parentId": "130184"
+}, {
+	"areaId": "130184201",
+	"areaName": "木村乡",
+	"parentId": "130184"
+}, {
+	"areaId": "130184202",
+	"areaName": "彭家庄回族乡",
+	"parentId": "130184"
+}, {
+	"areaId": "130185",
+	"areaName": "鹿泉市",
+	"parentId": "130100"
+}, {
+	"areaId": "130185100",
+	"areaName": "获鹿镇",
+	"parentId": "130185"
+}, {
+	"areaId": "130185101",
+	"areaName": "铜冶镇",
+	"parentId": "130185"
+}, {
+	"areaId": "130185102",
+	"areaName": "寺家庄镇",
+	"parentId": "130185"
+}, {
+	"areaId": "130185103",
+	"areaName": "上庄镇",
+	"parentId": "130185"
+}, {
+	"areaId": "130185104",
+	"areaName": "李村镇",
+	"parentId": "130185"
+}];
+var area1 = area.map(function(obj) {
+	obj.value = obj.areaId;
+	obj.label = obj.areaName;
+	obj.children = obj.chindren;
+	return obj;
+});
+var area1 = transData(area1, "areaId", "parentId", "children");

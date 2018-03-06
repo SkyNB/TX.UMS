@@ -1,0 +1,23 @@
+.columns {
+	display: flex;
+}
+
+.columns .column {
+	display: block;
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 1;
+	padding: 0.75rem; 
+	text-align: center;
+	font-size: 0.8rem;
+}
+
+.columns .column:nth-last-child(1) {
+	border-right: none;
+}
+
+.columns .column i.fa {
+	font-size: 2rem;
+	display: block;
+	margin-bottom: 0.6rem;
+}

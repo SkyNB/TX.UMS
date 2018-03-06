@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.PriceRangeMapper">
+
+    <sql id="base_columns">
+        RANGE_ID,PRICE_ID,MIN_ACCOUNT,RANGE_START,RANGE_END,UNIT_PRICE
+    </sql>
+    <insert id="batchCreate">
+        INSERT Price_Range (<include refid="base_columns"/>)
+        <foreach collection="list" index="index" item="item" open="(" separator="union all" close=")">
+            SELECT #{item.rangeId,jdbcType=VARCHAR},
+            #{item.priceId,jdbcType=VARCHAR},
+            #{item.minAmount,jdbcType=DECIMAL},
+            #{item.rangeStart,jdbcType=DECIMAL},
+            #{item.rangeEnd,jdbcType=DECIMAL},
+            #{item.unitPrice,jdbcType=DECIMAL}
+            from dual
+        </foreach>
+
+    </insert>
+    <delete id="deleteByPriceId">
+        DELETE FROM PRICE_RANGE WHERE PRICE_ID = #{priceId,jdbcType=VARCHAR}
+    </delete>
+    <select id="findByPriceId" resultType="PriceRangeDto">
+        SELECT <include refid="base_columns"/> FROM PRICE_RANGE WHERE PRICE_ID = #{priceId,jdbcType=VARCHAR}
+    </select>
+    <select id="getByPriceId" resultType="PriceRangeDto">
+        SELECT <include refid="base_columns"/> FROM PRICE_RANGE WHERE PRICE_ID = #{priceId,jdbcType=VARCHAR}
+        AND range_start <![CDATA[ <= ]]> #{unit,jdbcType=DECIMAL}
+        and (range_end is null or range_end <![CDATA[ >]]>#{unit,jdbcType=DECIMAL})
+    </select>
+</mapper>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.VehicleMapper">
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+
+    <resultMap id="BaseResultMap" type="Vehicle">
+        <id column="VEHICLE_ID" property="vehicleId" jdbcType="VARCHAR"/>
+        <result column="VEHICLE_TYPE_ID" property="vehicleTypeId" jdbcType="VARCHAR"/>
+        <result column="VEHICLE_NO" property="vehicleNo" jdbcType="VARCHAR"/>
+        <result column="DRIVER" property="driver" jdbcType="VARCHAR"/>
+        <result column="DRIVER_MOBILE" property="driverMobile" jdbcType="VARCHAR"/>
+        <result column="LEASE_TYPE" property="leaseType" jdbcType="VARCHAR"/>
+        <result column="LENGTH" property="length" jdbcType="DECIMAL"/>
+        <result column="WIDTH" property="width" jdbcType="DECIMAL"/>
+        <result column="HEIGHT" property="height" jdbcType="DECIMAL"/>
+        <result column="LOAD_VOLUME" property="loadVolume" jdbcType="DECIMAL"/>
+        <result column="LOAD_WEIGHT" property="loadWeight" jdbcType="DECIMAL"/>
+        <result column="IS_ACTIVE" property="isActive" jdbcType="DECIMAL"/>
+        <result column="BRANCH_CODE" property="branchCode" jdbcType="VARCHAR"/>
+        <result column="SITE_CODE" property="siteCode" jdbcType="VARCHAR"/>
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="VARCHAR"/>
+        <result column="IDENTITY_CARD_NO" property="identityCardNo" jdbcType="VARCHAR"/>
+        <result column="DRIVING_LICENCE" property="drivingLicence" jdbcType="VARCHAR"/>
+        <result column="VEHICLE_REGISTRACTION_NO" property="vehicleRegistractionNo" jdbcType="VARCHAR"/>
+        <result column="EMERGENCY_CONTACT" property="emergencyContact" jdbcType="VARCHAR"/>
+        <result column="EMERGENCY_CONTACT_MOBILE" property="emergencyContactMobile" jdbcType="VARCHAR"/>
+        <result column="CONTRACT_EFFECTIVE_DATE" property="contractEffectiveDate" jdbcType="TIMESTAMP"/>
+        <result column="CONTRACT_TERMINATION_DATE" property="contractTerminationDate" jdbcType="TIMESTAMP"/>
+        <result column="BUY_TIME" property="buyTime" jdbcType="TIMESTAMP"/>
+        <result column="PROVINCE" property="province" jdbcType="VARCHAR"/>
+        <result column="CITY" property="city" jdbcType="VARCHAR"/>
+        <result column="AREA" property="area" jdbcType="VARCHAR"/>
+        <result column="STREET" property="street" jdbcType="VARCHAR"/>
+        <result column="DISTRICT_NO" property="districtNo" jdbcType="VARCHAR"/>
+        <result column="ADDRESS" property="address" jdbcType="VARCHAR"/>
+        <result column="PAYMENT_TYPE" property="paymentType" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        VEHICLE_ID, VEHICLE_TYPE_ID, VEHICLE_NO, DRIVER, DRIVER_MOBILE, LEASE_TYPE, LENGTH,
+        WIDTH, HEIGHT, LOAD_VOLUME, LOAD_WEIGHT, IS_ACTIVE, BRANCH_CODE, SITE_CODE, USER_ID,
+        STATUS, IDENTITY_CARD_NO, DRIVING_LICENCE, VEHICLE_REGISTRACTION_NO, EMERGENCY_CONTACT, EMERGENCY_CONTACT_MOBILE, CONTRACT_EFFECTIVE_DATE,
+        CONTRACT_TERMINATION_DATE, BUY_TIME, PROVINCE, CITY, AREA, STREET, DISTRICT_NO, ADDRESS, PAYMENT_TYPE
+    </sql>
+
+    <select id="exists" resultType="boolean">
+        SELECT COUNT (0)
+        FROM VEHICLE
+        <where>
+            <if test="vehicleId != null">
+                VEHICLE_ID != #{vehicleId}
+            </if>
+            <if test="vehicleNo != null">
+                AND VEHICLE_NO = #{vehicleNo}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="Vehicle">
+        INSERT INTO VEHICLE (<include refid="Base_Column_List"/>)
+        VALUES (#{vehicleId,jdbcType=VARCHAR}, #{vehicleTypeId,jdbcType=VARCHAR}, #{vehicleNo,jdbcType=VARCHAR},
+        #{driver,jdbcType=VARCHAR}, #{driverMobile,jdbcType=VARCHAR}, #{leaseType,jdbcType=VARCHAR},
+        #{length,jdbcType=DECIMAL}, #{width,jdbcType=DECIMAL}, #{height,jdbcType=DECIMAL},
+        #{loadVolume,jdbcType=DECIMAL}, #{loadWeight,jdbcType=DECIMAL}, #{isActive,jdbcType=DECIMAL},
+        #{branchCode,jdbcType=VARCHAR}, #{siteCode,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+        #{status,jdbcType=VARCHAR}, #{identityCardNo,jdbcType=VARCHAR}, #{drivingLicence,jdbcType=VARCHAR}, #{vehicleRegistractionNo,jdbcType=VARCHAR},
+        #{emergencyContact,jdbcType=VARCHAR}, #{emergencyContactMobile,jdbcType=VARCHAR}, #{contractEffectiveDate,jdbcType=TIMESTAMP},
+        #{contractTerminationDate,jdbcType=TIMESTAMP}, #{buyTime,jdbcType=TIMESTAMP}, #{province,jdbcType=VARCHAR},
+        #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR},
+        #{districtNo,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{paymentType,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="batchInsert" parameterType="java.util.ArrayList">
+        INSERT INTO VEHICLE (<include refid="Base_Column_List"/>)
+        <foreach collection="list" index="index" item="item" open="(" separator="union all" close=")">
+        select
+        #{item.vehicleId,jdbcType=VARCHAR}, #{item.vehicleTypeId,jdbcType=VARCHAR}, #{item.vehicleNo,jdbcType=VARCHAR},
+        #{item.driver,jdbcType=VARCHAR}, #{item.driverMobile,jdbcType=VARCHAR}, #{item.leaseType,jdbcType=VARCHAR},
+        #{item.length,jdbcType=DECIMAL}, #{item.width,jdbcType=DECIMAL}, #{item.height,jdbcType=DECIMAL},
+        #{item.loadVolume,jdbcType=DECIMAL}, #{item.loadWeight,jdbcType=DECIMAL}, #{item.isActive,jdbcType=DECIMAL},
+        #{item.branchCode,jdbcType=VARCHAR}, #{item.siteCode,jdbcType=VARCHAR}, #{item.userId,jdbcType=VARCHAR},
+        #{item.status,jdbcType=VARCHAR}, #{item.identityCardNo,jdbcType=VARCHAR}, #{item.drivingLicence,jdbcType=VARCHAR}, #{item.vehicleRegistractionNo,jdbcType=VARCHAR},
+        #{item.emergencyContact,jdbcType=VARCHAR}, #{item.emergencyContactMobile,jdbcType=VARCHAR}, #{item.contractEffectiveDate,jdbcType=TIMESTAMP},
+        #{item.contractTerminationDate,jdbcType=TIMESTAMP}, #{item.buyTime,jdbcType=TIMESTAMP}, #{item.province,jdbcType=VARCHAR},
+        #{item.city,jdbcType=VARCHAR}, #{item.area,jdbcType=VARCHAR}, #{item.street,jdbcType=VARCHAR},
+        #{item.districtNo,jdbcType=VARCHAR}, #{item.address,jdbcType=VARCHAR}, #{item.paymentType,jdbcType=VARCHAR}
+        FROM dual
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="Vehicle">
+        UPDATE VEHICLE SET
+        VEHICLE_TYPE_ID = #{vehicleTypeId,jdbcType=VARCHAR},
+        VEHICLE_NO = #{vehicleNo,jdbcType=VARCHAR},
+        DRIVER = #{driver,jdbcType=VARCHAR},
+        DRIVER_MOBILE = #{driverMobile,jdbcType=VARCHAR},
+        LEASE_TYPE = #{leaseType,jdbcType=VARCHAR},
+        LENGTH = #{length,jdbcType=DECIMAL},
+        WIDTH = #{width,jdbcType=DECIMAL},
+        HEIGHT = #{height,jdbcType=DECIMAL},
+        LOAD_VOLUME = #{loadVolume,jdbcType=DECIMAL},
+        LOAD_WEIGHT = #{loadWeight,jdbcType=DECIMAL},
+        USER_ID = #{userId,jdbcType=VARCHAR},
+        IDENTITY_CARD_NO = #{identityCardNo,jdbcType=VARCHAR},
+        DRIVING_LICENCE = #{drivingLicence,jdbcType=VARCHAR},
+        VEHICLE_REGISTRACTION_NO = #{vehicleRegistractionNo,jdbcType=VARCHAR},
+        EMERGENCY_CONTACT = #{emergencyContact,jdbcType=VARCHAR},
+        EMERGENCY_CONTACT_MOBILE = #{emergencyContactMobile,jdbcType=VARCHAR},
+        CONTRACT_EFFECTIVE_DATE = #{contractEffectiveDate,jdbcType=TIMESTAMP},
+        CONTRACT_TERMINATION_DATE = #{contractTerminationDate,jdbcType=TIMESTAMP},
+        BUY_TIME = #{buyTime,jdbcType=TIMESTAMP},
+        PROVINCE = #{province,jdbcType=VARCHAR},
+        CITY = #{city,jdbcType=VARCHAR},
+        AREA = #{area,jdbcType=VARCHAR},
+        STREET = #{street,jdbcType=VARCHAR},
+        DISTRICT_NO = #{districtNo,jdbcType=VARCHAR},
+        ADDRESS = #{address,jdbcType=VARCHAR},
+        PAYMENT_TYPE = #{paymentType,jdbcType=VARCHAR}
+        WHERE VEHICLE_ID = #{vehicleId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="string">
+        SELECT <include refid="Base_Column_List"/> FROM VEHICLE WHERE VEHICLE_ID = #{vehicleId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getByVehicleNo" resultMap="BaseResultMap" parameterType="string">
+        SELECT <include refid="Base_Column_List"/> FROM VEHICLE WHERE VEHICLE_NO = #{vehicleNo,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getByBranchCode" resultMap="BaseResultMap" parameterType="string">
+        SELECT <include refid="Base_Column_List"/> FROM  VEHICLE WHERE BRANCH_CODE = #{branchCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getActiveFromBranch" resultMap="BaseResultMap" parameterType="string">
+        SELECT <include refid="Base_Column_List"/> FROM VEHICLE WHERE BRANCH_CODE = #{branchCode,jdbcType=VARCHAR} AND IS_ACTIVE = 1
+    </select>
+
+    <select id="getIdleFromBranch" resultMap="BaseResultMap" parameterType="string">
+        SELECT <include refid="Base_Column_List"/> FROM VEHICLE WHERE
+        BRANCH_CODE = #{branchCode,jdbcType=VARCHAR} AND IS_ACTIVE = 1 AND STATUS = #{status,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getByBranchCodeAndSiteCode" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM VEHICLE WHERE BRANCH_CODE = #{branchCode,jdbcType=VARCHAR} AND SITE_CODE = #{siteCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getActiveFromSite" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM VEHICLE WHERE
+        BRANCH_CODE = #{branchCode,jdbcType=VARCHAR} AND SITE_CODE = #{siteCode,jdbcType=VARCHAR} AND IS_ACTIVE = 1
+    </select>
+
+    <select id="getIdleFromSite" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM VEHICLE WHERE
+        BRANCH_CODE = #{branchCode,jdbcType=VARCHAR} AND SITE_CODE = #{siteCode,jdbcType=VARCHAR} AND IS_ACTIVE = 1 AND STATUS = #{status,jdbcType=VARCHAR}
+    </select>
+
+    <update id="activate">
+        UPDATE VEHICLE SET IS_ACTIVE = 1 WHERE VEHICLE_NO = #{vehicleNo,jdbcType=VARCHAR}
+    </update>
+
+    <update id="inactivate">
+        UPDATE VEHICLE SET IS_ACTIVE = 0 WHERE VEHICLE_NO = #{vehicleNo,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE VEHICLE SET STATUS = #{status,jdbcType=VARCHAR} WHERE VEHICLE_NO = #{vehicleNo,jdbcType=VARCHAR}
+    </update>
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM VEHICLE
+        <where>
+            <if test="driver != null">
+                DRIVER LIKE CONCAT(CONCAT('%', #{driver}), '%')
+            </if>
+            <if test="vehicleNo != null">
+                AND VEHICLE_NO LIKE CONCAT(CONCAT('%', #{vehicleNo}), '%')
+            </if>
+            <if test="driverMobile != null">
+                AND DRIVER_MOBILE LIKE CONCAT(CONCAT('%', #{driverMobile}), '%')
+            </if>
+            <if test="leaseType != null">
+                AND LEASE_TYPE = #{leaseType}
+            </if>
+            <if test="status != null">
+                AND STATUS = #{status}
+            </if>
+            <if test = "branchCode != null">
+                AND BRANCH_CODE = #{branchCode}
+            </if>
+            <if test="siteCode != null">
+                AND SITE_CODE = #{siteCode}
+            </if>
+        </where>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+    </select>
+    <select id="getByUserId" resultMap="BaseResultMap">
+        SELECT * FROM VEHICLE WHERE
+        user_id = #{userId}
+    </select>
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM VEHICLE
+    </select>
+</mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.ErpUserMenuMapper">
+  <resultMap id="BaseResultMap" type="com.lnet.model.ums.ErpUserMenu">
+    <id column="userMenuId" jdbcType="VARCHAR" property="usermenuid" />
+    <result column="userId" jdbcType="VARCHAR" property="userId" />
+    <result column="menuId" jdbcType="VARCHAR" property="menuid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userMenuId, userId, menuId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from erp_user_menu
+    where userMenuId = #{usermenuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from erp_user_menu
+    where userMenuId = #{usermenuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lnet.model.ums.ErpUserMenu">
+    <selectKey keyProperty="usermenuid" order="BEFORE" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into erp_user_menu (userMenuId, userId, menuId
+      )
+    values (#{usermenuid,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{menuid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lnet.model.ums.ErpUserMenu">
+    <selectKey keyProperty="usermenuid" order="BEFORE" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into erp_user_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      userMenuId,
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="menuid != null">
+        menuId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{usermenuid,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuid != null">
+        #{menuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnet.model.ums.ErpUserMenu">
+    update erp_user_menu
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuid != null">
+        menuId = #{menuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userMenuId = #{usermenuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lnet.model.ums.ErpUserMenu">
+    update erp_user_menu
+    set userId = #{userId,jdbcType=VARCHAR},
+      menuId = #{menuid,jdbcType=VARCHAR}
+    where userMenuId = #{usermenuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

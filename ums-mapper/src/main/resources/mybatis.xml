@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.lnet.ums.mapper"/>
+
+    <!--datasource-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://www.56-net.com:3326/lnet_tx_ums2"/>
+        <!--<property name="url" value="jdbc:mysql://www.56-net.com:3326/tx_erp"/>-->
+        <property name="username" value="root"/>
+        <property name="password" value="Itc-Mysqltest33"/>
+
+<!--        <property name="url" value="jdbc:mysql://192.168.1.12:3306/tx_erp"/>
+        <property name="username" value="root"/>
+        <property name="password" value="Classes12"/>-->
+
+
+<!--        <property name="url" value="jdbc:mysql://182.92.4.138:3306/tx_erp"/>
+        <property name="username" value="root"/>
+        <property name="password" value="bugaosuni"/>-->
+
+
+        <!--ym_erp库-->
+        <!--<property name="url" value="jdbc:mysql://192.168.1.12:3306/ym_erp"/>
+        <property name="username" value="root"/>
+        <property name="password" value="Classes12"/>-->
+
+
+
+      <!--  <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@//192.168.10.18:1521/orcl"/>
+        <property name="username" value="lnet_tx_ums"/>
+        <property name="password" value="lnet_tx_ums"/>-->
+
+        <!--<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>-->
+        <!--<property name="url" value="jdbc:oracle:thin:@//192.168.10.18:1521/orcl"/>-->
+        <!--<property name="username" value="lnet_tx_ums"/>-->
+        <!--<property name="password" value="lnet_tx_ums"/>-->
+
+    </bean>
+
+    <import resource="classpath*:data-base.xml"/>
+
+    <!--mapper scan-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.lnet.ums.mapper.dao.mappers"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
+    <!-- spring data jpa -->
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="showSql" value="true"/>
+        <property name="database" value="ORACLE"/>
+        <property name="generateDdl" value="false"/>
+    </bean>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="packagesToScan" value="com.lnet.model.ums.notification"/>
+        <property name="persistenceUnitName" value="notifyDataContext"/>
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.physical_naming_strategy">
+                    com.lnet.ums.mapper.dao.UnderscoresNameStrategy
+                </prop>
+            </props>
+        </property>
+    </bean>
+
+    <jpa:repositories base-package="com.lnet.ums.mapper.dao">
+    </jpa:repositories>
+    <!-- spring data jpa -->
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>

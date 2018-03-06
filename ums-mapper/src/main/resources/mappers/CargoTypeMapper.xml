@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.CargoTypeMapper">
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+
+    <resultMap id="BaseResultMap" type="com.lnet.model.ums.customer.customerEntity.CargoType">
+        <id column="CARGO_TYPE_ID" property="cargoTypeId" jdbcType="VARCHAR"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="PROJECT_CODE" property="projectCode" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Column_List">
+        CARGO_TYPE_ID, CODE, NAME, PROJECT_CODE,  REMARK
+    </sql>
+
+    <delete id="deleteByProjectCode" parameterType="string">
+        DELETE FROM CARGO_TYPE WHERE PROJECT_CODE = #{projectCode, jdbcType=VARCHAR}
+    </delete>
+
+    <select id="getByProjectCode" parameterType="string" resultMap="BaseResultMap">
+        SELECT <include refid="Column_List"/>
+        FROM CARGO_TYPE
+        WHERE PROJECT_CODE = #{projectCode, jdbcType=VARCHAR}
+    </select>
+
+    <insert id="batchInsert" parameterType="com.lnet.model.ums.customer.customerEntity.CargoType">
+        INSERT INTO CARGO_TYPE(<include refid="Column_List"/> )
+        (
+            <foreach collection="list" item="item" index="index" separator="union all">
+                SELECT
+                #{item.cargoTypeId, jdbcType=VARCHAR},
+                #{item.code, jdbcType=VARCHAR},
+                #{item.name, jdbcType=VARCHAR},
+                #{item.projectCode, jdbcType=VARCHAR},
+                #{item.remark, jdbcType=VARCHAR}
+                FROM DUAL
+            </foreach>
+        )
+    </insert>
+</mapper>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.VehicleTypeMapper">
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+
+    <resultMap id="BaseResultMap" type="VehicleType">
+        <id column="VEHICLE_TYPE_ID" property="vehicleTypeId" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="LENGTH" property="length" jdbcType="DECIMAL"/>
+        <result column="WIDTH" property="width" jdbcType="DECIMAL"/>
+        <result column="HEIGHT" property="height" jdbcType="DECIMAL"/>
+        <result column="LOAD_VOLUME" property="loadVolume" jdbcType="DECIMAL"/>
+        <result column="LOAD_WEIGHT" property="loadWeight" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        VEHICLE_TYPE_ID, NAME, LENGTH, WIDTH, HEIGHT, LOAD_VOLUME, LOAD_WEIGHT
+    </sql>
+
+    <select id="exists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END
+        FROM VEHICLE_TYPE
+        <where>
+            <if test="vehicleTypeId != null">
+                VEHICLE_TYPE_ID != #{vehicleTypeId,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null">
+                AND NAME = #{name,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="VehicleType">
+        INSERT INTO VEHICLE_TYPE (<include refid="Base_Column_List"/>)
+        VALUES
+        (
+        #{vehicleTypeId,jdbcType=VARCHAR},
+        #{name,jdbcType=VARCHAR},
+        #{length,jdbcType=DECIMAL},
+        #{width,jdbcType=DECIMAL},
+        #{height,jdbcType=DECIMAL},
+        #{loadVolume,jdbcType=DECIMAL},
+        #{loadWeight,jdbcType=DECIMAL}
+        )
+    </insert>
+
+    <update id="update" parameterType="VehicleType">
+        UPDATE VEHICLE_TYPE SET
+        NAME = #{name,jdbcType=VARCHAR},
+        LENGTH = #{length,jdbcType=DECIMAL},
+        WIDTH = #{width,jdbcType=DECIMAL},
+        HEIGHT = #{height,jdbcType=DECIMAL},
+        LOAD_VOLUME = #{loadVolume,jdbcType=DECIMAL},
+        LOAD_WEIGHT = #{loadWeight,jdbcType=DECIMAL}
+        WHERE VEHICLE_TYPE_ID = #{vehicleTypeId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM VEHICLE_TYPE
+    </select>
+
+    <select id="get" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM VEHICLE_TYPE WHERE VEHICLE_TYPE_ID = #{vehicleTypeId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM VEHICLE_TYPE
+        <where>
+            <if test="name != null">
+                NAME LIKE CONCAT(CONCAT('%', #{name}), '%')
+            </if>
+        </where>
+        <if test="orderBy != null">
+            order by ${orderBy}
+        </if>
+    </select>
+</mapper>

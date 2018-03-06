@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.BrandMapper">
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+<!--BRAND_ID-->
+    <resultMap id="BaseResultMap" type="com.lnet.model.ums.customer.customerEntity.Brand">
+        <id column="ROW_ID" jdbcType="VARCHAR" property="rowId"/>
+        <result column="CODE" jdbcType="VARCHAR" property="code"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="CUSTOMER_CODE" jdbcType="VARCHAR" property="customerCode"/>
+        <result column="CUSTOMER_NAME" jdbcType="VARCHAR" property="customerName"/>
+        <result column="IS_ACTIVE" jdbcType="DECIMAL" property="isActive"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <!--<association property="customer" javaType="com.lnet.microservices.customer.domain.Customer"
+                     select="com.lnet.microservices.customer.dao.CustomerDao.getByCode"
+                     column="CUSTOMER_CODE"/>-->
+    </resultMap>
+
+    <sql id="Column_List">
+        ROW_ID, CODE, NAME, CUSTOMER_CODE, CUSTOMER_NAME, IS_ACTIVE, REMARK
+    </sql>
+
+    <select id="get" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Column_List"/>
+        from BRAND
+        where ROW_ID = #{rowId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAvailable" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Column_List"/>
+        from BRAND
+        where IS_ACTIVE = 1
+    </select>
+
+    <select id="getByCustomerCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Column_List"/>
+        from BRAND
+        where CUSTOMER_CODE = #{CUSTOMER_CODE,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getByCustomerCodeAndActive" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Column_List"/>
+        from BRAND
+        where CUSTOMER_CODE = #{CUSTOMER_CODE,jdbcType=VARCHAR} and IS_ACTIVE = 1
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from BRAND
+        where ROW_ID = #{rowId,jdbcType=VARCHAR}
+    </delete>
+
+    <delete id="deleteByCustomerCode" parameterType="java.lang.String">
+        delete from BRAND
+        where CUSTOMER_CODE = #{CUSTOMER_CODE,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="com.lnet.model.ums.customer.customerEntity.Brand">
+        insert into BRAND (ROW_ID, CODE, NAME,
+        CUSTOMER_CODE, CUSTOMER_NAME, IS_ACTIVE,
+        REMARK)
+        values (#{rowId,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+        #{customerCode,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{isActive,jdbcType=DECIMAL},
+        #{remark,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.lnet.model.ums.customer.customerEntity.Brand">
+        update BRAND
+        set CODE = #{code,jdbcType=VARCHAR},
+        NAME = #{name,jdbcType=VARCHAR},
+        CUSTOMER_CODE = #{customerCode,jdbcType=VARCHAR},
+        CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+        IS_ACTIVE = #{isActive,jdbcType=DECIMAL},
+        REMARK = #{remark,jdbcType=VARCHAR}
+        where ROW_ID = #{rowId,jdbcType=VARCHAR}
+    </update>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into BRAND (<include refid="Column_List"/>)
+        (
+        <foreach collection="list" item="item" index="index" separator="union all">
+            select #{item.rowId,jdbcType=VARCHAR},
+            #{item.code,jdbcType=VARCHAR},
+            #{item.name,jdbcType=VARCHAR},
+            #{item.customerCode,jdbcType=VARCHAR},
+            #{item.customerName,jdbcType=VARCHAR},
+            #{item.isActive,jdbcType=DECIMAL},
+            #{item.remark,jdbcType=VARCHAR} from dual
+        </foreach>
+        )
+    </insert>
+
+</mapper>

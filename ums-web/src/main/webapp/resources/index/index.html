@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="./public/js/store.min.js"></script>
+	</head>
+
+	<body style="background-color: #efefef;">
+
+		<script>
+			if(store.get('layout') == undefined) {
+				window.location.href = "vertical_layout.html"
+			} else {
+				window.location.href = "horizontal_layout.html"
+			}
+		</script>
+	</body>
+
+</html>

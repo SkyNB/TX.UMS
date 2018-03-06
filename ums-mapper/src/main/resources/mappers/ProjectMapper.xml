@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.ProjectMapper">
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+
+    <resultMap id="BaseResultMap" type="com.lnet.model.ums.customer.customerEntity.Project">
+        <id column="PROJECT_ID" property="projectId" jdbcType="VARCHAR"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="BRANCH_CODE" property="branchCode" jdbcType="VARCHAR"/>
+        <result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR"/>
+        <result column="CUSTOMER_CODE" property="customerCode" jdbcType="VARCHAR"/>
+        <result column="CUSTOMER_NAME" property="customerName" jdbcType="VARCHAR"/>
+        <result column="SETTLE_CYCLE" property="settleCycle" jdbcType="VARCHAR"/>
+        <result column="PAYMENT_TYPE" property="paymentType" jdbcType="VARCHAR"/>
+        <result column="CALCULATE_TYPE" property="calculateType" jdbcType="VARCHAR"/>
+        <result column="HANDOVER_TYPE" property="handoverType" jdbcType="VARCHAR"/>
+        <result column="RECEIVABLE_DATASOURCE" property="receivableDataSource" jdbcType="VARCHAR"/>
+        <result column="PACK_COEFFICIENT" property="packCoefficient" jdbcType="NUMERIC"/>
+        <result column="LIGHT_GOODS" property="lightGoods" jdbcType="NUMERIC"/>
+        <result column="LIGHT_THROW_GOODS" property="lightThrowGoods" jdbcType="NUMERIC"/>
+        <result column="COMMON_GOODS" property="commonGoods" jdbcType="NUMERIC"/>
+        <result column="HEAVY_GOODS" property="heavyGoods" jdbcType="NUMERIC"/>
+        <result column="HEAVY_THROW_GOODS" property="heavyThrowGoods" jdbcType="NUMERIC"/>
+        <result column="IS_ACTIVE" property="isActive" jdbcType="DECIMAL"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="CREATE_USER_NAME" property="createUserName" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="VARCHAR"/>
+        <result column="MODIFY_USER_NAME" property="modifyUserName" jdbcType="VARCHAR"/>
+        <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Column_List">
+        PROJECT_ID, CODE, NAME, BRANCH_CODE, BRANCH_NAME, CUSTOMER_CODE, CUSTOMER_NAME, SETTLE_CYCLE, PAYMENT_TYPE, CALCULATE_TYPE,
+        HANDOVER_TYPE, RECEIVABLE_DATASOURCE, PACK_COEFFICIENT, LIGHT_GOODS, LIGHT_THROW_GOODS, COMMON_GOODS, HEAVY_GOODS, HEAVY_THROW_GOODS,
+        IS_ACTIVE, REMARK, CREATE_USER_ID, CREATE_USER_NAME, CREATE_TIME, MODIFY_USER_ID, MODIFY_USER_NAME, MODIFY_TIME
+    </sql>
+
+    <select id="exists" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END
+        FROM PROJECT
+        <where>
+            <if test="code != null">
+                CODE = #{code}
+            </if>
+            <if test="projectId != null">
+                AND PROJECT_ID != #{projectId}
+            </if>
+        </where>
+    </select>
+
+    <select id="hasProject" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END
+        FROM PROJECT WHERE
+        CUSTOMER_CODE = #{customerCode, jdbcType=VARCHAR}
+        AND BRANCH_CODE = #{branchCode, jdbcType=VARCHAR}
+        <if test="projectId != null">
+            AND PROJECT_ID != #{projectId, jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Column_List"/>
+        FROM PROJECT
+    </select>
+
+    <select id="getAvailable" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Column_List"/>
+        FROM PROJECT
+        WHERE IS_ACTIVE = 1
+    </select>
+
+    <select id="getBranchAvailable" resultMap="BaseResultMap" parameterType="string">
+        SELECT
+        <include refid="Column_List"/>
+        FROM PROJECT WHERE BRANCH_CODE = #{branchCode, jdbcType=VARCHAR}
+        AND IS_ACTIVE = 1
+    </select>
+
+    <select id="get" parameterType="string" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Column_List"/>
+        FROM PROJECT
+        WHERE PROJECT_ID = #{projectId, jdbcType=VARCHAR}
+    </select>
+
+    <select id="getProject" parameterType="string" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Column_List"/>
+        FROM PROJECT
+        WHERE BRANCH_CODE = #{branchCode, jdbcType=VARCHAR}
+        and CUSTOMER_CODE=#{customerCode, jdbcType=VARCHAR}
+    </select>
+
+    <select id="getByCode" parameterType="string" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Column_List"/>
+        FROM PROJECT
+        WHERE CODE = #{code, jdbcType=VARCHAR}
+    </select>
+
+    <update id="inactivate" parameterType="string">
+        UPDATE PROJECT
+        SET IS_ACTIVE = 0
+        WHERE CODE = #{code, jdbcType=VARCHAR}
+    </update>
+
+    <update id="activate" parameterType="string">
+        UPDATE PROJECT
+        SET IS_ACTIVE = 1
+        WHERE CODE = #{code, jdbcType=VARCHAR}
+    </update>
+
+    <insert id="insert" parameterType="com.lnet.model.ums.customer.customerEntity.Project">
+        INSERT INTO PROJECT(<include refid="Column_List"/>)
+        VALUES
+        (
+        #{projectId, jdbcType=VARCHAR},
+        #{code, jdbcType=VARCHAR},
+        #{name, jdbcType=VARCHAR},
+        #{branchCode, jdbcType=VARCHAR},
+        #{branchName, jdbcType=VARCHAR},
+        #{customerCode, jdbcType=VARCHAR},
+        #{customerName, jdbcType=VARCHAR},
+        #{settleCycle, jdbcType=VARCHAR},
+        #{paymentType, jdbcType=VARCHAR},
+        #{calculateType, jdbcType=VARCHAR},
+        #{handoverType, jdbcType=VARCHAR},
+        #{receivableDataSource, jdbcType=VARCHAR},
+        #{packCoefficient, jdbcType=NUMERIC},
+        #{lightGoods, jdbcType=NUMERIC},
+        #{lightThrowGoods, jdbcType=NUMERIC},
+        #{commonGoods, jdbcType=NUMERIC},
+        #{heavyGoods, jdbcType=NUMERIC},
+        #{heavyThrowGoods, jdbcType=NUMERIC},
+        #{isActive, jdbcType=DECIMAL},
+        #{remark, jdbcType=VARCHAR},
+        #{createUserId, jdbcType=VARCHAR},
+        #{createUserName, jdbcType=VARCHAR},
+        #{createTime, jdbcType=TIMESTAMP},
+        #{modifyUserId, jdbcType=VARCHAR},
+        #{modifyUserName, jdbcType=VARCHAR},
+        #{modifyTime, jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.lnet.model.ums.customer.customerEntity.Project" flushCache="true">
+        UPDATE PROJECT SET
+        NAME = #{name, jdbcType=VARCHAR},
+        SETTLE_CYCLE = #{settleCycle, jdbcType=VARCHAR},
+        PAYMENT_TYPE = #{paymentType, jdbcType=VARCHAR},
+        CALCULATE_TYPE = #{calculateType, jdbcType=VARCHAR},
+        HANDOVER_TYPE = #{handoverType, jdbcType=VARCHAR},
+        RECEIVABLE_DATASOURCE = #{receivableDataSource, jdbcType=VARCHAR},
+        PACK_COEFFICIENT = #{packCoefficient, jdbcType=NUMERIC},
+        LIGHT_GOODS = #{lightGoods, jdbcType=NUMERIC},
+        LIGHT_THROW_GOODS = #{lightThrowGoods, jdbcType=NUMERIC},
+        COMMON_GOODS = #{commonGoods, jdbcType=NUMERIC},
+        HEAVY_GOODS = #{heavyGoods, jdbcType=NUMERIC},
+        HEAVY_THROW_GOODS = #{heavyThrowGoods, jdbcType=NUMERIC},
+        REMARK = #{remark, jdbcType=VARCHAR},
+        IS_ACTIVE = #{isActive, jdbcType=DECIMAL},
+        MODIFY_TIME = #{modifyTime, jdbcType=TIMESTAMP}
+        WHERE PROJECT_ID = #{projectId, jdbcType=VARCHAR}
+    </update>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Column_List"/>
+        FROM PROJECT
+        <where>
+            <if test="code != null">
+                CODE LIKE CONCAT(CONCAT('%', #{code}), '%')
+            </if>
+            <if test="name != null">
+                AND NAME LIKE CONCAT(CONCAT('%', #{name}), '%')
+            </if>
+            <if test="customerCode != null">
+                AND CUSTOMER_CODE = #{customerCode}
+            </if>
+            <if test="branchCode != null">
+                AND BRANCH_CODE = #{branchCode}
+            </if>
+        </where>
+        <if test="orderBy != null">
+            ORDER BY #{orderBy}
+        </if>
+    </select>
+    <select id="getAllCount" resultType="java.lang.Long">
+        SELECT
+       count(0)
+        FROM PROJECT
+        <where>
+            <if test="code != null">
+                CODE LIKE CONCAT(CONCAT('%', #{code}), '%')
+            </if>
+            <if test="name != null">
+                AND NAME LIKE CONCAT(CONCAT('%', #{name}), '%')
+            </if>
+            <if test="customerCode != null">
+                AND CUSTOMER_CODE = #{customerCode}
+            </if>
+            <if test="branchCode != null">
+                AND BRANCH_CODE = #{branchCode}
+            </if>
+        </where>
+    </select>
+    <select id="page" resultType="com.lnet.model.ums.customer.customerEntity.Project">
+        SELECT
+        <include refid="Column_List"/>
+        FROM PROJECT
+        <where>
+            <if test="code != null">
+                CODE LIKE CONCAT(CONCAT('%', #{code}), '%')
+            </if>
+            <if test="name != null">
+                AND NAME LIKE CONCAT(CONCAT('%', #{name}), '%')
+            </if>
+            <if test="customerCode != null">
+                AND CUSTOMER_CODE = #{customerCode}
+            </if>
+            <if test="branchCode != null">
+                AND BRANCH_CODE = #{branchCode}
+            </if>
+        </where>
+        <if test="orderBy != null">
+            ORDER BY #{orderBy}
+        </if>
+        limit #{page},#{pageSize}
+    </select>
+</mapper>

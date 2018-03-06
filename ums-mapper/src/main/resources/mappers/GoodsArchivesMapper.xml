@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.GoodsArchivesMapper">
+    <resultMap id="BaseResultMap" type="GoodsArchives">
+        <id column="ARCHIVES_ID" property="archivesId" jdbcType="VARCHAR"/>
+        <result column="BRANCH_CODE" property="branchCode" jdbcType="VARCHAR"/>
+        <result column="CUSTOMER_CODE" property="customerCode" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="MODEL" property="model" jdbcType="VARCHAR"/>
+        <result column="CATEGORY" property="category" jdbcType="VARCHAR"/>
+        <result column="LENGTH" property="length" jdbcType="DECIMAL"/>
+        <result column="WIDTH" property="width" jdbcType="DECIMAL"/>
+        <result column="HEIGHT" property="height" jdbcType="DECIMAL"/>
+        <result column="VOLUME" property="volume" jdbcType="DECIMAL"/>
+        <result column="WEIGHT" property="weight" jdbcType="DECIMAL"/>
+        <result column="PRICE" property="price" jdbcType="DECIMAL"/>
+        <result column="BRAND" property="brand" jdbcType="VARCHAR"/>
+        <result column="COLOR" property="color" jdbcType="VARCHAR"/>
+        <result column="HABITAT" property="habitat" jdbcType="VARCHAR"/>
+        <result column="DESCRIBES" property="describes" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ARCHIVES_ID, BRANCH_CODE,CUSTOMER_CODE, NAME, CODE, MODEL, CATEGORY, LENGTH, WIDTH, HEIGHT, VOLUME,
+    WEIGHT, PRICE, BRAND, COLOR, HABITAT, DESCRIBES, REMARK
+  </sql>
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from GOODS_ARCHIVES
+        where ARCHIVES_ID = #{archivesId,jdbcType=VARCHAR}
+    </select>
+    <select id="getByCode" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from GOODS_ARCHIVES
+        where CODE = #{code,jdbcType=VARCHAR}
+        AND BRANCH_CODE = #{branchCode,jdbcType=VARCHAR}
+        AND CUSTOMER_CODE = #{customerCode,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="delete" parameterType="java.lang.String">
+    delete from GOODS_ARCHIVES
+    where ARCHIVES_ID = #{archivesId,jdbcType=VARCHAR}
+  </delete>
+
+    <delete id="batchDelete" parameterType="java.lang.String">
+        delete from GOODS_ARCHIVES where ARCHIVES_ID in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <insert id="insert" parameterType="GoodsArchives">
+    insert into GOODS_ARCHIVES (<include refid="Base_Column_List"/> )
+    values (#{archivesId,jdbcType=VARCHAR}, #{branchCode,jdbcType=VARCHAR},
+    #{customerCode,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},
+      #{code,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR},
+      #{length,jdbcType=DECIMAL}, #{width,jdbcType=DECIMAL}, #{height,jdbcType=DECIMAL},
+      #{volume,jdbcType=DECIMAL}, #{weight,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
+      #{brand,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, #{habitat,jdbcType=VARCHAR},
+      #{describes,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into GOODS_ARCHIVES (ARCHIVES_ID, BRANCH_CODE,CUSTOMER_CODE,NAME,
+        CODE, MODEL, CATEGORY,
+        LENGTH, WIDTH, HEIGHT,
+        VOLUME, WEIGHT, PRICE,
+        BRAND, COLOR, HABITAT,
+        DESCRIBES, REMARK
+        )
+        (
+        <foreach collection="list" item="item" index="index" separator="union all">
+            select #{item.archivesId,jdbcType=VARCHAR}, #{item.branchCode,jdbcType=VARCHAR},
+            #{item.customerCode,jdbcType=VARCHAR},#{item.name,jdbcType=VARCHAR},
+            #{item.code,jdbcType=VARCHAR}, #{item.model,jdbcType=VARCHAR}, #{item.category,jdbcType=VARCHAR},
+            #{item.length,jdbcType=DECIMAL}, #{item.width,jdbcType=DECIMAL}, #{item.height,jdbcType=DECIMAL},
+            #{item.volume,jdbcType=DECIMAL}, #{item.weight,jdbcType=DECIMAL}, #{item.price,jdbcType=DECIMAL},
+            #{item.brand,jdbcType=VARCHAR}, #{item.color,jdbcType=VARCHAR}, #{item.habitat,jdbcType=VARCHAR},
+            #{item.describes,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR} from dual
+        </foreach>
+        )
+    </insert>
+    <update id="update" parameterType="GoodsArchives">
+    update GOODS_ARCHIVES
+    set BRANCH_CODE = #{branchCode,jdbcType=VARCHAR},
+      CUSTOMER_CODE = #{customerCode,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      MODEL = #{model,jdbcType=VARCHAR},
+      CATEGORY = #{category,jdbcType=VARCHAR},
+      LENGTH = #{length,jdbcType=DECIMAL},
+      WIDTH = #{width,jdbcType=DECIMAL},
+      HEIGHT = #{height,jdbcType=DECIMAL},
+      VOLUME = #{volume,jdbcType=DECIMAL},
+      WEIGHT = #{weight,jdbcType=DECIMAL},
+      PRICE = #{price,jdbcType=DECIMAL},
+      BRAND = #{brand,jdbcType=VARCHAR},
+      COLOR = #{color,jdbcType=VARCHAR},
+      HABITAT = #{habitat,jdbcType=VARCHAR},
+      DESCRIBES = #{describes,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ARCHIVES_ID = #{archivesId,jdbcType=VARCHAR}
+  </update>
+    <select id="exists" resultType="boolean">
+        select
+        CASE WHEN count(*) > 0 THEN 1 ELSE 0 END
+        from GOODS_ARCHIVES
+        <where>
+            <if test="code != null ">
+                CODE = #{code,jdbcType=VARCHAR}
+            </if>
+            <if test="branchCode != null ">
+                AND BRANCH_CODE = #{branchCode,jdbcType=VARCHAR}
+            </if>
+            <if test="customerCode != null ">
+                AND CUSTOMER_CODE = #{customerCode,jdbcType=VARCHAR}
+            </if>
+            <if test="archivesId != null ">
+                AND ARCHIVES_ID != #{archivesId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <select id="identificationCodeExists" resultType="boolean">
+        select
+        CASE WHEN count(*) > 0 THEN 1 ELSE 0 END
+        from GOODS_ARCHIVES GA LEFT JOIN GOODS_IDENTIFICATION_CODE GIC ON GA.ARCHIVES_ID = GIC.ARCHIVES_ID
+        <where>
+            <if test="branchCode != null ">
+                GA.BRANCH_CODE = #{branchCode,jdbcType=VARCHAR}
+            </if>
+            <if test="identificationCode != null ">
+                AND GIC.IDENTIFICATION_CODE = #{identificationCode,jdbcType=VARCHAR}
+            </if>
+            <if test="archivesId != null ">
+                AND GA.ARCHIVES_ID != #{archivesId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <select id="findByBranchCodeAndCustomerCode" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from GOODS_ARCHIVES
+        <where>
+            <if test="branchCode != null ">
+                BRANCH_CODE = #{branchCode,jdbcType=VARCHAR}
+            </if>
+            <if test="customerCode != null ">
+                AND CUSTOMER_CODE = #{customerCode,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByBranchCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from GOODS_ARCHIVES WHERE BRANCH_CODE = #{branchCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="pageList" resultType="GoodsArchivesDto">
+        select
+        T.*,T1.NAME AS CUSTOMER_NAME
+        from GOODS_ARCHIVES T
+        LEFT JOIN CUSTOMER T1 ON T.CUSTOMER_CODE = T1.CODE
+        <where>
+            <if test="code != null ">
+                T.CODE like CONCAT(CONCAT('%', #{code}), '%')
+            </if>
+            <if test="name != null ">
+                AND T.NAME like CONCAT(CONCAT('%', #{name}), '%')
+            </if>
+            <if test="branchCode != null ">
+                AND T.BRANCH_CODE = #{branchCode,jdbcType=VARCHAR}
+            </if>
+            <if test="customerCode != null ">
+                AND T.CUSTOMER_CODE = #{customerCode,jdbcType=VARCHAR}
+            </if>
+        </where>
+        <if test="orderBy !=null">
+            order by ${orderBy}
+        </if>
+    </select>
+    <select id="getByIdentificationCode" resultMap="BaseResultMap">
+        select
+        GA.ARCHIVES_ID, BRANCH_CODE,CUSTOMER_CODE, NAME, CODE, MODEL, CATEGORY, LENGTH, WIDTH, HEIGHT, VOLUME,
+        WEIGHT, PRICE, BRAND, COLOR, HABITAT, DESCRIBES, REMARK
+        from GOODS_ARCHIVES GA LEFT JOIN GOODS_IDENTIFICATION_CODE GIC ON GA.ARCHIVES_ID = GIC.ARCHIVES_ID
+        <where>
+            <if test="branchCode != null ">
+                GA.BRANCH_CODE = #{branchCode,jdbcType=VARCHAR}
+            </if>
+            <if test="identificationCode != null ">
+                AND GIC.IDENTIFICATION_CODE = #{identificationCode,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

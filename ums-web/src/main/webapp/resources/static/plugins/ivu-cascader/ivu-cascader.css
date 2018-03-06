@@ -1,0 +1,204 @@
+.ivu-cascader,
+.ivu-slider {
+	line-height: normal;
+}
+
+
+/*------------------------*/
+
+.ivu-cascader-rel {
+	position: relative;
+}
+
+.ivu-input-wrapper {
+	vertical-align: middle;
+}
+
+.ivu-load-loop {
+	animation: ani-load-loop 1s linear infinite;
+}
+
+.ivu-icon {
+	font-family: icomoon;
+	font-style: normal;
+	font-weight: 400;
+}
+
+.ivu-input-icon {
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 16px;
+	text-align: center;
+	color: #9ea7b4;
+	position: absolute;
+	right: 0;
+	z-index: 1;
+}
+
+.ivu-input-icon-validate {
+	display: none;
+}
+
+.ivu-input,
+.ivu-input-wrapper {
+	display: inline-block;
+	width: 100%;
+	position: relative;
+}
+
+.ivu-input {
+	height: 32px;
+	line-height: 1.5;
+	padding: 4px 7px;
+	font-size: 12px;
+	border: 1px solid #d7dde4;
+	border-radius: 0px;
+	color: #657180;
+	background-color: #fff;
+	background-image: none;
+	cursor: text;
+	transition: border .2s ease-in-out, background .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+
+.ivu-input-icon+.ivu-input {
+	padding-right: 32px;
+}
+
+.ivu-cascader .ivu-input {
+	display: block;
+	cursor: pointer;
+}
+
+.ivu-icon,
+.ivu-select-multiple .ivu-select-item-selected:after {
+	speak: none;
+	font-variant: normal;
+	text-transform: none;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.ivu-cascader .ivu-cascader-arrow:nth-of-type(1) {
+	display: none;
+	cursor: pointer;
+}
+
+.ivu-cascader:hover .ivu-cascader-arrow:nth-of-type(1) {
+	display: inline-block;
+}
+
+.ivu-icon-ios-close:before {
+	content: "\ed63";
+}
+
+.ivu-cascader-arrow {
+	position: absolute;
+	top: 50%;
+	right: 8px;
+	line-height: 1;
+	margin-top: -7px;
+	font-size: 14px;
+	color: #9ea7b4;
+	transition: all .2s ease-in-out;
+}
+
+.ivu-icon-arrow-down-b:before {
+	content: "\edc6";
+}
+
+.ivu-cascader-show-clear:hover .ivu-cascader-arrow:nth-of-type(2) {
+	display: none;
+}
+
+.ivu-cascader-visible .ivu-cascader-arrow:nth-of-type(2) {
+	-ms-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+
+/*--------------------------*/
+
+.ivu-poptip-inner,
+.ivu-select-dropdown,
+.ivu-tooltip-inner {
+	border-radius: 4px;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
+}
+
+.ivu-select-dropdown {
+	width: inherit;
+	max-height: 200px;
+	overflow: auto;
+	margin: 5px 0;
+	padding: 5px 0;
+	background-color: #fff;
+	box-sizing: border-box;
+	position: absolute;
+	z-index: 900;
+}
+
+.ivu-cascader .ivu-select-dropdown {
+	width: auto;
+	padding: 0;
+	white-space: nowrap;
+	overflow: visible;
+}
+
+.ivu-cascader-menu {
+	display: inline-block;
+	min-width: 100px;
+	height: 180px;
+	margin: 0;
+	padding: 5px 0!important;
+	vertical-align: top;
+	list-style: none;
+	border-right: 1px solid #e3e8ee;
+	overflow: auto;
+}
+
+.ivu-cascader-menu:last-child {
+	border-right-color: transparent;
+	margin-right: -1px;
+}
+
+.ivu-cascader .ivu-cascader-menu-item {
+	margin: 0;
+	padding: 7px 16px;
+	clear: both;
+	color: #657180;
+	font-size: 12px!important;
+	white-space: nowrap;
+	list-style: none;
+	cursor: pointer;
+	transition: background .2s ease-in-out;
+}
+
+.ivu-cascader-menu .ivu-cascader-menu-item {
+	position: relative;
+	padding-right: 24px;
+	transition: all .2s ease-in-out;
+}
+
+.ivu-cascader-menu .ivu-cascader-menu-item i {
+	font-size: 12px;
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	margin-top: -6px;
+}
+
+.ivu-cascader .ivu-cascader-menu-item-focus,
+.ivu-cascader .ivu-cascader-menu-item:hover {
+	background: #f3f3f3;
+}
+
+.ivu-icon-ios-arrow-right:before {
+	content: "\e9de";
+}
+
+.ivu-cascader-menu .ivu-cascader-menu-item-active {
+	background-color: #f3f3f3;
+	color: #39f;
+}

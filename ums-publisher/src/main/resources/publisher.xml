@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <import resource="classpath:ums.service.xml"/>
+    <!--<dubbo:application name="ums-model"/>
+    <dubbo:registry address="zookeeper://192.168.1.11/:2181" client="zkclient"/>-->
+    <dubbo:protocol name="dubbo" port="20882"/>
+    <dubbo:provider timeout="5000" retries="0" serialization="java"/>
+
+    <!-- 提供者：dubbo-provider.xml -->
+    <dubbo:service id="organizationService" interface="com.lnet.ums.contract.api.OrganizationService" ref="organizationServiceImpl" />
+    <dubbo:service id="userService" interface="com.lnet.ums.contract.api.UserService" ref="userServiceImpl" />
+    <dubbo:service id="roleService" interface="com.lnet.ums.contract.api.RoleService" ref="roleServiceImpl" />
+    <dubbo:service id="siteService" interface="com.lnet.ums.contract.api.SiteService" ref="siteServiceImpl" />
+    <dubbo:service id="expenseAccountService" interface="com.lnet.ums.contract.api.ExpenseAccountService" ref="expenseAccountServiceImpl" />
+
+    <dubbo:service id="vehicleService" interface="com.lnet.ums.contract.api.VehicleService"
+                   ref="vehicleServiceImpl"/>
+    <dubbo:service id="vehicleTypeService" interface="com.lnet.ums.contract.api.VehicleTypeService"
+                   ref="vehicleTypeServiceImpl"/>
+    <dubbo:service id="carrierService" interface="com.lnet.ums.contract.api.CarrierService"
+                   ref="carrierServiceImpl"/>
+
+    <dubbo:service id="customerService" interface="com.lnet.ums.contract.api.CustomerService" ref="customerServiceImpl" />
+    <dubbo:service id="storeService" interface="com.lnet.ums.contract.api.StoreService" ref="storeServiceImpl" />
+    <dubbo:service id="projectService" interface="com.lnet.ums.contract.api.ProjectService" ref="projectServiceImpl"/>
+    <dubbo:service id="businessGroupService" interface="com.lnet.ums.contract.api.BusinessGroupService" ref="businessGroupServiceImpl"/>
+    <dubbo:service id="collectingAddressService" interface="com.lnet.ums.contract.api.CollectingAddressService" ref="collectingAddressServiceImpl"/>
+    <dubbo:service id="deliveryAddressService" interface="com.lnet.ums.contract.api.DeliveryAddressService" ref="deliveryAddressServiceImpl"/>
+    <dubbo:service id="goodsArchivesService" interface="com.lnet.ums.contract.api.GoodsArchivesService" ref="goodsArchivesServiceImpl"/>
+    <dubbo:service id="shipAddressService" interface="com.lnet.ums.contract.api.ShipAddressService" ref="shipAddressServiceImpl"/>
+
+    <dubbo:service id="priceService" interface="com.lnet.ums.contract.api.PriceService" ref="priceServiceImpl"/>
+
+    <dubbo:service id="userContract" interface="com.lnet.ums.contract.api.UserContract" ref="userContractImpl"/>
+</beans>

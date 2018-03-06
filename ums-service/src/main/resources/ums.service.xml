@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="ums-publisher"/>
+    <dubbo:registry address="zookeeper://192.168.1.11:2181" client="zkclient"/>
+    <dubbo:consumer timeout="5000" retries="0"/>
+
+    <import resource="classpath:mybatis.xml"/>
+    <import resource="classpath:mybatis-spring.xml"/>
+    <context:component-scan base-package="com.lnet.ums.service"/>
+    <!--oauth2 service package   lxf
+    <context:component-scan base-package="com.lnet.ums.service.oauth"/>-->
+
+    <!-- 消费者：dubbo-consumer.xml -->
+    <dubbo:reference id="districtService" interface="com.lnet.base.contract.spi.DistrictService"/>
+</beans>

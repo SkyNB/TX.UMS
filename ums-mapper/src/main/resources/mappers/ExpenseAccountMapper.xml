@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.ExpenseAccountMapper" >
+  <resultMap id="BaseResultMap" type="ExpenseAccount" >
+    <id column="EXPENSE_ACCOUNT_ID" property="expenseAccountId" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SUPERIOR_CODE" property="superiorCode" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EXPENSE_ACCOUNT_ID, CODE, NAME, SUPERIOR_CODE, REMARK
+  </sql>
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from expense_account
+    where EXPENSE_ACCOUNT_ID = #{expenseAccountId,jdbcType=VARCHAR}
+  </select>
+  <select id="exists" resultType="java.lang.Boolean">
+    SELECT count(0) FROM expense_account where code = #{code}
+    <if test="expenseAccountId!=null">
+      and EXPENSE_ACCOUNT_ID <![CDATA[<>]]> #{expenseAccountId,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="getByCode" resultType="ExpenseAccount">
+    select
+    <include refid="Base_Column_List" />
+    from expense_account
+    where CODE = #{code,jdbcType=VARCHAR}
+  </select>
+  <select id="pageList" resultType="ExpenseAccount">
+    select
+    <include refid="Base_Column_List" />
+    from expense_account
+    <where>
+      <if test="code!=null">
+        code like concat('%',concat(#{code},'%'))
+      </if>
+      <if test="name!=null">
+        OR name like concat('%',concat(#{name},'%'))
+      </if>
+    </where>
+  </select>
+  <select id="findBySuperCode"
+          resultType="ExpenseAccount">
+    select
+    <include refid="Base_Column_List" />
+    from expense_account
+    where SUPERIOR_CODE = #{code,jdbcType=VARCHAR} order by code
+  </select>
+    <select id="findAll" resultType="ExpenseAccount">
+      select
+      <include refid="Base_Column_List" />
+      from expense_account
+    </select>
+    <delete id="delete" parameterType="java.lang.String" >
+    delete from expense_account
+    where CODE = #{code,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteBySuperCode" parameterType="java.lang.String" >
+    delete from expense_account
+    where SUPERIOR_CODE = #{code,jdbcType=VARCHAR}
+  </delete>
+  <insert id="create" parameterType="ExpenseAccount" >
+    insert into expense_account (EXPENSE_ACCOUNT_ID, CODE, NAME,
+      SUPERIOR_CODE, REMARK)
+    values (#{expenseAccountId,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+      #{superiorCode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <update id="update" parameterType="ExpenseAccount" >
+    update expense_account
+    set CODE = #{code,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      SUPERIOR_CODE = #{superiorCode,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where EXPENSE_ACCOUNT_ID = #{expenseAccountId,jdbcType=VARCHAR}
+  </update>
+</mapper>

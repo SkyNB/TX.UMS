@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- scan -->
+    <context:component-scan base-package="com.lnet.ums.service"/>
+    <!-- end scan -->
+
+    <!-- passwordMatcher -->
+    <bean id="passwordMatcher" class="com.lnet.ums.web.utils.PasswordMatcher"/>
+    <bean id="jacksonMapper" class="com.lnet.ums.web.utils.JacksonMapper"/>
+
+    <!--shiro-->
+    <bean id="shiroRealm" class="com.lnet.ums.web.utils.UserAuthorizingRealm">
+        <property name="credentialsMatcher" ref="passwordMatcher"/>
+    </bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="shiroRealm"/>
+    </bean>
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/login"/>
+        <property name="successUrl" value="/"/>
+        <property name="unauthorizedUrl" value="/fail"/>
+        <property name="filterChainDefinitions">
+            <value>
+                /authorize=anon
+                /accessToken=anon
+                /userInfo=anon
+                /init=anon
+                /resources/** = anon
+                /uploads/** = anon
+                /notFound/** = anon
+                /fail/** = anon
+                /login = anon
+                /** = authc
+            </value>
+        </property>
+    </bean>
+    <!-- end shiro -->
+</beans>

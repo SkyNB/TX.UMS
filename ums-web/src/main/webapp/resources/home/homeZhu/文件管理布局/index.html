@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<script src="http://cdn.bootcss.com/vue/2.1.6/vue.min.js"></script>
+		<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+		<link href="../bootstrap/css/icons/icomoon/styles.css" rel="stylesheet" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				font-family: Arial, 'Microsoft Yahei', Simsun, sans-serif;
+			}
+			
+			.header .logo {
+				float: left;
+				display: block;
+				overflow: hidden;
+				white-space: nowrap;
+				width: 163px;
+				text-align: center;
+			}
+			
+			#sideToggle+.left-panel {
+				background-color: rgb(38, 50, 56);
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: -200px;
+				width: 200px;
+				/*border-right: 1px solid #e5ebf1;*/
+				transition: 0.25s ease-out;
+				-webkit-transition: 0.25s ease-out;
+			}
+			
+			#sideToggle:checked+.left-panel {
+				left: 0;
+			}
+			
+			#wrap {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				transition: 0.25s ease-out;
+				-webkit-transition: 0.25s ease-out;
+			}
+			
+			#sideToggle:checked~ #wrap {
+				left: 200px;
+			}
+			
+			.position-left {
+				margin-right: 5px;
+			}
+			
+			.dropdown-menu>li {
+				position: relative;
+				margin-bottom: 1px;
+			}
+			
+			.navbar-nav>li>.dropdown-menu {
+				margin-top: 1px;
+				border-top-width: 0;
+			}
+			
+			.dropdown-menu>li>a {
+				padding: 8px 15px;
+				outline: 0;
+			}
+			
+			.dropdown-menu>li>a>i,
+			.dropdown-menu>li>a>img {
+				margin-right: 10px;
+			}
+			
+			.dropdown-menu .divider {
+				margin: 5px 0;
+			}
+			
+			.dropdown-menu {
+				min-width: 180px;
+				padding: 5px 0;
+				color: #333;
+				-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+			}
+			
+			.page-container {
+				padding-left: 0px;
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 46px;
+				bottom: 0;
+			}
+			
+			.left-panel ul.nav {
+				-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+				box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+				vertical-align: top;
+			}
+			
+			.left-panel .nav>li>a:hover,
+			.left-panel .nav>li>a:focus {
+				text-decoration: none;
+				background-color: rgba(0, 0, 0, 0.1);
+				color: #fff;
+			}
+			
+			.left-panel .nav>li.active>a,
+			.left-panel .nav>li.active>a:hover,
+			.left-panel .nav>li.active>a:focus {
+				background-color: #26a69a;
+				color: #fff;
+			}
+			
+			.left-panel .nav>li>a {
+				color: rgba(255, 255, 255, 0.75);
+			}
+			
+			.left-panel .nav>li>a {
+				padding: 12px 20px;
+				min-height: 44px;
+				font-weight: 500;
+			}
+			
+			.left-panel .nav>li>a>span {
+				line-height: 24px;
+			}
+			
+			.left-panel li a>i {
+				float: left;
+				top: 0;
+				margin-top: 2px;
+				margin-right: 15px;
+				-webkit-transition: opacity .2s ease-in-out;
+				-o-transition: opacity .2s ease-in-out;
+				transition: opacity .2s ease-in-out;
+			}
+			/**/
+			
+			#wrap .position-bar {
+				height: 48px;
+			}
+			
+			.breadcrumb {
+				border-radius: 0;
+				margin-bottom: 0;
+			}
+			
+			.breadcrumb-line {
+				background-color: #fcfcfc;
+				border-bottom: 1px solid #ddd;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+			}
+			
+			.breadcrumb-line .breadcrumb {
+				margin-left: 20px;
+				margin-right: 56px;
+			}
+			
+			.breadcrumb-line .breadcrumb {
+				float: left;
+				margin-right: 0;
+			}
+			
+			.breadcrumb>li {
+				position: relative;
+			}
+			
+			.breadcrumb>li>a {
+				color: #333;
+			}
+			
+			.breadcrumb>li i {
+				display: inline-block;
+				font-size: 12px;
+			}
+			
+			.breadcrumb-elements {
+				text-align: center;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				border-top: 1px solid #ddd;
+				font-size: 0;
+			}
+			
+			.breadcrumb-elements {
+				float: right;
+				margin-right: 20px;
+				text-align: inherit;
+				border-top: 0;
+			}
+			
+			.breadcrumb-elements>li {
+				display: inline-block;
+				position: static;
+				font-size: 13px;
+			}
+			
+			.breadcrumb-elements>li {
+				float: left;
+			}
+			
+			.breadcrumb-elements>li,
+			.breadcrumb-elements>li .btn-group {
+				position: relative;
+			}
+			
+			.breadcrumb-elements>li>a {
+				display: block;
+				padding: 8px 15px;
+				color: #333;
+			}
+			
+			.breadcrumb-elements>li.open>a,
+			.breadcrumb-elements>li>a:hover,
+			.breadcrumb-elements>li>a:focus {
+				opacity: .75;
+				filter: alpha(opacity=75);
+			}
+			
+			.breadcrumb-elements>li.active>a {
+				background-color: #eee;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="navbar navbar-inverse header" style="z-index: 99;margin: 0;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand logo" href="index.html"><i class="icon-cloud2 position-left"></i>LNET-DISK</a>
+				</div>
+
+				<div class="navbar-collapse collapse" id="navbar-mobile">
+					<ul class="nav navbar-nav">
+						<li>
+							<a class="sidebar-control sidebar-main-toggle hidden-xs" href="javascript:void(0);" onclick='document.getElementById("sideToggle").checked=!document.getElementById("sideToggle").checked'>
+								<label id='sideMenuControl' for='sideToggle'></label><i class="icon-paragraph-justify3"></i></label>
+							</a>
+						</li>
+						<li class="dropdown">
+							<a href="#" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle">
+								<i class="icon-import position-left"></i><span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#"><i class="position-left icon-file-plus2"></i>新建空白文件</a>
+								</li>
+								<li>
+									<a href="#"><i class="position-left icon-folder-plus3"></i>新建文件夹</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="#"><i class="position-left icon-file-upload2"></i>上传文件</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle">
+								<i class="icon-user position-left"></i><span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#"><i class="position-left icon-file-plus2"></i>新建空白文件</a>
+								</li>
+								<li>
+									<a href="#"><i class="position-left icon-folder-plus3"></i>新建文件夹</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="http://erp.91scm.com/Login/Login"><i class="position-left icon-file-upload2"></i>退出</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<div class="page-container">
+			<input type='checkbox' checked="checked" id='sideToggle' hidden="hidden" style="display: none;">
+			<div class="left-panel">
+				<div style="position: relative;">
+					<input placeholder="搜索" class="form-control" style="border: none;border-radius: 0;background-color: rgba(0,0,0,0.15);color: #fff;padding-left: 30px;width: 100%;">
+					<i class="icon-search4" style="position: absolute;color: rgba(255,255,255,0.5);top: 9px;left: 9px;"></i>
+				</div>
+				<ul class="nav nav-sidebar">
+					<li class="active">
+						<a href="#"><i class="icon-folder"></i><span>所有文件</span></a>
+					</li>
+					<li>
+						<a href="#"><i class="icon-file-picture2"></i><span>图片</span></a>
+					</li>
+					<li>
+						<a href="#"><i class="icon-file-play2"></i><span>视频</span></a>
+					</li>
+					<li>
+						<a href="#"><i class="icon-file-text2"></i><span>文档</span></a>
+					</li>
+					<li>
+						<a href="#"><i class="icon-star-full2"></i><span>在线收藏</span></a>
+					</li>
+					<li>
+						<a href="#"><i class="icon-file-download"></i><span>离线下载</span></a>
+					</li>
+					<li>
+						<a href="#"><i class="icon-file-play2"></i><span>回收站</span></a>
+					</li>
+				</ul>
+				<div class="space-box" style="display: block;margin: 0;padding: 30px 20px;position: absolute;left: 0;right: 0;bottom: 0;">
+					<div class="progress" style="height: 4px;margin: 0;margin-bottom: 8px;">
+						<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+							<span class="sr-only">20% Complete</span>
+						</div>
+					</div>
+					<div class="space-content clearfix" style="font-size: 10px;">
+						<span class="space-desc" style="color: #fff;">220.65GB/11.35TB</span>
+					</div>
+					<div style="font-size: 10px;color: #ccc;margin-top:10px;"><i> 新易泰版权所有</i>
+					</div>
+				</div>
+			</div>
+			<div id='wrap'>
+				<div class="breadcrumb-line">
+					<ul class="breadcrumb">
+						<li>
+							<a href="index.html"><i class="icon-home2 position-left"></i>&nbsp;Home</a>
+						</li>
+						<li>
+							<a href="components_breadcrumbs.html">文件夹</a>
+						</li>
+						<li class="active">Location</li>
+					</ul>
+
+					<ul class="breadcrumb-elements">
+						<li class="active">
+							<a href="javascript:void(0);"><i class="icon-list" style="font-size: 12px;"></i></a>
+						</li>
+						<li>
+							<a href="javascript:void(0);"><i class="icon-grid6" style="font-size: 12px;"></i></a>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+								<i class="icon-plus2 position-left" style="font-size: 12px;"></i>添加
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-right">
+								<li>
+									<a href="#"><i class="position-left icon-file-plus2"></i>新建空白文件</a>
+								</li>
+								<li>
+									<a href="#"><i class="position-left icon-folder-plus3"></i>新建文件夹</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="#"><i class="position-left icon-file-upload2"></i>上传文件</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div style="position: absolute;top: 37px;left: 0;right: 0;bottom: 0;overflow: auto;padding: 5px;">
+					<table class="table"> 
+						<thead>
+							<tr>
+								<th>名称</th>  
+								<th style="width: 10%;min-width: 100px;">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td> 
+								<td><i title="复制URL地址" class="icon-copy"></i><i title="删除" class="icon-trash-alt"></i></td>
+							</tr> 
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+	</body>
+
+</html>

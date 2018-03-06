@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.BusinessGroupMapper">
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+
+    <resultMap id="BaseResultMap" type="com.lnet.model.ums.customer.customerEntity.BusinessGroup">
+        <id column="BUSINESS_GROUP_ID" property="businessGroupId" jdbcType="VARCHAR"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="CREATE_USER_NAME" property="createUserName" jdbcType="VARCHAR"/>
+        <result column="CREATE_DATE" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="VARCHAR"/>
+        <result column="MODIFY_USER_NAME" property="modifyUserName" jdbcType="VARCHAR"/>
+        <result column="MODIFY_DATE" property="modifyTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Column_List">
+        BUSINESS_GROUP_ID, CODE, NAME, REMARK, CREATE_USER_ID, CREATE_USER_NAME, CREATE_TIME, MODIFY_USER_ID, MODIFY_USER_NAME, MODIFY_TIME
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Column_List"/>
+        FROM BUSINESS_GROUP
+    </select>
+
+    <select id="getByCode" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Column_List"/>
+        FROM BUSINESS_GROUP
+        WHERE code = #{code, jdbcType=VARCHAR}
+    </select>
+
+    <select id="exists" resultType="boolean">
+        select
+        CASE WHEN count(*) > 0 THEN 1 ELSE 0 END
+        from BUSINESS_GROUP
+        <where>
+            <if test="code != null ">
+                CODE = #{code,jdbcType=VARCHAR}
+            </if>
+            <if test="businessGroupId != null ">
+                AND BUSINESS_GROUP_ID != #{businessGroupId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.lnet.model.ums.customer.customerEntity.BusinessGroup">
+        INSERT INTO BUSINESS_GROUP(<include refid="Column_List"/>)
+        VALUES
+        (
+            #{businessGroupId, jdbcType=VARCHAR},
+            #{code, jdbcType=VARCHAR},
+            #{name, jdbcType=VARCHAR},
+            #{remark, jdbcType=VARCHAR},
+            #{createUserId, jdbcType=VARCHAR},
+            #{createUserName, jdbcType=VARCHAR},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{modifyUserId, jdbcType=VARCHAR},
+            #{modifyUserName, jdbcType=VARCHAR},
+            #{modifyTime, jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.lnet.model.ums.customer.customerEntity.BusinessGroup">
+        UPDATE BUSINESS_GROUP SET
+        NAME = #{name, jdbcType=VARCHAR},
+        REMARK = #{remark, jdbcType=VARCHAR},
+        MODIFY_USER_ID = #{modifyUserId, jdbcType=VARCHAR},
+        MODIFY_USER_NAME = #{modifyUserName, jdbcType=VARCHAR},
+        MODIFY_TIME = #{modifyTime, jdbcType=TIMESTAMP}
+        WHERE CODE = #{code, jdbcType=VARCHAR}
+    </update>
+
+    <select id="pageList" resultType="com.lnet.model.ums.customer.customerEntity.BusinessGroup" parameterType="map">
+        SELECT <include refid="Column_List"/>
+        FROM BUSINESS_GROUP
+        <where>
+            <if test="code != null">
+                CODE LIKE CONCAT(CONCAT('%',#{code}),'%')
+            </if>
+            <if test="name != null">
+             OR  NAME LIKE CONCAT(CONCAT('%',#{name}),'%')
+            </if>
+        </where>
+        <if test="orderBy != null">
+            ORDER BY #{orderBy}
+        </if>
+    </select>
+
+    <!--修改之前-->
+<!--    <select id="pageList" resultType="com.lnet.model.ums.customer.customerEntity.BusinessGroup" parameterType="map">
+        SELECT <include refid="Column_List"/>
+        FROM BUSINESS_GROUP
+        <where>
+            <if test="code != null">
+                CODE LIKE CONCAT(CONCAT('%',#{code}),'%')
+            </if>
+            <if test="name != null">
+                NAME LIKE CONCAT(CONCAT('%',#{name}),'%')
+            </if>
+        </where>
+        <if test="orderBy != null">
+            ORDER BY #{orderBy}
+        </if>
+    </select>-->
+</mapper>

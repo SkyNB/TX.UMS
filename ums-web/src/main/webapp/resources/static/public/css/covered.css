@@ -1,0 +1,641 @@
+/**此类为样式重写**/
+
+[class^="icon-"],
+[class*=" icon-"] {
+	font-size: 13px;
+}
+
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active {
+	outline: none;
+}
+
+
+/*搜索栏+按钮栏*/
+
+.nav-bar {
+	padding: 6px;
+}
+
+.nav-bar .input-group {
+	width: 20em;
+}
+
+.nav-bar .input-group .form-control {
+	height: 34px;
+}
+
+.nav-bar .input-group-btn:last-child>.btn,
+.nav-bar .input-group-btn:last-child>.btn-group {
+	border-radius: 0px;
+}
+
+.navbar {
+	margin-bottom: 0;
+	padding: 4px 0;
+}
+
+.nav-bar .btn-group {
+	border: 1px #f0f0f0 solid;
+	background-color: #fefefe;
+}
+
+
+/*.btn-group:hover {
+	box-shadow: 0 2px 6px rgba(0, 0, 0, .2), 0 2px 3px rgba(0, 0, 0, .05);
+	-webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-o-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-moz-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-o-transition: all .2s linear;
+}*/
+
+.nav-bar .btn-group>.btn-group {
+	box-shadow: none;
+	border: none;
+}
+
+
+/*.btn-group>.btn-group.open>.btn {
+	outline: none;
+	border: none;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-o-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-moz-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	border-color: rgb(221, 221, 221);
+}*/
+
+.nav-bar .btn-group:hover>.btn,
+.btn-group>.btn:focus {
+	border-color: rgb(221, 221, 221);
+}
+
+.nav-bar .btn-group>.btn,
+.nav-bar .btn-group>.btn-group,
+.nav-bar .input-group-btn>.btn {
+	outline: none;
+	background-color: #fcfcfc;
+}
+
+.nav-bar .btn-group>.btn:hover,
+.nav-bar .input-group-btn>.btn:hover {
+	background-color: #f0f0f0;
+}
+
+.nav-bar .btn-group>.btn,
+.nav-bar .btn-group>.btn-group {
+	border-top: none;
+	border-bottom: none;
+}
+
+.nav-bar .btn-group>*:first-child {
+	border-left: none;
+}
+
+.nav-bar .btn-group>.btn:last-child {
+	border-color: rgb(221, 221, 221);
+	border-left: none;
+}
+
+.nav-bar .btn-group>*:last-child,
+.nav-bar .btn-group>*:last-child>.btn,
+.nav-bar .btn-group>.btn+.btn-group {
+	border-right: none;
+	margin-left: 0px;
+}
+
+.nav-bar .btn-group>.btn-group.open>.btn {
+	background-color: #fff;
+}
+
+.nav-bar .btn-group>.btn:active,
+.nav-bar .input-group-btn>.btn:active {
+	outline: none;
+	border: none;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-o-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-moz-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	background-color: #fff;
+	margin-left: 1px;
+}
+
+.nav-bar [class^="icon-"],
+[class*=" icon-"] {
+	font-size: 10px;
+	margin-right: 4px;
+}
+
+
+/*------*/
+
+.k-dropdown-wrap {
+	border-radius: 0;
+}
+
+.k-dropdown .k-state-default {
+	background-color: #fefefe;
+	border-color: #f0f0f0;
+}
+
+
+/*颜色*/
+
+.k-grouping-header,
+.k-header {
+	background-color: #64b5f6;
+}
+
+
+/*---输入框---*/
+
+.nav-bar .form-control {
+	box-shadow: none;
+	background-color: #fff;
+	border-radius: 0px;
+}
+
+.nav-bar .form-control:focus {
+	background-color: #fff;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-o-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+	-moz-box-shadow: 0 3px 10px rgba(0, 0, 0, .156863), 0 3px 10px rgba(0, 0, 0, .227451);
+}
+.nav-bar .input-group .input-group-addon {
+	border-radius:0;
+}
+.nav-bar .btn {
+	border-radius:0;
+}
+
+/*搜索栏*/
+
+.search-bar {
+	padding-top: 0;
+	padding-bottom: 0px;
+	border-bottom: 1px #efefef solid;
+	min-height: 0px;
+	height: 0;
+	opacity: 0;
+	overflow: hidden;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+}
+
+.search-bar.search-bar-show {
+	opacity: 1;
+	height: auto;
+	padding-top: 4px;
+}
+
+
+/*弹出消息框*/
+
+.alert {
+	width: auto;
+	border-radius: 1px;
+}
+
+.alert-info {
+	background-color: #e0f7fa;
+	border-color: #e0f7fa;
+	color: #00838f;
+}
+
+.alert-success {
+	background-color: #e8f5e9;
+	border-color: #e8f5e9;
+	color: #43a047;
+}
+
+.alert-warning {
+	background-color: #fff3e0;
+	border-color: #fff3e0;
+	color: #ef6c00;
+}
+
+.alert-danger {
+	background-color: #fbe9e7;
+	border-color: #fbe9e7;
+	color: #d84315;
+}
+
+.alert .close {
+	width: 20px;
+	height: 20px;
+	background: rgba(255, 255, 255, .3);
+	border-radius: 50%;
+	opacity: 1;
+	filter: alpha(opacity=100);
+	line-height: 20px;
+	font-size: 14px;
+	top: -1px
+}
+
+.alert .close:hover {
+	background: rgba(255, 255, 255, .5);
+	color: #666;
+}
+
+.alert--dark,
+.alert--dark .alert-link {
+	color: #b4bfc3
+}
+
+.popover-content p:last-child {
+	margin-bottom: 0
+}
+
+.alert--dark {
+	background-color: #394650;
+	border-color: #394650
+}
+
+.alert--dark hr {
+	border-top-color: #2e3941
+}
+
+.alert--light,
+.alert--light .alert-link {
+	color: #22313a
+}
+
+.alert--light {
+	background-color: #edeff0;
+	border-color: #edeff0
+}
+
+.alert--light hr {
+	border-top-color: #dfe3e4
+}
+
+.alert--light .close {
+	color: #22313a;
+	background: rgba(0, 0, 0, .06)
+}
+
+.alert--light .close:hover {
+	background: rgba(0, 0, 0, .1);
+	color: #1e2a31
+}
+
+
+/*表*/
+.k-grid-content a{
+	color: rgb(66,66,66);
+	
+}
+.k-grid-content a:hover{
+	text-decoration: underline;
+}
+.k-grouping-header,
+.k-header {
+	background-color: #9CB3C1;
+}
+
+.k-grid td.k-state-selected,
+.k-grid tr.k-state-selected>td {
+	border-color: #C5C3CE;
+}
+
+.k-grid td.k-state-selected:hover,
+.k-grid tr.k-state-selected:hover td {
+	background-color: #C5C3CE;
+}
+
+.k-gantt .k-treelist .k-alt.k-state-selected,
+.k-gantt .k-treelist .k-alt.k-state-selected>td,
+.k-gantt .k-treelist .k-state-selected,
+.k-gantt .k-treelist .k-state-selected td,
+.k-grid td.k-state-selected,
+.k-grid td.k-state-selected.k-state-focused,
+.k-grid tr.k-state-selected,
+.k-listview>.k-state-selected,
+.k-marquee-color,
+.k-scheduler .k-today.k-state-selected,
+.k-scheduler-layout .k-state-selected,
+.k-state-selected.k-line {
+	background-color: #C5C3CE;
+}
+
+.form-group {
+	margin-bottom: 0px;
+}
+
+.k-grid td {
+	line-height: 0.7em;
+}
+
+.k-pager-wrap {
+	padding: 1px 0 0 0;
+}
+
+
+/*树形表*/
+
+.k-treelist .k-alt.k-state-selected,
+.k-treelist .k-alt.k-state-selected>td,
+.k-treelist .k-state-selected,
+.k-treelist .k-state-selected td {
+	background-color: #C5C3CE;
+	border-color: #C5C3CE;
+}
+
+
+/*一下遮罩层选项卡样式*/
+
+@media (min-width: 769px) {
+	.modal-content .navbar-collapse.collapse {
+		height: 40px!important;
+	}
+}
+
+.modal-content .navbar {
+	position: relative;
+	min-height: 40px;
+	margin-bottom: 0px;
+	border: 1px solid transparent;
+	padding: 0 0;
+}
+
+.modal-content .navbar-component {
+	border-radius: 3px;
+	margin-bottom: 20px;
+	border-width: 1px;
+}
+
+.modal-content .content-group {
+	margin-bottom: 20px !important;
+}
+
+.modal-content .navbar-nav>li>a {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.modal-content .navbar-brand {
+	float: left;
+	padding: 10px 15px;
+	font-size: 14px;
+	line-height: 20px;
+	height: 40px;
+}
+
+.modal-content .modal-footer {
+	padding: 0px;
+	border-top: 1px solid #e5e5e5;
+}
+
+.modal-content .modal-footer button.btn,
+.modal-content .modal-footer .btn {
+	border-radius: 0;
+	padding: 7px 20px;
+}
+
+
+/*遮罩层 内部 表单输入框样式*/
+
+div.modal-dialog .tab-content .form-group,
+.form-group__inner {
+	position: relative;
+}
+
+div.modal-dialog .tab-content .form-control,
+div.modal-dialog .tab-content .form-control:active,
+div.modal-dialog .tab-content .form-control:focus {
+	box-shadow: none!important;
+}
+
+div.modal-dialog .tab-content .form-control {
+	resize: none;
+	border-radius: 0;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+	padding: 0;
+	box-shadow: none;
+}
+
+div.modal-dialog .tab-content .form-control:focus {
+	border-color: rgba(255, 255, 255, .1);
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(255, 255, 255, .6)
+}
+
+div.modal-dialog .tab-content .form-control:focus {
+	border-color: #2f6931;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #72bf75;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #72bf75
+}
+
+div.modal-dialog .tab-content .form-group>label {
+	font-weight: 400;
+	pointer-events: none;
+	font-size: 11px;
+	margin-bottom: 8px;
+}
+
+div.modal-dialog .tab-content .form-group--float>label {
+	color: rgba(77, 88, 92, .77);
+	bottom: 9px;
+	left: 0;
+	position: absolute;
+	font-size: 13px;
+	margin: 0;
+	-webkit-transition: all;
+	-o-transition: all;
+	transition: all;
+	-webkit-transition-duration: .2s;
+	transition-duration: .2s;
+	-webkit-transition-timing-function: ease;
+	transition-timing-function: ease;
+}
+
+div.modal-dialog .tab-content .form-group>label:not(.control-label) {
+	width: 100%;
+}
+
+div.modal-dialog .tab-content .form-group--active label,
+div.modal-dialog .tab-content .form-group--float .form-control:focus~label {
+	bottom: 28px;
+	font-size: 11px
+}
+
+div.modal-dialog .tab-content .form-group__bar {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 1;
+	width: 100%;
+}
+
+div.modal-dialog .tab-content .form-group .form-control:focus~.form-group__bar:after,
+div.modal-dialog .tab-content .form-group .form-control:focus~.form-group__bar:before {
+	width: 50%
+}
+
+div.modal-dialog .tab-content .form-group__bar {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 1;
+	width: 100%
+}
+
+div.modal-dialog .tab-content .form-group__bar:after,
+div.modal-dialog .tab-content .form-group__bar:before {
+	content: '';
+	position: absolute;
+	height: 1px;
+	width: 0;
+	bottom: 0;
+	-webkit-transition: all;
+	-o-transition: all;
+	transition: all;
+	-webkit-transition-duration: .2s;
+	transition-duration: .2s;
+	-webkit-transition-timing-function: ease;
+	transition-timing-function: ease;
+	background-color: #999;
+}
+
+div.modal-dialog .tab-content .form-group__bar:before {
+	left: 50%;
+}
+
+div.modal-dialog .tab-content .form-group__bar:after {
+	right: 50%;
+}
+
+.modal-backdrop {
+	background-color: #fefefe;
+}
+
+
+/*单选按钮*/
+
+input[type=checkbox],
+input[type=radio] {
+	box-sizing: border-box;
+	padding: 0;
+}
+
+input[type=checkbox],
+input[type=radio] {
+	margin: 4px 0 0;
+	margin-top: 1px\9;
+	line-height: normal;
+}
+
+.checkbox {
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.checkbox input,
+.checkbox-inline input {
+	width: 17px;
+	height: 17px;
+}
+
+.checkbox input[type=checkbox],
+.checkbox-inline input[type=checkbox],
+.radio input[type=radio],
+.radio-inline input[type=radio] {
+	position: absolute;
+	margin-left: -20px;
+	margin-top: 4px\9;
+}
+
+.checkbox input[type=checkbox],
+.checkbox input[type=radio],
+.checkbox-inline input[type=checkbox],
+.checkbox-inline input[type=radio],
+.radio input[type=checkbox],
+.radio input[type=radio],
+.radio-inline input[type=checkbox],
+.radio-inline input[type=radio] {
+	top: 0;
+	left: 0;
+	margin-left: 0;
+	z-index: 1;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	margin-top: 0;
+}
+
+.checkbox .input-helper:after,
+.checkbox .input-helper:before,
+.checkbox-inline .input-helper:after,
+.checkbox-inline .input-helper:before,
+.radio .input-helper:after,
+.radio .input-helper:before,
+.radio-inline .input-helper:after,
+.radio-inline .input-helper:before {
+	position: absolute;
+	content: "";
+	-webkit-transition: all;
+	-o-transition: all;
+	transition: all;
+	-webkit-transition-duration: 150ms;
+	transition-duration: 150ms;
+}
+
+.checkbox .input-helper:before,
+.checkbox-inline .input-helper:before,
+.radio .input-helper:before,
+.radio-inline .input-helper:before {
+	left: 0;
+	border-width: 2px;
+	border-style: solid;
+}
+
+.checkbox .input-helper:before,
+.checkbox-inline .input-helper:before {
+	top: 1px;
+	width: 17px;
+	height: 17px;
+	border-radius: 2px;
+}
+
+.checkbox-inline:not(.checkbox--dark) .input-helper:before,
+.checkbox:not(.checkbox--dark) .input-helper:before {
+	border-color: rgba(177, 188, 192, .47);
+}
+
+.checkbox .input-helper:after,
+.checkbox-inline .input-helper:after {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	content: "\ed6e";
+	font-family: 'icomoon';
+	position: absolute;
+	font-size: 12px;
+	left: 1px;
+	top: 1px;
+	font-weight: 700;
+}
+
+.checkbox-inline:not(.checkbox--dark) .input-helper:after,
+.checkbox:not(.checkbox--dark) .input-helper:after {
+	color: #1e2a31;
+}
+
+.checkbox input:checked+.input-helper:after,
+.checkbox-inline input:checked+.input-helper:after {
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+
+.checkbox-inline:not(.checkbox--dark) input:checked+.input-helper:before,
+.checkbox:not(.checkbox--dark) input:checked+.input-helper:before {
+	background-color: #edeff0;
+	border-color: #edeff0;
+}

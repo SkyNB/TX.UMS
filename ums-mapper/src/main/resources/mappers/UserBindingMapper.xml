@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.UserBindingMapper">
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+    <resultMap id="BaseResultMap" type="com.lnet.model.ums.user.UserBinding">
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR"/>
+        <result column="BINDING_TYPE" property="bindingType" jdbcType="VARCHAR"/>
+        <result column="BINDING_VALUE" property="bindingValue" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    USER_ID, BINDING_TYPE, BINDING_VALUE
+  </sql>
+
+
+    <update id="update" parameterType="java.lang.String">
+        update user_binding
+        set BINDING_VALUE = #{bindingValue,jdbcType=VARCHAR}
+        where USER_ID = #{userId,jdbcType=VARCHAR}
+    </update>
+
+    <insert id="bind" parameterType="UserBinding">
+    insert into user_binding (USER_ID, BINDING_TYPE, BINDING_VALUE
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{bindingType,jdbcType=VARCHAR}, #{bindingValue,jdbcType=VARCHAR}
+      )
+  </insert>
+
+    <delete id="unBind" parameterType="java.lang.String">
+        delete from user_binding
+        <where>
+            <if test="userId != null ">
+                USER_ID = #{userId,jdbcType=VARCHAR}
+            </if>
+            <if test="bindingType != null ">
+                AND BINDING_TYPE = #{bindingType,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </delete>
+
+    <select id="getBindings" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_binding
+        where USER_ID = #{userId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getBinding" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_binding
+        where USER_ID = #{userId,jdbcType=VARCHAR} AND BINDING_TYPE = #{bindingType,jdbcType=VARCHAR}
+    </select>
+
+    <select id="exists" resultType="boolean">
+        select
+        CASE WHEN count(*) > 0 THEN 1 ELSE 0 END
+        from user_binding
+        <where>
+            <if test="userId != null ">
+                USER_ID = #{userId,jdbcType=VARCHAR}
+            </if>
+            <if test="bindingType != null ">
+                AND BINDING_TYPE = #{bindingType,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteByUserIdAndType">
+        DELETE FROM user_binding WHERE USER_ID = #{userId,jdbcType=VARCHAR} AND BINDING_TYPE = #{bindingType,jdbcType=VARCHAR}
+    </delete>
+</mapper>

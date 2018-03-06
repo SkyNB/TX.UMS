@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.UserMapper">
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>-->
+
+    <resultMap id="BaseResultMap" type="com.lnet.model.ums.user.User">
+        <id column="USER_ID" property="userId" jdbcType="VARCHAR"/>
+        <result column="USERNAME" property="username" jdbcType="VARCHAR"/>
+        <result column="FULL_NAME" property="fullName" jdbcType="VARCHAR"/>
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+        <result column="EMAIL" property="email" jdbcType="VARCHAR"/>
+        <result column="IS_ACTIVE" property="isActive" jdbcType="DECIMAL"/>
+        <result column="TYPE" property="type" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="CREATE_USER_NAME" property="createUserName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    USER_ID, USERNAME, FULL_NAME, PASSWORD, EMAIL, IS_ACTIVE, TYPE, REMARK, CREATE_TIME,
+    CREATE_USER_ID, CREATE_USER_NAME
+  </sql>
+    <select id="get" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where USER_ID = #{userId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteById" parameterType="java.lang.String">
+    delete from sys_user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.lnet.model.ums.user.User">
+      insert into sys_user (USER_ID, USERNAME, FULL_NAME,
+      PASSWORD, EMAIL, IS_ACTIVE,
+      TYPE, REMARK, CREATE_TIME,
+      CREATE_USER_ID, CREATE_USER_NAME)
+    values (#{userId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{fullName,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isActive,jdbcType=DECIMAL},
+      #{type,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{createUserId,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR})
+  </insert>
+
+    <update id="update" parameterType="com.lnet.model.ums.user.User">
+    update sys_user
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      FULL_NAME = #{fullName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      IS_ACTIVE = #{isActive,jdbcType=DECIMAL},
+      TYPE = #{type,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      CREATE_USER_NAME = #{createUserName,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+    <update id="activate" parameterType="java.lang.String">
+        update sys_user
+        set is_active=1
+        where USER_ID IN
+        <foreach item="userId" collection="list" open="(" separator="," close=")">
+            #{userId,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <update id="inactivate" parameterType="java.lang.String">
+        update sys_user
+        set is_active= 0
+        where USER_ID IN
+        <foreach item="userId" collection="list" open="(" separator="," close=")">
+            #{userId,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+
+    <!-- 查询用户名是否存在 -->
+    <select id="exists" resultType="boolean">
+        select
+        CASE WHEN count(*) > 0 THEN 1 ELSE 0 END
+        from sys_user
+        <where>
+            <if test="username != null ">
+                USERNAME = #{username,jdbcType=VARCHAR}
+            </if>
+            <if test="userId != null ">
+                AND USER_ID != #{userId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="getByUsername" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where USERNAME = #{username,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updatePassword">
+        update sys_user
+        set PASSWORD =  #{password,jdbcType=VARCHAR}
+        where username = #{username,jdbcType=VARCHAR}
+    </update>
+
+    <update id="resetPassword" parameterType="java.lang.String">
+        update sys_user set
+        PASSWORD = #{password,jdbcType=VARCHAR}
+        where USER_ID in
+        <foreach item="idItem" collection="userIds" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </update>
+
+    <select id="getByOrgCode" parameterType="java.lang.String" resultType="com.lnet.model.ums.user.User">
+        select su.*
+          from sys_user su
+          left join user_binding  ub
+          on su.user_id = ub.user_id
+          where ub.binding_type = 'ORGANIZATION'
+          and ub.binding_value = #{orgCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findBySiteCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select su.*
+        from sys_user su
+        left join user_binding  ub
+        on su.user_id = ub.user_id
+        where ub.binding_type = 'SITE'
+        and ub.binding_value = #{siteCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAvailable" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select DISTINCT u.* from sys_user u join user_binding ub
+        on u.user_id = ub.user_id
+        <where>
+            u.is_active=1 AND ub.binding_type='SYSTEM'
+            and ub.binding_value=#{systemCode,jdbcType=VARCHAR}
+        </where>
+    </select>
+
+    <!-- 用户查询 -->
+    <select id="pageList" resultMap="BaseResultMap">
+        select
+        u.USER_ID,
+        u.USERNAME,
+        u.FULL_NAME,
+        u.PASSWORD,
+        u.EMAIL,
+        u.IS_ACTIVE,
+        u.TYPE,
+        u.REMARK,
+        u.CREATE_TIME,
+        u.CREATE_USER_ID,
+        u.CREATE_USER_NAME
+        from sys_user u left join user_binding b on u.user_id = b.user_id
+        <where>
+            <if test="username != null ">
+                u.USERNAME LIKE CONCAT(CONCAT('%',#{username}),'%')
+            </if>
+            <if test="email != null ">
+                AND u.EMAIL like CONCAT(CONCAT('%', #{email}), '%')
+            </if>
+            <if test="fullName != null">
+                AND u.FULL_NAME LIKE CONCAT(CONCAT('%', #{fullName}), '%')
+            </if>
+            <if test="type != null">
+                AND u.TYPE = #{type}
+            </if>
+            <if test="siteCode != null">
+                AND b.binding_value = #{siteCode}
+            </if>
+        </where>
+        <if test="orderBy != null ">
+            order by ${orderBy}
+        </if>
+    </select>
+    <select id="getAll" resultType="com.lnet.model.ums.user.User">
+        select *
+        from sys_user
+    </select>
+    <select id="getByIds" resultType="com.lnet.model.ums.user.User">
+        SELECT * from sys_user
+        where USER_ID in
+        <foreach item="idItem" collection="userIds" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </select>
+
+    <select id="getAllCount" resultType="java.lang.Long">
+        select count(0)
+        from sys_user u left join user_binding b on u.user_id = b.user_id
+        <where>
+            <if test="username != null ">
+                u.USERNAME LIKE CONCAT(CONCAT('%',#{username}),'%')
+            </if>
+            <if test="email != null ">
+                AND u.EMAIL like CONCAT(CONCAT('%', #{email}), '%')
+            </if>
+            <if test="fullName != null">
+                AND u.FULL_NAME LIKE CONCAT(CONCAT('%', #{fullName}), '%')
+            </if>
+            <if test="type != null">
+                AND u.TYPE = #{type}
+            </if>
+            <if test="siteCode != null">
+                AND b.binding_value = #{siteCode}
+            </if>
+        </where>
+        <if test="orderBy != null ">
+            order by ${orderBy}
+        </if>
+    </select>
+
+    <select id="page" resultMap="BaseResultMap">
+        select
+        u.USER_ID,
+        u.USERNAME,
+        u.FULL_NAME,
+        u.PASSWORD,
+        u.EMAIL,
+        u.IS_ACTIVE,
+        u.TYPE,
+        u.REMARK,
+        u.CREATE_TIME,
+        u.CREATE_USER_ID,
+        u.CREATE_USER_NAME
+        from sys_user u left join user_binding b on u.user_id = b.user_id
+        <where>
+            <if test="username != null ">
+                u.USERNAME LIKE CONCAT(CONCAT('%',#{username}),'%')
+            </if>
+            <if test="email != null ">
+                AND u.EMAIL like CONCAT(CONCAT('%', #{email}), '%')
+            </if>
+            <if test="fullName != null">
+                AND u.FULL_NAME LIKE CONCAT(CONCAT('%', #{fullName}), '%')
+            </if>
+            <if test="type != null">
+                AND u.TYPE = #{type}
+            </if>
+            <if test="siteCode != null">
+                AND b.binding_value = #{siteCode}
+            </if>
+        </where>
+        <if test="orderBy != null ">
+            order by ${orderBy}
+        </if>
+    </select>
+</mapper>

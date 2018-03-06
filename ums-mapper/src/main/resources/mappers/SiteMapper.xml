@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.SiteMapper">
+    <resultMap id="BaseResultMap" type="com.lnet.model.ums.site.Site">
+        <id column="SITE_ID" property="siteId" jdbcType="VARCHAR"/>
+        <result column="BRANCH_CODE" property="branchCode" jdbcType="VARCHAR"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="CONTACTS" property="contacts" jdbcType="VARCHAR"/>
+        <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR"/>
+        <result column="PROVINCE" property="province" jdbcType="VARCHAR"/>
+        <result column="CITY" property="city" jdbcType="VARCHAR"/>
+        <result column="DISTRICT" property="district" jdbcType="VARCHAR"/>
+        <result column="STREET" property="street" jdbcType="VARCHAR"/>
+        <result column="DISTRICT_CODE" property="districtCode" jdbcType="VARCHAR"/>
+        <result column="ADDRESS" property="address" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    SITE_ID, BRANCH_CODE, CODE, NAME, CONTACTS, CONTACT_PHONE, PROVINCE, CITY, DISTRICT,
+    STREET,DISTRICT_CODE, ADDRESS, REMARK
+  </sql>
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from SITE
+        where SITE_ID = #{siteId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from SITE
+        where CODE = #{code,jdbcType=VARCHAR}
+    </select>
+
+    <select id="exists" resultType="boolean" parameterType="map">
+        SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END
+        from SITE
+        <where>
+            <if test="code != null">
+                CODE = #{code,jdbcType=VARCHAR}
+            </if>
+            <if test="siteId != null">
+                AND SITE_ID != #{siteId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="getByBranchCode" parameterType="java.lang.String" resultType="com.lnet.model.ums.site.Site">
+        select
+        <include refid="Base_Column_List"/>
+        from SITE
+        where BRANCH_CODE = #{branchCode,jdbcType=VARCHAR}
+    </select>
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from SITE
+    </select>
+    <delete id="deleteById" parameterType="java.lang.String">
+    delete from SITE
+    where SITE_ID = #{siteId,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.lnet.model.ums.site.Site">
+   insert into SITE (SITE_ID, BRANCH_CODE, CODE,
+      NAME, CONTACTS, CONTACT_PHONE,
+      PROVINCE, CITY, DISTRICT,
+      STREET,DISTRICT_CODE, ADDRESS, REMARK
+      )
+    values (#{siteId,jdbcType=VARCHAR}, #{branchCode,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR},
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR},
+      #{street,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR},  #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+    <update id="update" parameterType="com.lnet.model.ums.site.Site">
+    update SITE
+    set BRANCH_CODE = #{branchCode,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      CONTACTS = #{contacts,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      DISTRICT = #{district,jdbcType=VARCHAR},
+      STREET = #{street,jdbcType=VARCHAR},
+      DISTRICT_CODE = #{districtCode,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where SITE_ID = #{siteId,jdbcType=VARCHAR}
+  </update>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from SITE
+        <where>
+            <if test="code != null ">
+                AND CODE LIKE CONCAT(CONCAT('%',#{code}),'%')
+            </if>
+            <if test="name != null ">
+                AND NAME like CONCAT(CONCAT('%', #{name}), '%')
+            </if>
+            <if test="districtCode != null ">
+                AND DISTRICT_CODE =#{districtCode,jdbcType=VARCHAR}
+            </if>
+            <if test="branchCode != null ">
+                AND BRANCH_CODE =#{branchCode,jdbcType=VARCHAR}
+            </if>
+            <if test="siteCode != null ">
+                AND CODE =#{siteCode,jdbcType=VARCHAR}
+            </if>
+        </where>
+        <if test="orderBy != null ">
+            order by ${orderBy}
+        </if>
+    </select>
+    <select id="findByAddressBranch" resultType="com.lnet.model.ums.site.Site">
+        select
+        <include refid="Base_Column_List"/>
+        from SITE where DISTRICT_CODE =#{districtCode,jdbcType=VARCHAR}
+        AND BRANCH_CODE =#{branchCode,jdbcType=VARCHAR}
+    </select>
+</mapper>

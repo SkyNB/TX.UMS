@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.GoodsIdentificationCodeMapper">
+    <resultMap id="BaseResultMap" type="GoodsIdentificationCode">
+        <id column="IDENTIFICATION_CODE_ID" property="identificationCodeId" jdbcType="VARCHAR"/>
+        <result column="ARCHIVES_ID" property="archivesId" jdbcType="VARCHAR"/>
+        <result column="IDENTIFICATION_CODE" property="identificationCode" jdbcType="VARCHAR"/>
+        <result column="IDENTIFICATION_NAME" property="identificationName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    IDENTIFICATION_CODE_ID, ARCHIVES_ID, IDENTIFICATION_CODE,IDENTIFICATION_NAME
+  </sql>
+    <select id="getByArchivesId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from GOODS_IDENTIFICATION_CODE
+        where ARCHIVES_ID = #{archivesId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByArchivesId" parameterType="java.lang.String">
+    delete from GOODS_IDENTIFICATION_CODE
+    where ARCHIVES_ID = #{archivesId,jdbcType=VARCHAR}
+  </delete>
+    <delete id="batchDelByArchivesIds" parameterType="java.util.List">
+        delete from GOODS_IDENTIFICATION_CODE
+        where ARCHIVES_ID =
+        <foreach collection="list" item="item" index="index" separator="union all">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </delete>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into GOODS_IDENTIFICATION_CODE (<include refid="Base_Column_List"/>)
+        (
+        <foreach collection="list" item="item" index="index" separator="union all">
+            select #{item.identificationCodeId,jdbcType=VARCHAR},
+            #{item.archivesId,jdbcType=VARCHAR},
+            #{item.identificationCode,jdbcType=VARCHAR},
+            #{item.identificationName,jdbcType=VARCHAR} from dual
+        </foreach>
+        )
+    </insert>
+</mapper>

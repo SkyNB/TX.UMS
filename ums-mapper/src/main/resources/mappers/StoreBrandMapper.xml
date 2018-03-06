@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.StoreBrandMapper">
+
+    <resultMap id="BaseResultMap" type="com.lnet.model.ums.customer.customerEntity.StoreBrand">
+        <result column="STORE_BRAND_ID" property="storeBrandId" jdbcType="VARCHAR"/>
+        <result column="STORE_CODE" property="storeCode" jdbcType="VARCHAR"/>
+        <result column="CLIENT_CODE" property="clientCode" jdbcType="VARCHAR"/>
+        <result column="BRAND_CODE" property="brandCode" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Column_List">
+        STORE_BRAND_ID, STORE_CODE, CLIENT_CODE, BRAND_CODE
+    </sql>
+
+    <insert id="insert" parameterType="com.lnet.model.ums.customer.customerEntity.StoreBrand">
+    insert into STORE_BRAND (STORE_BRAND_ID, STORE_CODE, CLIENT_CODE, 
+      BRAND_CODE)
+    values (#{storeBrandId,jdbcType=VARCHAR}, #{storeCode,jdbcType=VARCHAR}, #{clientCode,jdbcType=VARCHAR}, 
+      #{brandCode,jdbcType=VARCHAR})
+  </insert>
+
+    <delete id="deleteByStoreCodeAndCustomerCode" parameterType="java.lang.String">
+        delete from STORE_BRAND
+        where STORE_CODE = #{storeCode,jdbcType=VARCHAR} and CLIENT_CODE = #{customerCode, jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="batchInsert" parameterType="com.lnet.model.ums.customer.customerEntity.StoreBrand">
+        insert into STORE_BRAND (<include refid="Column_List"/>)
+        (
+        <foreach collection="list" item="item" index="index" separator="union all">
+            select
+            #{item.storeBrandId,jdbcType=VARCHAR},
+            #{item.storeCode,jdbcType=VARCHAR},
+            #{item.clientCode,jdbcType=VARCHAR},
+            #{item.brandCode,jdbcType=VARCHAR}
+            from dual
+        </foreach>
+        )
+    </insert>
+
+    <select id="getBrandCodes" parameterType="string" resultType="string">
+        SELECT BRAND_CODE FROM STORE_BRAND WHERE STORE_CODE = #{storeCode,jdbcType=VARCHAR} AND CLIENT_CODE = #{customerCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getBrandNames" resultType="string">
+        SELECT b.NAME
+        FROM STORE_BRAND sb INNER JOIN BRAND b ON sb.BRAND_CODE=b.CODE AND sb.CLIENT_CODE=b.CUSTOMER_CODE
+        WHERE sb.STORE_CODE=#{storeCode, jdbcType=VARCHAR} AND sb.CLIENT_CODE=#{customerCode, jdbcType=VARCHAR} AND b.IS_ACTIVE=1
+    </select>
+
+    <select id="getByBrandName" parameterType="string" resultMap="BaseResultMap">
+        SELECT sb.* FROM BRAND b JOIN STORE_BRAND sb ON b.CODE = sb.BRAND_CODE AND b.CUSTOMER_CODE = sb.CLIENT_CODE
+        WHERE b.NAME LIKE CONCAT(CONCAT('%', #{name, jdbcType=VARCHAR}), '%')
+    </select>
+</mapper>

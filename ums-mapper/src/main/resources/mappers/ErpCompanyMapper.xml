@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.ErpCompanyMapper">
+  <resultMap id="BaseResultMap" type="com.lnet.model.ums.ErpCompany">
+    <id column="companyId" jdbcType="VARCHAR" property="companyid" />
+    <result column="companyName" jdbcType="VARCHAR" property="companyname" />
+    <result column="parentId" jdbcType="VARCHAR" property="parentid" />
+    <result column="dataType" jdbcType="INTEGER" property="datatype" />
+    <result column="regAddrProvinceId" jdbcType="VARCHAR" property="regaddrprovinceid" />
+    <result column="regAddrCityId" jdbcType="VARCHAR" property="regaddrcityid" />
+    <result column="regAddrRegionId" jdbcType="VARCHAR" property="regaddrregionid" />
+    <result column="busAddrProvinceId" jdbcType="VARCHAR" property="busaddrprovinceid" />
+    <result column="busAddrCityId" jdbcType="VARCHAR" property="busaddrcityid" />
+    <result column="busAddrRegionId" jdbcType="VARCHAR" property="busaddrregionid" />
+    <result column="isPlatfrom" jdbcType="INTEGER" property="isplatfrom" />
+    <result column="isTrader" jdbcType="INTEGER" property="istrader" />
+    <result column="isFinancier" jdbcType="INTEGER" property="isfinancier" />
+    <result column="isWarehouse" jdbcType="INTEGER" property="iswarehouse" />
+    <result column="isShipper" jdbcType="INTEGER" property="isshipper" />
+    <result column="createUser" jdbcType="VARCHAR" property="createuser" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="updateUser" jdbcType="VARCHAR" property="updateuser" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="registeredCapital" jdbcType="INTEGER" property="registeredcapital" />
+    <result column="legalPerson" jdbcType="VARCHAR" property="legalperson" />
+    <result column="registeredAddress" jdbcType="VARCHAR" property="registeredaddress" />
+    <result column="businessAddress" jdbcType="VARCHAR" property="businessaddress" />
+    <result column="contacts" jdbcType="VARCHAR" property="contacts" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="mail" jdbcType="VARCHAR" property="mail" />
+    <result column="begindate" jdbcType="DATE" property="begindate" />
+    <result column="companywebsite" jdbcType="VARCHAR" property="companywebsite" />
+    <result column="taxRegistration" jdbcType="VARCHAR" property="taxregistration" />
+    <result column="taxRegistrationExpiresDate" jdbcType="DATE" property="taxregistrationexpiresdate" />
+    <result column="accOpeningLicense" jdbcType="VARCHAR" property="accopeninglicense" />
+    <result column="accOpeningLicenseExpiresDate" jdbcType="DATE" property="accopeninglicenseexpiresdate" />
+    <result column="organizationCode" jdbcType="VARCHAR" property="organizationcode" />
+    <result column="organizationCodeExpiresDate" jdbcType="DATE" property="organizationcodeexpiresdate" />
+    <result column="foodCirculationPermit" jdbcType="VARCHAR" property="foodcirculationpermit" />
+    <result column="foodCirculationPermitExpiresDate" jdbcType="DATE" property="foodcirculationpermitexpiresdate" />
+    <result column="wholesaleLiquorLicense" jdbcType="VARCHAR" property="wholesaleliquorlicense" />
+    <result column="wholesaleLiquorLicenseExpiresDate" jdbcType="DATE" property="wholesaleliquorlicenseexpiresdate" />
+    <result column="liquorCirculationPermit" jdbcType="VARCHAR" property="liquorcirculationpermit" />
+    <result column="liquorCirculationPermitExpiresDate" jdbcType="DATE" property="liquorcirculationpermitexpiresdate" />
+    <result column="businessLicenseExpiresDate" jdbcType="DATE" property="businesslicenseexpiresdate" />
+    <result column="businessLicense" jdbcType="VARCHAR" property="businesslicense" />
+    <result column="fax" jdbcType="VARCHAR" property="fax" />
+    <result column="bankAccount" jdbcType="VARCHAR" property="bankaccount" />
+    <result column="accountNumber" jdbcType="VARCHAR" property="accountnumber" />
+    <result column="dutyParagraph" jdbcType="VARCHAR" property="dutyparagraph" />
+    <result column="taxTypeId" jdbcType="VARCHAR" property="taxtypeid" />
+    <result column="invoiceTypeId" jdbcType="VARCHAR" property="invoicetypeid" />
+    <result column="industryId" jdbcType="VARCHAR" property="industryid" />
+    <result column="companyClassId" jdbcType="VARCHAR" property="companyclassid" />
+    <result column="companyNatureId" jdbcType="INTEGER" property="companynatureid" />
+    <result column="CompanyScaleId" jdbcType="INTEGER" property="companyscaleid" />
+    <result column="currencyId" jdbcType="VARCHAR" property="currencyid" />
+    <result column="validate" jdbcType="INTEGER" property="validate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lnet.model.ums.ErpCompanyWithBLOBs">
+    <result column="taxRegistrationImgPs" jdbcType="LONGVARCHAR" property="taxregistrationimgps" />
+    <result column="accOpeningLicenseImgPs" jdbcType="LONGVARCHAR" property="accopeninglicenseimgps" />
+    <result column="organizationCodeImgPs" jdbcType="LONGVARCHAR" property="organizationcodeimgps" />
+    <result column="foodCirculationPermitImgPs" jdbcType="LONGVARCHAR" property="foodcirculationpermitimgps" />
+    <result column="wholesaleLiquorLicenseImgPs" jdbcType="LONGVARCHAR" property="wholesaleliquorlicenseimgps" />
+    <result column="liquorCirculationPermitImgPs" jdbcType="LONGVARCHAR" property="liquorcirculationpermitimgps" />
+    <result column="businessLicenseImgPs" jdbcType="LONGVARCHAR" property="businesslicenseimgps" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    companyId, companyName, parentId, dataType, regAddrProvinceId, regAddrCityId, regAddrRegionId, 
+    busAddrProvinceId, busAddrCityId, busAddrRegionId, isPlatfrom, isTrader, isFinancier, 
+    isWarehouse, isShipper, createUser, createTime, updateUser, updateTime, registeredCapital,
+    legalPerson, registeredAddress, businessAddress, contacts, phone, mail, begindate, 
+    companywebsite, taxRegistration, taxRegistrationExpiresDate, accOpeningLicense, accOpeningLicenseExpiresDate, 
+    organizationCode, organizationCodeExpiresDate, foodCirculationPermit, foodCirculationPermitExpiresDate, 
+    wholesaleLiquorLicense, wholesaleLiquorLicenseExpiresDate, liquorCirculationPermit, 
+    liquorCirculationPermitExpiresDate, businessLicenseExpiresDate, businessLicense, 
+    fax, bankAccount, accountNumber, dutyParagraph, taxTypeId, invoiceTypeId, industryId, 
+    companyClassId, companyNatureId, CompanyScaleId, currencyId, validate
+  </sql>
+  <sql id="Blob_Column_List">
+    taxRegistrationImgPs, accOpeningLicenseImgPs, organizationCodeImgPs, foodCirculationPermitImgPs, 
+    wholesaleLiquorLicenseImgPs, liquorCirculationPermitImgPs, businessLicenseImgPs
+  </sql>
+
+  <!--查找所有公司信息-->
+  <select id="selectCompanyList" resultMap="BaseResultMap">
+    select companyId,companyName,contacts,companyclassid,mail,phone,validate
+    from erp_company
+  </select>
+
+  <!--逻辑删除=启用+停用-->
+  <update id="logicDeleteCompany" parameterType="com.lnet.model.ums.ErpCompany">
+    update erp_company set validate = #{validate,jdbcType=INTEGER} where companyId = #{companyid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from erp_company
+    where companyId = #{companyid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from erp_company
+    where companyId = #{companyid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lnet.model.ums.ErpCompanyWithBLOBs">
+    <selectKey keyProperty="companyid" order="BEFORE" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into erp_company (companyId, companyName, parentId, 
+      dataType, regAddrProvinceId, regAddrCityId, 
+      regAddrRegionId, busAddrProvinceId, busAddrCityId, 
+      busAddrRegionId, isPlatfrom, isTrader, 
+      isFinancier, isWarehouse, isShipper, 
+      createUser, createTime, updateUser,
+      updateTime, registeredCapital, legalPerson, 
+      registeredAddress, businessAddress, contacts, 
+      phone, mail, begindate, 
+      companywebsite, taxRegistration, taxRegistrationExpiresDate, 
+      accOpeningLicense, accOpeningLicenseExpiresDate, 
+      organizationCode, organizationCodeExpiresDate, 
+      foodCirculationPermit, foodCirculationPermitExpiresDate, 
+      wholesaleLiquorLicense, wholesaleLiquorLicenseExpiresDate, 
+      liquorCirculationPermit, liquorCirculationPermitExpiresDate, 
+      businessLicenseExpiresDate, businessLicense, 
+      fax, bankAccount, accountNumber, 
+      dutyParagraph, taxTypeId, invoiceTypeId, 
+      industryId, companyClassId, companyNatureId, 
+      CompanyScaleId, currencyId, validate, 
+      taxRegistrationImgPs, accOpeningLicenseImgPs, 
+      organizationCodeImgPs, foodCirculationPermitImgPs, 
+      wholesaleLiquorLicenseImgPs, liquorCirculationPermitImgPs, 
+      businessLicenseImgPs)
+    values (#{companyid,jdbcType=VARCHAR}, #{companyname,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, 
+      #{datatype,jdbcType=INTEGER}, #{regaddrprovinceid,jdbcType=VARCHAR}, #{regaddrcityid,jdbcType=VARCHAR}, 
+      #{regaddrregionid,jdbcType=VARCHAR}, #{busaddrprovinceid,jdbcType=VARCHAR}, #{busaddrcityid,jdbcType=VARCHAR}, 
+      #{busaddrregionid,jdbcType=VARCHAR}, #{isplatfrom,jdbcType=INTEGER}, #{istrader,jdbcType=INTEGER}, 
+      #{isfinancier,jdbcType=INTEGER}, #{iswarehouse,jdbcType=INTEGER}, #{isshipper,jdbcType=INTEGER}, 
+      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR},
+      #{updateTime,jdbcType=TIMESTAMP}, #{registeredcapital,jdbcType=INTEGER}, #{legalperson,jdbcType=VARCHAR},
+      #{registeredaddress,jdbcType=VARCHAR}, #{businessaddress,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, #{begindate,jdbcType=DATE}, 
+      #{companywebsite,jdbcType=VARCHAR}, #{taxregistration,jdbcType=VARCHAR}, #{taxregistrationexpiresdate,jdbcType=DATE}, 
+      #{accopeninglicense,jdbcType=VARCHAR}, #{accopeninglicenseexpiresdate,jdbcType=DATE}, 
+      #{organizationcode,jdbcType=VARCHAR}, #{organizationcodeexpiresdate,jdbcType=DATE}, 
+      #{foodcirculationpermit,jdbcType=VARCHAR}, #{foodcirculationpermitexpiresdate,jdbcType=DATE}, 
+      #{wholesaleliquorlicense,jdbcType=VARCHAR}, #{wholesaleliquorlicenseexpiresdate,jdbcType=DATE}, 
+      #{liquorcirculationpermit,jdbcType=VARCHAR}, #{liquorcirculationpermitexpiresdate,jdbcType=DATE}, 
+      #{businesslicenseexpiresdate,jdbcType=DATE}, #{businesslicense,jdbcType=VARCHAR}, 
+      #{fax,jdbcType=VARCHAR}, #{bankaccount,jdbcType=VARCHAR}, #{accountnumber,jdbcType=VARCHAR}, 
+      #{dutyparagraph,jdbcType=VARCHAR}, #{taxtypeid,jdbcType=VARCHAR}, #{invoicetypeid,jdbcType=VARCHAR}, 
+      #{industryid,jdbcType=VARCHAR}, #{companyclassid,jdbcType=VARCHAR}, #{companynatureid,jdbcType=INTEGER}, 
+      #{companyscaleid,jdbcType=INTEGER}, #{currencyid,jdbcType=VARCHAR}, #{validate,jdbcType=INTEGER}, 
+      #{taxregistrationimgps,jdbcType=LONGVARCHAR}, #{accopeninglicenseimgps,jdbcType=LONGVARCHAR}, 
+      #{organizationcodeimgps,jdbcType=LONGVARCHAR}, #{foodcirculationpermitimgps,jdbcType=LONGVARCHAR}, 
+      #{wholesaleliquorlicenseimgps,jdbcType=LONGVARCHAR}, #{liquorcirculationpermitimgps,jdbcType=LONGVARCHAR}, 
+      #{businesslicenseimgps,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lnet.model.ums.ErpCompanyWithBLOBs">
+    <selectKey keyProperty="companyid" order="BEFORE" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into erp_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      companyId,
+      <if test="companyname != null">
+        companyName,
+      </if>
+      <if test="parentid != null">
+        parentId,
+      </if>
+      <if test="datatype != null">
+        dataType,
+      </if>
+      <if test="regaddrprovinceid != null">
+        regAddrProvinceId,
+      </if>
+      <if test="regaddrcityid != null">
+        regAddrCityId,
+      </if>
+      <if test="regaddrregionid != null">
+        regAddrRegionId,
+      </if>
+      <if test="busaddrprovinceid != null">
+        busAddrProvinceId,
+      </if>
+      <if test="busaddrcityid != null">
+        busAddrCityId,
+      </if>
+      <if test="busaddrregionid != null">
+        busAddrRegionId,
+      </if>
+      <if test="isplatfrom != null">
+        isPlatfrom,
+      </if>
+      <if test="istrader != null">
+        isTrader,
+      </if>
+      <if test="isfinancier != null">
+        isFinancier,
+      </if>
+      <if test="iswarehouse != null">
+        isWarehouse,
+      </if>
+      <if test="isshipper != null">
+        isShipper,
+      </if>
+      <if test="createUser != null">
+        createUser,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateUser != null">
+        updateUser,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+      <if test="registeredcapital != null">
+        registeredCapital,
+      </if>
+      <if test="legalperson != null">
+        legalPerson,
+      </if>
+      <if test="registeredaddress != null">
+        registeredAddress,
+      </if>
+      <if test="businessaddress != null">
+        businessAddress,
+      </if>
+      <if test="contacts != null">
+        contacts,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="mail != null">
+        mail,
+      </if>
+      <if test="begindate != null">
+        begindate,
+      </if>
+      <if test="companywebsite != null">
+        companywebsite,
+      </if>
+      <if test="taxregistration != null">
+        taxRegistration,
+      </if>
+      <if test="taxregistrationexpiresdate != null">
+        taxRegistrationExpiresDate,
+      </if>
+      <if test="accopeninglicense != null">
+        accOpeningLicense,
+      </if>
+      <if test="accopeninglicenseexpiresdate != null">
+        accOpeningLicenseExpiresDate,
+      </if>
+      <if test="organizationcode != null">
+        organizationCode,
+      </if>
+      <if test="organizationcodeexpiresdate != null">
+        organizationCodeExpiresDate,
+      </if>
+      <if test="foodcirculationpermit != null">
+        foodCirculationPermit,
+      </if>
+      <if test="foodcirculationpermitexpiresdate != null">
+        foodCirculationPermitExpiresDate,
+      </if>
+      <if test="wholesaleliquorlicense != null">
+        wholesaleLiquorLicense,
+      </if>
+      <if test="wholesaleliquorlicenseexpiresdate != null">
+        wholesaleLiquorLicenseExpiresDate,
+      </if>
+      <if test="liquorcirculationpermit != null">
+        liquorCirculationPermit,
+      </if>
+      <if test="liquorcirculationpermitexpiresdate != null">
+        liquorCirculationPermitExpiresDate,
+      </if>
+      <if test="businesslicenseexpiresdate != null">
+        businessLicenseExpiresDate,
+      </if>
+      <if test="businesslicense != null">
+        businessLicense,
+      </if>
+      <if test="fax != null">
+        fax,
+      </if>
+      <if test="bankaccount != null">
+        bankAccount,
+      </if>
+      <if test="accountnumber != null">
+        accountNumber,
+      </if>
+      <if test="dutyparagraph != null">
+        dutyParagraph,
+      </if>
+      <if test="taxtypeid != null">
+        taxTypeId,
+      </if>
+      <if test="invoicetypeid != null">
+        invoiceTypeId,
+      </if>
+      <if test="industryid != null">
+        industryId,
+      </if>
+      <if test="companyclassid != null">
+        companyClassId,
+      </if>
+      <if test="companynatureid != null">
+        companyNatureId,
+      </if>
+      <if test="companyscaleid != null">
+        CompanyScaleId,
+      </if>
+      <if test="currencyid != null">
+        currencyId,
+      </if>
+      <if test="validate != null">
+        validate,
+      </if>
+      <if test="taxregistrationimgps != null">
+        taxRegistrationImgPs,
+      </if>
+      <if test="accopeninglicenseimgps != null">
+        accOpeningLicenseImgPs,
+      </if>
+      <if test="organizationcodeimgps != null">
+        organizationCodeImgPs,
+      </if>
+      <if test="foodcirculationpermitimgps != null">
+        foodCirculationPermitImgPs,
+      </if>
+      <if test="wholesaleliquorlicenseimgps != null">
+        wholesaleLiquorLicenseImgPs,
+      </if>
+      <if test="liquorcirculationpermitimgps != null">
+        liquorCirculationPermitImgPs,
+      </if>
+      <if test="businesslicenseimgps != null">
+        businessLicenseImgPs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{companyid,jdbcType=VARCHAR},
+      <if test="companyname != null">
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="datatype != null">
+        #{datatype,jdbcType=INTEGER},
+      </if>
+      <if test="regaddrprovinceid != null">
+        #{regaddrprovinceid,jdbcType=VARCHAR},
+      </if>
+      <if test="regaddrcityid != null">
+        #{regaddrcityid,jdbcType=VARCHAR},
+      </if>
+      <if test="regaddrregionid != null">
+        #{regaddrregionid,jdbcType=VARCHAR},
+      </if>
+      <if test="busaddrprovinceid != null">
+        #{busaddrprovinceid,jdbcType=VARCHAR},
+      </if>
+      <if test="busaddrcityid != null">
+        #{busaddrcityid,jdbcType=VARCHAR},
+      </if>
+      <if test="busaddrregionid != null">
+        #{busaddrregionid,jdbcType=VARCHAR},
+      </if>
+      <if test="isplatfrom != null">
+        #{isplatfrom,jdbcType=INTEGER},
+      </if>
+      <if test="istrader != null">
+        #{istrader,jdbcType=INTEGER},
+      </if>
+      <if test="isfinancier != null">
+        #{isfinancier,jdbcType=INTEGER},
+      </if>
+      <if test="iswarehouse != null">
+        #{iswarehouse,jdbcType=INTEGER},
+      </if>
+      <if test="isshipper != null">
+        #{isshipper,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registeredcapital != null">
+        #{registeredcapital,jdbcType=INTEGER},
+      </if>
+      <if test="legalperson != null">
+        #{legalperson,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredaddress != null">
+        #{registeredaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="businessaddress != null">
+        #{businessaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null">
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null">
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        #{begindate,jdbcType=DATE},
+      </if>
+      <if test="companywebsite != null">
+        #{companywebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="taxregistration != null">
+        #{taxregistration,jdbcType=VARCHAR},
+      </if>
+      <if test="taxregistrationexpiresdate != null">
+        #{taxregistrationexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="accopeninglicense != null">
+        #{accopeninglicense,jdbcType=VARCHAR},
+      </if>
+      <if test="accopeninglicenseexpiresdate != null">
+        #{accopeninglicenseexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="organizationcode != null">
+        #{organizationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationcodeexpiresdate != null">
+        #{organizationcodeexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="foodcirculationpermit != null">
+        #{foodcirculationpermit,jdbcType=VARCHAR},
+      </if>
+      <if test="foodcirculationpermitexpiresdate != null">
+        #{foodcirculationpermitexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="wholesaleliquorlicense != null">
+        #{wholesaleliquorlicense,jdbcType=VARCHAR},
+      </if>
+      <if test="wholesaleliquorlicenseexpiresdate != null">
+        #{wholesaleliquorlicenseexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="liquorcirculationpermit != null">
+        #{liquorcirculationpermit,jdbcType=VARCHAR},
+      </if>
+      <if test="liquorcirculationpermitexpiresdate != null">
+        #{liquorcirculationpermitexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="businesslicenseexpiresdate != null">
+        #{businesslicenseexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="businesslicense != null">
+        #{businesslicense,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null">
+        #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="accountnumber != null">
+        #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyparagraph != null">
+        #{dutyparagraph,jdbcType=VARCHAR},
+      </if>
+      <if test="taxtypeid != null">
+        #{taxtypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeid != null">
+        #{invoicetypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="industryid != null">
+        #{industryid,jdbcType=VARCHAR},
+      </if>
+      <if test="companyclassid != null">
+        #{companyclassid,jdbcType=VARCHAR},
+      </if>
+      <if test="companynatureid != null">
+        #{companynatureid,jdbcType=INTEGER},
+      </if>
+      <if test="companyscaleid != null">
+        #{companyscaleid,jdbcType=INTEGER},
+      </if>
+      <if test="currencyid != null">
+        #{currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="validate != null">
+        #{validate,jdbcType=INTEGER},
+      </if>
+      <if test="taxregistrationimgps != null">
+        #{taxregistrationimgps,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="accopeninglicenseimgps != null">
+        #{accopeninglicenseimgps,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="organizationcodeimgps != null">
+        #{organizationcodeimgps,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="foodcirculationpermitimgps != null">
+        #{foodcirculationpermitimgps,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="wholesaleliquorlicenseimgps != null">
+        #{wholesaleliquorlicenseimgps,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="liquorcirculationpermitimgps != null">
+        #{liquorcirculationpermitimgps,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="businesslicenseimgps != null">
+        #{businesslicenseimgps,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnet.model.ums.ErpCompanyWithBLOBs">
+    update erp_company
+    <set>
+      <if test="companyname != null">
+        companyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        parentId = #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="datatype != null">
+        dataType = #{datatype,jdbcType=INTEGER},
+      </if>
+      <if test="regaddrprovinceid != null">
+        regAddrProvinceId = #{regaddrprovinceid,jdbcType=VARCHAR},
+      </if>
+      <if test="regaddrcityid != null">
+        regAddrCityId = #{regaddrcityid,jdbcType=VARCHAR},
+      </if>
+      <if test="regaddrregionid != null">
+        regAddrRegionId = #{regaddrregionid,jdbcType=VARCHAR},
+      </if>
+      <if test="busaddrprovinceid != null">
+        busAddrProvinceId = #{busaddrprovinceid,jdbcType=VARCHAR},
+      </if>
+      <if test="busaddrcityid != null">
+        busAddrCityId = #{busaddrcityid,jdbcType=VARCHAR},
+      </if>
+      <if test="busaddrregionid != null">
+        busAddrRegionId = #{busaddrregionid,jdbcType=VARCHAR},
+      </if>
+      <if test="isplatfrom != null">
+        isPlatfrom = #{isplatfrom,jdbcType=INTEGER},
+      </if>
+      <if test="istrader != null">
+        isTrader = #{istrader,jdbcType=INTEGER},
+      </if>
+      <if test="isfinancier != null">
+        isFinancier = #{isfinancier,jdbcType=INTEGER},
+      </if>
+      <if test="iswarehouse != null">
+        isWarehouse = #{iswarehouse,jdbcType=INTEGER},
+      </if>
+      <if test="isshipper != null">
+        isShipper = #{isshipper,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        createUser = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        updateUser = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registeredcapital != null">
+        registeredCapital = #{registeredcapital,jdbcType=INTEGER},
+      </if>
+      <if test="legalperson != null">
+        legalPerson = #{legalperson,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredaddress != null">
+        registeredAddress = #{registeredaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="businessaddress != null">
+        businessAddress = #{businessaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null">
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null">
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        begindate = #{begindate,jdbcType=DATE},
+      </if>
+      <if test="companywebsite != null">
+        companywebsite = #{companywebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="taxregistration != null">
+        taxRegistration = #{taxregistration,jdbcType=VARCHAR},
+      </if>
+      <if test="taxregistrationexpiresdate != null">
+        taxRegistrationExpiresDate = #{taxregistrationexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="accopeninglicense != null">
+        accOpeningLicense = #{accopeninglicense,jdbcType=VARCHAR},
+      </if>
+      <if test="accopeninglicenseexpiresdate != null">
+        accOpeningLicenseExpiresDate = #{accopeninglicenseexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="organizationcode != null">
+        organizationCode = #{organizationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationcodeexpiresdate != null">
+        organizationCodeExpiresDate = #{organizationcodeexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="foodcirculationpermit != null">
+        foodCirculationPermit = #{foodcirculationpermit,jdbcType=VARCHAR},
+      </if>
+      <if test="foodcirculationpermitexpiresdate != null">
+        foodCirculationPermitExpiresDate = #{foodcirculationpermitexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="wholesaleliquorlicense != null">
+        wholesaleLiquorLicense = #{wholesaleliquorlicense,jdbcType=VARCHAR},
+      </if>
+      <if test="wholesaleliquorlicenseexpiresdate != null">
+        wholesaleLiquorLicenseExpiresDate = #{wholesaleliquorlicenseexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="liquorcirculationpermit != null">
+        liquorCirculationPermit = #{liquorcirculationpermit,jdbcType=VARCHAR},
+      </if>
+      <if test="liquorcirculationpermitexpiresdate != null">
+        liquorCirculationPermitExpiresDate = #{liquorcirculationpermitexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="businesslicenseexpiresdate != null">
+        businessLicenseExpiresDate = #{businesslicenseexpiresdate,jdbcType=DATE},
+      </if>
+      <if test="businesslicense != null">
+        businessLicense = #{businesslicense,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null">
+        bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="accountnumber != null">
+        accountNumber = #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyparagraph != null">
+        dutyParagraph = #{dutyparagraph,jdbcType=VARCHAR},
+      </if>
+      <if test="taxtypeid != null">
+        taxTypeId = #{taxtypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeid != null">
+        invoiceTypeId = #{invoicetypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="industryid != null">
+        industryId = #{industryid,jdbcType=VARCHAR},
+      </if>
+      <if test="companyclassid != null">
+        companyClassId = #{companyclassid,jdbcType=VARCHAR},
+      </if>
+      <if test="companynatureid != null">
+        companyNatureId = #{companynatureid,jdbcType=INTEGER},
+      </if>
+      <if test="companyscaleid != null">
+        CompanyScaleId = #{companyscaleid,jdbcType=INTEGER},
+      </if>
+      <if test="currencyid != null">
+        currencyId = #{currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="validate != null">
+        validate = #{validate,jdbcType=INTEGER},
+      </if>
+      <if test="taxregistrationimgps != null">
+        taxRegistrationImgPs = #{taxregistrationimgps,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="accopeninglicenseimgps != null">
+        accOpeningLicenseImgPs = #{accopeninglicenseimgps,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="organizationcodeimgps != null">
+        organizationCodeImgPs = #{organizationcodeimgps,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="foodcirculationpermitimgps != null">
+        foodCirculationPermitImgPs = #{foodcirculationpermitimgps,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="wholesaleliquorlicenseimgps != null">
+        wholesaleLiquorLicenseImgPs = #{wholesaleliquorlicenseimgps,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="liquorcirculationpermitimgps != null">
+        liquorCirculationPermitImgPs = #{liquorcirculationpermitimgps,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="businesslicenseimgps != null">
+        businessLicenseImgPs = #{businesslicenseimgps,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where companyId = #{companyid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lnet.model.ums.ErpCompanyWithBLOBs">
+    update erp_company
+    set companyName = #{companyname,jdbcType=VARCHAR},
+      parentId = #{parentid,jdbcType=VARCHAR},
+      dataType = #{datatype,jdbcType=INTEGER},
+      regAddrProvinceId = #{regaddrprovinceid,jdbcType=VARCHAR},
+      regAddrCityId = #{regaddrcityid,jdbcType=VARCHAR},
+      regAddrRegionId = #{regaddrregionid,jdbcType=VARCHAR},
+      busAddrProvinceId = #{busaddrprovinceid,jdbcType=VARCHAR},
+      busAddrCityId = #{busaddrcityid,jdbcType=VARCHAR},
+      busAddrRegionId = #{busaddrregionid,jdbcType=VARCHAR},
+      isPlatfrom = #{isplatfrom,jdbcType=INTEGER},
+      isTrader = #{istrader,jdbcType=INTEGER},
+      isFinancier = #{isfinancier,jdbcType=INTEGER},
+      isWarehouse = #{iswarehouse,jdbcType=INTEGER},
+      isShipper = #{isshipper,jdbcType=INTEGER},
+      createUser = #{createUser,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+      updateUser = #{updateUser,jdbcType=VARCHAR},
+      updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      registeredCapital = #{registeredcapital,jdbcType=INTEGER},
+      legalPerson = #{legalperson,jdbcType=VARCHAR},
+      registeredAddress = #{registeredaddress,jdbcType=VARCHAR},
+      businessAddress = #{businessaddress,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      begindate = #{begindate,jdbcType=DATE},
+      companywebsite = #{companywebsite,jdbcType=VARCHAR},
+      taxRegistration = #{taxregistration,jdbcType=VARCHAR},
+      taxRegistrationExpiresDate = #{taxregistrationexpiresdate,jdbcType=DATE},
+      accOpeningLicense = #{accopeninglicense,jdbcType=VARCHAR},
+      accOpeningLicenseExpiresDate = #{accopeninglicenseexpiresdate,jdbcType=DATE},
+      organizationCode = #{organizationcode,jdbcType=VARCHAR},
+      organizationCodeExpiresDate = #{organizationcodeexpiresdate,jdbcType=DATE},
+      foodCirculationPermit = #{foodcirculationpermit,jdbcType=VARCHAR},
+      foodCirculationPermitExpiresDate = #{foodcirculationpermitexpiresdate,jdbcType=DATE},
+      wholesaleLiquorLicense = #{wholesaleliquorlicense,jdbcType=VARCHAR},
+      wholesaleLiquorLicenseExpiresDate = #{wholesaleliquorlicenseexpiresdate,jdbcType=DATE},
+      liquorCirculationPermit = #{liquorcirculationpermit,jdbcType=VARCHAR},
+      liquorCirculationPermitExpiresDate = #{liquorcirculationpermitexpiresdate,jdbcType=DATE},
+      businessLicenseExpiresDate = #{businesslicenseexpiresdate,jdbcType=DATE},
+      businessLicense = #{businesslicense,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      accountNumber = #{accountnumber,jdbcType=VARCHAR},
+      dutyParagraph = #{dutyparagraph,jdbcType=VARCHAR},
+      taxTypeId = #{taxtypeid,jdbcType=VARCHAR},
+      invoiceTypeId = #{invoicetypeid,jdbcType=VARCHAR},
+      industryId = #{industryid,jdbcType=VARCHAR},
+      companyClassId = #{companyclassid,jdbcType=VARCHAR},
+      companyNatureId = #{companynatureid,jdbcType=INTEGER},
+      CompanyScaleId = #{companyscaleid,jdbcType=INTEGER},
+      currencyId = #{currencyid,jdbcType=VARCHAR},
+      validate = #{validate,jdbcType=INTEGER},
+      taxRegistrationImgPs = #{taxregistrationimgps,jdbcType=LONGVARCHAR},
+      accOpeningLicenseImgPs = #{accopeninglicenseimgps,jdbcType=LONGVARCHAR},
+      organizationCodeImgPs = #{organizationcodeimgps,jdbcType=LONGVARCHAR},
+      foodCirculationPermitImgPs = #{foodcirculationpermitimgps,jdbcType=LONGVARCHAR},
+      wholesaleLiquorLicenseImgPs = #{wholesaleliquorlicenseimgps,jdbcType=LONGVARCHAR},
+      liquorCirculationPermitImgPs = #{liquorcirculationpermitimgps,jdbcType=LONGVARCHAR},
+      businessLicenseImgPs = #{businesslicenseimgps,jdbcType=LONGVARCHAR}
+    where companyId = #{companyid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lnet.model.ums.ErpCompany">
+    update erp_company
+    set companyName = #{companyname,jdbcType=VARCHAR},
+      parentId = #{parentid,jdbcType=VARCHAR},
+      dataType = #{datatype,jdbcType=INTEGER},
+      regAddrProvinceId = #{regaddrprovinceid,jdbcType=VARCHAR},
+      regAddrCityId = #{regaddrcityid,jdbcType=VARCHAR},
+      regAddrRegionId = #{regaddrregionid,jdbcType=VARCHAR},
+      busAddrProvinceId = #{busaddrprovinceid,jdbcType=VARCHAR},
+      busAddrCityId = #{busaddrcityid,jdbcType=VARCHAR},
+      busAddrRegionId = #{busaddrregionid,jdbcType=VARCHAR},
+      isPlatfrom = #{isplatfrom,jdbcType=INTEGER},
+      isTrader = #{istrader,jdbcType=INTEGER},
+      isFinancier = #{isfinancier,jdbcType=INTEGER},
+      isWarehouse = #{iswarehouse,jdbcType=INTEGER},
+      isShipper = #{isshipper,jdbcType=INTEGER},
+      createUser = #{createUser,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+      updateUser = #{updateUser,jdbcType=VARCHAR},
+      updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      registeredCapital = #{registeredcapital,jdbcType=INTEGER},
+      legalPerson = #{legalperson,jdbcType=VARCHAR},
+      registeredAddress = #{registeredaddress,jdbcType=VARCHAR},
+      businessAddress = #{businessaddress,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      begindate = #{begindate,jdbcType=DATE},
+      companywebsite = #{companywebsite,jdbcType=VARCHAR},
+      taxRegistration = #{taxregistration,jdbcType=VARCHAR},
+      taxRegistrationExpiresDate = #{taxregistrationexpiresdate,jdbcType=DATE},
+      accOpeningLicense = #{accopeninglicense,jdbcType=VARCHAR},
+      accOpeningLicenseExpiresDate = #{accopeninglicenseexpiresdate,jdbcType=DATE},
+      organizationCode = #{organizationcode,jdbcType=VARCHAR},
+      organizationCodeExpiresDate = #{organizationcodeexpiresdate,jdbcType=DATE},
+      foodCirculationPermit = #{foodcirculationpermit,jdbcType=VARCHAR},
+      foodCirculationPermitExpiresDate = #{foodcirculationpermitexpiresdate,jdbcType=DATE},
+      wholesaleLiquorLicense = #{wholesaleliquorlicense,jdbcType=VARCHAR},
+      wholesaleLiquorLicenseExpiresDate = #{wholesaleliquorlicenseexpiresdate,jdbcType=DATE},
+      liquorCirculationPermit = #{liquorcirculationpermit,jdbcType=VARCHAR},
+      liquorCirculationPermitExpiresDate = #{liquorcirculationpermitexpiresdate,jdbcType=DATE},
+      businessLicenseExpiresDate = #{businesslicenseexpiresdate,jdbcType=DATE},
+      businessLicense = #{businesslicense,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      accountNumber = #{accountnumber,jdbcType=VARCHAR},
+      dutyParagraph = #{dutyparagraph,jdbcType=VARCHAR},
+      taxTypeId = #{taxtypeid,jdbcType=VARCHAR},
+      invoiceTypeId = #{invoicetypeid,jdbcType=VARCHAR},
+      industryId = #{industryid,jdbcType=VARCHAR},
+      companyClassId = #{companyclassid,jdbcType=VARCHAR},
+      companyNatureId = #{companynatureid,jdbcType=INTEGER},
+      CompanyScaleId = #{companyscaleid,jdbcType=INTEGER},
+      currencyId = #{currencyid,jdbcType=VARCHAR},
+      validate = #{validate,jdbcType=INTEGER}
+    where companyId = #{companyid,jdbcType=VARCHAR}
+  </update>
+</mapper>

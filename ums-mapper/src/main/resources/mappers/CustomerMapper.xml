@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.CustomerMapper">
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+
+    <resultMap id="BaseResultMap" type="com.lnet.model.ums.customer.customerEntity.Customer">
+        <id column="CUSTOMER_ID" jdbcType="VARCHAR" property="customerId"/>
+        <result column="CODE" jdbcType="VARCHAR" property="code"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="NAME_PINYIN" jdbcType="VARCHAR" property="namePinyin"/>
+        <result column="FULL_NAME" jdbcType="VARCHAR" property="fullName"/>
+        <result column="RATING_CODE" jdbcType="VARCHAR" property="ratingCode"/>
+        <result column="CONTACT_MAN" jdbcType="VARCHAR" property="contactMan"/>
+        <result column="CONTACT_PHONE" jdbcType="VARCHAR" property="contactPhone"/>
+        <result column="CONTACT_ADDRESS" jdbcType="VARCHAR" property="contactAddress"/>
+        <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId"/>
+        <result column="CREATE_USER_NAME" jdbcType="VARCHAR" property="createUserName"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="MODIFY_USER_ID" jdbcType="VARCHAR" property="modifyUserId"/>
+        <result column="MODIFY_USER_NAME" jdbcType="VARCHAR" property="modifyUserName"/>
+        <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="IS_ACTIVE" jdbcType="DECIMAL" property="isActive"/>
+        <result column="BIZ_GROUP_CODE" jdbcType="VARCHAR" property="bizGroupCode"/>
+        <result column="BIZ_GROUP_NAME" jdbcType="VARCHAR" property="bizGroupName"/>
+    </resultMap>
+
+    <resultMap id="MultiResultMap" type="com.lnet.model.ums.customer.customerEntity.Customer">
+        <id column="CUSTOMER_ID" jdbcType="VARCHAR" property="customerId"/>
+        <result column="CODE" jdbcType="VARCHAR" property="code"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="NAME_PINYIN" jdbcType="VARCHAR" property="namePinyin"/>
+        <result column="FULL_NAME" jdbcType="VARCHAR" property="fullName"/>
+        <result column="RATING_CODE" jdbcType="VARCHAR" property="ratingCode"/>
+        <result column="CONTACT_MAN" jdbcType="VARCHAR" property="contactMan"/>
+        <result column="CONTACT_PHONE" jdbcType="VARCHAR" property="contactPhone"/>
+        <result column="CONTACT_ADDRESS" jdbcType="VARCHAR" property="contactAddress"/>
+        <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId"/>
+        <result column="CREATE_USER_NAME" jdbcType="VARCHAR" property="createUserName"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="MODIFY_USER_ID" jdbcType="VARCHAR" property="modifyUserId"/>
+        <result column="MODIFY_USER_NAME" jdbcType="VARCHAR" property="modifyUserName"/>
+        <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="IS_ACTIVE" jdbcType="DECIMAL" property="isActive"/>
+        <result column="BIZ_GROUP_CODE" jdbcType="VARCHAR" property="bizGroupCode"/>
+        <result column="BIZ_GROUP_NAME" jdbcType="VARCHAR" property="bizGroupName"/>
+        <collection property="brands" ofType="Brand">
+            <id column="BRAND_CODE" property="code" jdbcType="VARCHAR"/>
+            <result column="BRAND_NAME" property="name" jdbcType="VARCHAR"/>
+            <result column="BRAND_REMARk" property="remark" jdbcType="VARCHAR"/>
+            <result column="BRAND_IS_ACTIVE" property="isActive" jdbcType="DECIMAL"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Column_List">
+        CUSTOMER_ID,CODE, NAME, NAME_PINYIN, FULL_NAME, RATING_CODE, CONTACT_MAN, CONTACT_PHONE,
+        CONTACT_ADDRESS, CREATE_USER_ID, CREATE_USER_NAME, CREATE_TIME, MODIFY_USER_ID, MODIFY_USER_NAME,
+        MODIFY_TIME, REMARK, IS_ACTIVE, BIZ_GROUP_CODE, BIZ_GROUP_NAME, OWNER_CODE
+    </sql>
+
+    <select id="exists" resultType="boolean">
+        select
+        CASE WHEN count(*) > 0 THEN 1 ELSE 0 END
+        from CUSTOMER
+        <where>
+            <if test="code != null ">
+                CODE = #{code,jdbcType=VARCHAR}
+            </if>
+            <if test="customerId != null ">
+                AND CUSTOMER_ID != #{customerId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="get" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Column_List"/>
+        from CUSTOMER
+        where CUSTOMER_ID = #{customerId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Column_List"/>
+        from CUSTOMER
+        where CODE = #{CODE,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAvailable" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Column_List"/>
+        from CUSTOMER
+        where IS_ACTIVE = 1
+    </select>
+
+    <select id="getAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Column_List"/>
+        from CUSTOMER
+    </select>
+
+    <select id="getByCodes" resultMap="BaseResultMap" parameterType="java.lang.String" useCache="true">
+        select
+        <include refid="Column_List"/>
+        from CUSTOMER where CODE in
+        <foreach item="codes" collection="list" open="(" separator="," close=")">
+            #{codes}
+        </foreach>
+    </select>
+
+    <insert id="insert" parameterType="com.lnet.model.ums.customer.customerEntity.Customer">
+        insert into CUSTOMER (CUSTOMER_ID, CODE, NAME,
+        NAME_PINYIN, FULL_NAME, RATING_CODE,
+        CONTACT_MAN, CONTACT_PHONE, CONTACT_ADDRESS,
+        CREATE_USER_ID, CREATE_USER_NAME, CREATE_TIME,
+        MODIFY_USER_ID, MODIFY_USER_NAME, MODIFY_TIME,
+        REMARK, IS_ACTIVE, BIZ_GROUP_CODE,
+        BIZ_GROUP_NAME, OWNER_CODE)
+        values (#{customerId,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+        #{namePinyin,jdbcType=VARCHAR}, #{fullName,jdbcType=VARCHAR}, #{ratingCode,jdbcType=VARCHAR},
+        #{contactMan,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{contactAddress,jdbcType=VARCHAR},
+        #{createUserId,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{modifyUserId,jdbcType=VARCHAR}, #{modifyUserName,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP},
+        #{remark,jdbcType=VARCHAR}, #{isActive,jdbcType=DECIMAL}, #{bizGroupCode,jdbcType=VARCHAR},
+        #{bizGroupName,jdbcType=VARCHAR}, #{ownerCode,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="batchInsert" parameterType="java.util.ArrayList">
+        insert into CUSTOMER (CUSTOMER_ID, CODE, NAME,
+        NAME_PINYIN, FULL_NAME, RATING_CODE,
+        CONTACT_MAN, CONTACT_PHONE, CONTACT_ADDRESS,
+        CREATE_USER_ID, CREATE_USER_NAME, CREATE_TIME,
+        MODIFY_USER_ID, MODIFY_USER_NAME, MODIFY_TIME,
+        REMARK, IS_ACTIVE, BIZ_GROUP_CODE,
+        BIZ_GROUP_NAME, OWNER_CODE)
+        <foreach collection="list" index="index" item="item" open="(" separator="union all" close=")">
+            SELECT
+            #{item.customerId,jdbcType=VARCHAR}, #{item.code,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR},
+            #{item.namePinyin,jdbcType=VARCHAR}, #{item.fullName,jdbcType=VARCHAR}, #{item.ratingCode,jdbcType=VARCHAR},
+            #{item.contactMan,jdbcType=VARCHAR}, #{item.contactPhone,jdbcType=VARCHAR}, #{item.contactAddress,jdbcType=VARCHAR},
+            #{item.createUserId,jdbcType=VARCHAR}, #{item.createUserName,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.modifyUserId,jdbcType=VARCHAR}, #{item.modifyUserName,jdbcType=VARCHAR}, #{item.modifyTime,jdbcType=TIMESTAMP},
+            #{item.remark,jdbcType=VARCHAR}, #{item.isActive,jdbcType=DECIMAL}, #{item.bizGroupCode,jdbcType=VARCHAR},
+            #{item.bizGroupName,jdbcType=VARCHAR}, #{item.ownerCode,jdbcType=VARCHAR}
+            FROM DUAL
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.lnet.model.ums.customer.customerEntity.Customer">
+        update CUSTOMER
+        set CODE = #{code,jdbcType=VARCHAR},
+        NAME = #{name,jdbcType=VARCHAR},
+        NAME_PINYIN = #{namePinyin,jdbcType=VARCHAR},
+        FULL_NAME = #{fullName,jdbcType=VARCHAR},
+        RATING_CODE = #{ratingCode,jdbcType=VARCHAR},
+        CONTACT_MAN = #{contactMan,jdbcType=VARCHAR},
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+        CONTACT_ADDRESS = #{contactAddress,jdbcType=VARCHAR},
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+        CREATE_USER_NAME = #{createUserName,jdbcType=VARCHAR},
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+        MODIFY_USER_ID = #{modifyUserId,jdbcType=VARCHAR},
+        MODIFY_USER_NAME = #{modifyUserName,jdbcType=VARCHAR},
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+        REMARK = #{remark,jdbcType=VARCHAR},
+        IS_ACTIVE = #{isActive,jdbcType=DECIMAL},
+        BIZ_GROUP_CODE = #{bizGroupCode,jdbcType=VARCHAR},
+        BIZ_GROUP_NAME = #{bizGroupName,jdbcType=VARCHAR},
+        OWNER_CODE = #{ownerCode,jdbcType=VARCHAR}
+        where CUSTOMER_ID = #{customerId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="activate" parameterType="java.lang.String">
+        update CUSTOMER
+        set IS_ACTIVE = 1
+        where CODE = #{code,jdbcType=VARCHAR}
+    </update>
+
+    <update id="inactivate" parameterType="java.lang.String">
+        update CUSTOMER
+        set IS_ACTIVE = 0
+        where CODE = #{code,jdbcType=VARCHAR}
+    </update>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        select
+        <include refid="Column_List"/>
+        from CUSTOMER
+        <where>
+            <if test="code != null ">
+                CODE like CONCAT(CONCAT('%', #{code}), '%')
+            </if>
+            <if test="name != null ">
+                AND NAME like CONCAT(CONCAT('%', #{name}), '%')
+            </if>
+            <if test="ratingCode != null">
+                AND RATING_CODE = #{ratingCode}
+            </if>
+            <if test="contactMan != null">
+                AND CONTACT_MAN LIKE CONCAT(CONCAT('%', #{contactMan}), '%')
+            </if>
+        </where>
+        <if test="orderBy !=null">
+            order by ${orderBy}
+        </if>
+    </select>
+
+    <update id="batchInactivate" parameterType="java.lang.String">
+        update CUSTOMER
+        set IS_ACTIVE = 0 where CUSTOMER_ID in
+        <foreach item="idItem" collection="list" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </update>
+
+    <select id="getByBizGroupCode" parameterType="string" resultMap="BaseResultMap">
+        SELECT <include refid="Column_List"/>
+        FROM CUSTOMER
+        WHERE BIZ_GROUP_CODE = #{bizGroupCode, jdbcType=VARCHAR}
+    </select>
+</mapper>

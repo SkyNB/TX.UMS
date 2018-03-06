@@ -1,0 +1,79 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Microsoft Yahei";
+	font-size: 12px;
+}
+
+a {
+	cursor: pointer;
+}
+
+ul,
+li {
+	list-style-type: none;
+	list-style-image: none;
+	list-style-position: outside;
+}
+
+.center-display {
+	text-align: center;
+	position: absolute;
+	top: 48%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+}
+/*.form-control {
+	height: 32px;
+}*/
+.modal-dialog{
+	z-index: 1044;
+}
+/*boot*/
+@media (min-width: 768px){
+	.form-horizontal .form-group-sm .control-label {
+	    padding-top: 6px;
+	}
+}
+.input-sm, .form-group-sm .form-control {
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+select.input-sm, select.form-group-sm .form-control {
+    height: 30px;
+    line-height: 30px;
+}
+.input-sm, .form-group-sm .form-control {
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+/*kendo*/
+.k-list-scroller::-webkit-scrollbar-track-piece,body::-webkit-scrollbar-track-piece {
+	background-color: #e8e8e8
+}
+
+.k-list-scroller::-webkit-scrollbar ,body::-webkit-scrollbar {
+	width: 6px;
+	height: 6px
+}
+
+.k-list-scroller::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb {
+	background: #999;
+	border-radius: 6px
+}
+
+.k-list-scroller::-webkit-scrollbar-thumb:horizontal,body::-webkit-scrollbar-thumb:horizontal {
+	background-color: #999;
+	border-radius: 6px
+}

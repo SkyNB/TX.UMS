@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnet.ums.mapper.dao.mappers.StoreMapper">
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+
+    <resultMap id="BaseResultMap" type="com.lnet.model.ums.customer.customerEntity.Store">
+        <id column="STORE_ID" property="storeId" jdbcType="VARCHAR"/>
+        <result column="OWNER_CODE" property="ownerCode" jdbcType="VARCHAR"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="CONTACT_MAN" property="contactMan" jdbcType="VARCHAR"/>
+        <result column="TELEPHONE_NO" property="telephoneNo" jdbcType="VARCHAR"/>
+        <result column="MOBILE_PHONE_NO" property="mobilePhoneNo" jdbcType="VARCHAR"/>
+        <result column="PROVINCE" property="province" jdbcType="VARCHAR"/>
+        <result column="CITY" property="city" jdbcType="VARCHAR"/>
+        <result column="AREA" property="area" jdbcType="VARCHAR"/>
+        <result column="STREET" property="street" jdbcType="VARCHAR"/>
+        <result column="DISTRICT_CODE" property="districtCode" jdbcType="VARCHAR"/>
+        <result column="ADDRESS" property="address" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="IS_ACTIVE" property="isActive" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="Column_List">
+    STORE_ID, OWNER_CODE, CODE, NAME, CONTACT_MAN, TELEPHONE_NO, MOBILE_PHONE_NO, PROVINCE,
+    CITY, AREA, STREET, DISTRICT_CODE, ADDRESS, REMARK, IS_ACTIVE
+  </sql>
+
+    <select id="exists" resultType="boolean" parameterType="java.lang.String">
+        SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END
+        from STORE
+        <where>
+            <if test="ownerCode != null ">
+                OWNER_CODE = #{ownerCode,jdbcType=VARCHAR}
+            </if>
+            <if test="code != null ">
+                AND CODE = #{code,jdbcType=VARCHAR}
+            </if>
+
+            <if test="storeId != null ">
+                AND STORE_ID != #{storeId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Column_List"/>
+        from STORE
+        where STORE_ID = #{storeId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Column_List"/>
+        from STORE
+        where CODE = #{code,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAvailable" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Column_List"/>
+        from STORE
+        where IS_ACTIVE = 1
+    </select>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        select
+        <include refid="Column_List"/>
+        from STORE
+    </select>
+
+    <select id="getByOwnerCode" resultMap="BaseResultMap" parameterType="string">
+        select
+        <include refid="Column_List"/>
+        from STORE
+        where IS_ACTIVE = 1 and OWNER_CODE = #{ownerCode,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from STORE
+        where STORE_ID = #{storeId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.lnet.model.ums.customer.customerEntity.Store">
+        insert into STORE (STORE_ID, OWNER_CODE,
+      CODE, NAME, CONTACT_MAN,
+      TELEPHONE_NO, MOBILE_PHONE_NO, PROVINCE, CITY,
+      AREA, STREET, DISTRICT_CODE,
+      ADDRESS, REMARK, IS_ACTIVE
+      )
+    values (#{storeId,jdbcType=VARCHAR}, #{ownerCode,jdbcType=VARCHAR},
+      #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{contactMan,jdbcType=VARCHAR},
+      #{telephoneNo,jdbcType=VARCHAR},#{mobilePhoneNo,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+      #{area,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR},#{districtCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+      #{remark,jdbcType=VARCHAR}, #{isActive,jdbcType=DECIMAL})
+    </insert>
+    <update id="update" parameterType="com.lnet.model.ums.customer.customerEntity.Store">
+      update STORE
+      set OWNER_CODE = #{ownerCode,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      CONTACT_MAN = #{contactMan,jdbcType=VARCHAR},
+      TELEPHONE_NO = #{telephoneNo,jdbcType=VARCHAR},
+      MOBILE_PHONE_NO = #{mobilePhoneNo,jdbcType=VARCHAR},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      AREA = #{area,jdbcType=VARCHAR},
+      STREET = #{street,jdbcType=VARCHAR},
+      DISTRICT_CODE = #{districtCode,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      IS_ACTIVE = #{isActive,jdbcType=DECIMAL}
+      where STORE_ID = #{storeId,jdbcType=VARCHAR}
+    </update>
+    <insert id="batchInsert" parameterType="com.lnet.model.ums.customer.customerEntity.Store">
+        <!--insert into STORE (<include refid="Column_List"/>)
+        (
+        <foreach collection="list" item="item" index="index" separator="union all">
+            select
+            #{item.storeId,jdbcType=VARCHAR},
+            #{item.ownerCode,jdbcType=VARCHAR},
+            #{item.code,jdbcType=VARCHAR},
+            #{item.name,jdbcType=VARCHAR},
+            #{item.contactMan,jdbcType=VARCHAR},
+            #{item.telephoneNo,jdbcType=VARCHAR},
+            #{item.mobilePhoneNo,jdbcType=VARCHAR},
+            #{item.province,jdbcType=VARCHAR},
+            #{item.city,jdbcType=VARCHAR},
+            #{item.area,jdbcType=VARCHAR},
+            #{item.street,jdbcType=VARCHAR},
+            #{item.districtCode,jdbcType=VARCHAR},
+            #{item.address,jdbcType=VARCHAR},
+            #{item.remark,jdbcType=VARCHAR},
+            #{item.isActive,jdbcType=DECIMAL}
+            from dual
+        </foreach>
+        )-->
+        MERGE INTO STORE s USING
+        (
+        <foreach collection="list" item="item" index="index" separator="union">
+            SELECT
+            #{item.storeId,jdbcType=VARCHAR} storeId,
+            #{item.ownerCode,jdbcType=VARCHAR} ownerCode,
+            #{item.code,jdbcType=VARCHAR} code,
+            #{item.name,jdbcType=VARCHAR} name,
+            #{item.contactMan,jdbcType=VARCHAR} contactMan,
+            #{item.telephoneNo,jdbcType=VARCHAR} telephoneNo,
+            #{item.mobilePhoneNo,jdbcType=VARCHAR} mobilePhoneNo,
+            #{item.province,jdbcType=VARCHAR} province,
+            #{item.city,jdbcType=VARCHAR} city,
+            #{item.area,jdbcType=VARCHAR} area,
+            #{item.street,jdbcType=VARCHAR} street,
+            #{item.districtCode,jdbcType=VARCHAR} districtCode,
+            #{item.address,jdbcType=VARCHAR} address,
+            #{item.remark,jdbcType=VARCHAR} remark,
+            #{item.isActive,jdbcType=DECIMAL} isActive
+            FROM DUAL
+        </foreach>
+        ) temp
+        ON
+        (
+        UPPER(s.CODE) = UPPER(temp.code) AND UPPER(s.OWNER_CODE) = UPPER(temp.ownerCode)
+        )
+        WHEN MATCHED THEN UPDATE SET
+        s.NAME = temp.name,
+        s.CONTACT_MAN = temp.contactMan,
+        s.TELEPHONE_NO = temp.telephoneNo,
+        s.MOBILE_PHONE_NO = temp.mobilePhoneNo,
+        s.PROVINCE = temp.province,
+        s.CITY = temp.city,
+        s.AREA = temp.area,
+        s.STREET = temp.street,
+        s.DISTRICT_CODE = temp.districtCode,
+        s.ADDRESS = temp.address,
+        s.REMARK = temp.remark
+        WHEN NOT MATCHED THEN INSERT (<include refid="Column_List"/>)
+        VALUES
+        (temp.storeId,temp.ownerCode,temp.code,temp.name,temp.contactMan,temp.telephoneNo,temp.mobilePhoneNo,temp.province,temp.city,temp.area,
+        temp.street,temp.districtCode,temp.address,temp.remark,temp.isActive)
+    </insert>
+    <delete id="batchDelete" parameterType="java.lang.String">
+        delete from STORE where STORE_ID in
+        <foreach item="idItem" collection="list" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        select
+        <include refid="Column_List"/>
+        from STORE
+        <where>
+            <if test="code != null ">
+                CODE like CONCAT(CONCAT('%', #{code}), '%')
+            </if>
+            <if test="name != null ">
+                AND NAME like CONCAT(CONCAT('%', #{name}), '%')
+            </if>
+            <if test="contactMan != null">
+                AND CONTACT_MAN LIKE CONCAT(CONCAT('%', #{contactMan}), '%')
+            </if>
+            <if test="province != null">
+                AND PROVINCE LIKE CONCAT(CONCAT('%', #{province}), '%')
+            </if>
+            <if test="city != null">
+                AND CITY LIKE CONCAT(CONCAT('%', #{city}), '%')
+            </if>
+            <if test="ownerCode != null">
+                AND OWNER_CODE=#{ownerCode}
+            </if>
+        </where>
+        <if test="orderBy !=null">
+            order by ${orderBy}
+        </if>
+        <if test="orderBy == null">
+            order by CODE
+        </if>
+    </select>
+
+    <update id="activate" parameterType="string">
+        UPDATE STORE SET IS_ACTIVE = 1 WHERE CODE = #{code,jdbcType=VARCHAR}
+    </update>
+
+    <update id="inactivate" parameterType="string">
+        UPDATE STORE SET IS_ACTIVE = 0 WHERE CODE = #{code,jdbcType=VARCHAR}
+    </update>
+
+    <select id="getBranchAvailable" parameterType="string" resultMap="BaseResultMap">
+        SELECT DISTINCT s.*
+        FROM STORE s INNER JOIN PROJECT p ON s.OWNER_CODE = p.CUSTOMER_CODE
+        WHERE p.BRANCH_CODE = #{branchCode, jdbcType=VARCHAR} AND s.IS_ACTIVE = 1
+    </select>
+</mapper>
